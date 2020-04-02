@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>cookie基础操作</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			【1】http协议:
+			    HTTP协议，超文本传输协议，用于从web服务器传输超文本到本地浏览器的传输协议，它是一个无状态的协议
+			
+			【2】cookie的概念:
+			    cookie是指缓存在本地客户端的数据
+			
+			【3】cookie的基础操作:
+			     cookie的基础操作-->增，删，改，查;
+			
+			【4】cookie的封装
+			     setCookie();
+				 getCookie();
+				 removeCookie();
+			 
+			 */
+			window.onload = function(){
+				//设置（增加）cookie
+				document.cookie = "username=hanny";
+				//查找cookie
+				console.log(document.cookie);
+				//修改cookie
+				document.cookie = "username=hanny1"
+				//设置cookie 几天过期，被删除
+				var oDate = new Date();
+				oDate.setDate(oDate.getDate()+3);
+				document.cookie = "username=hanny1;expires="+oDate;
+				//删除cookie
+				var oDate1 = new Date();
+				oDate1.setDate(oDate.getDate()-1);
+				document.cookie = "username=hanny1;expires="+oDate1;
+				
+				//cookie的封装
+				function setCookie(name,value,day){//day为几天之后过期
+					var oDate = new Date();
+					oDate.setDate(oDate.getDate()+day);
+					document.cookie = name + "=" +vaule + "expires=" +oDate;//参数拼接字符串
+				}
+				
+				function getCookie(name){//得到某一条，确定name的，cookie值
+					var str = document.cookie;//获取到所有cookie值
+					var arr = str.split("; ");
+					for(var i = 0; i < arr.length; i++){
+						var arr1 = arr[i].split("=");
+						if(arr1[0] == name){
+							return arr1[1];
+						}
+					}
+				}
+				
+				function removeCookie(name){
+					/* var oDate = new Date();
+					oDate.setDate(oDate.getDate()-1);
+					document.cookie = name + "=" +vaule + "expires=" +oDate;; */
+					setCookie(name,1,-1);
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

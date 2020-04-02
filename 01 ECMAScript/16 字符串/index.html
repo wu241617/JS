@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* 
+			 1,字符串的概念：由单引号或者双引号包括起来的内容
+			 
+			 2，字符串的声明：
+			         var str = new String("hello");
+					 var str = String("hello");
+					 var str = "hello";
+					 
+			3,字符串属性： length --> 当前字符串里面字符的个数
+			
+			4,访问字符串中的字符  用  charAt();  字符串.charAt(下标);/str[下标];  返回值为对应下标的字符
+		   【注】字符串的修改  在ECMAScprit 中 字符串一旦被创建就不能修改单个字符  只能销毁之后  重新整个赋值
+					
+			5,【1】字符串方法：
+			        1,字符串.sup(); str.sub();等  必须在document.write();中使用    -->document.write("hello".sup()+"<br>");
+					2,字符串.charAt(下标); -->             参数为下标        返回值为对应下标的字符
+					3,字符串.charCodeAt(下标);  -->        参数为下标        返回值为对应下标字符的ACSII码值
+					4,String.fromCharCode(ACSII码值) -->  参数为ACSII码值   返回值为对应的字符串
+					5,字符串1.concat(字符串2); -->         参数为字符串      返回值为拼接好的新字符串   （字符串的拼接还可以用+实现）
+					
+			  【2】字符串查找方法：
+					1,字符串.indexof(子串，开始查找的位置)-->参数为子串和开始查找的位置   
+					返回值为：如果查到子串在字符串中第一次出现的位置，则返回查到第一次子串的位置，没有查到返回0
+					2,字符串.lastIndexof(子串)-->参数为子串
+					返回值为：如果查到子串最后一次出现的位置，则返回查到第一次子串的位置，没有查到返回-1
+					3,字符串。search(正则表达式/子串)--> 参数可以为正则表达式或者子串   "abc"  /abc/ ig    i为忽略大小写
+					
+			  【3】，字符串的替换，分割:
+			        1,字符串.replace(正则表达式/匹配的子串，要替换的子串)：--> 参数为正则表达式/匹配的子串，要替换的子串
+					返回值为：已经替换好的，构成的新字符串 【注】使用正则表达式可以把原本字符串里面符合要求的所有子串全部替换  （/abc/g）-->g为全局  
+					2,字符串.substring(start,end);-->  参数：开始提取的位置和结束提取的位置
+					返回值为：提取出来的子串所构成的一个新字符串【注】不包含结束位置
+					3,字符串.split(分割符，生成的数组的长度);-->参数：分割符，生成的数组的长度
+					返回值为：生成的含有子串的数组
+					
+			  【4】,字符串大小写的方法：
+			        1,字符串.toLowerCase();-->全小写
+					2,字符串.toUpperCase();-->全大写
+			
+			 */
+			var str = "hello";
+			var length = str.length;
+			document.write(str+"<br>");
+			document.write(length+"<br>");
+			document.write(str[0]+"<br>");
+			document.write(str.charAt(2)+"<br>");
+			//str[0] = x;【注】字符串的修改  在ECMAScprit 中 字符串一旦被创建就不能修改单个字符  只能销毁之后  重新整个赋值
+			str = "hxllo";
+			document.write(str+"<br>");
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

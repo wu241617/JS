@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ajax_callbackHell_Promise</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			 【1】回调地狱,Promise
+			    1,回调地狱
+				
+				2,Promise
+				
+				3,Ajax的依赖调用
+				
+				4,Promise解决Ajax的依赖调用
+			 
+			 【2】Ajax的同源策略
+			 
+			 */
+			window.onload = function(){
+				//需要同步进行
+				x = getDate();
+				y = getMoreDate(x);
+				z = getMoreDate(y);
+				
+				//一般情况下,异步进行
+				getDate(function(x){
+					getMoreDate(x,function(y){
+						getMoreDate(y,function(z){
+							//对z的操作
+						})
+					})
+				})
+				
+				//ES6新增Promise方法后
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

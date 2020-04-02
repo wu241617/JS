@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			 7,cloneNode()方法       -->复制节点
+			 【格式】:node（要复制的当前元素节点）.cloneNode();
+			 功能:克隆节点
+			 返回值:新克隆出来的节点
+			 参数:true 默认false 如果传true,就会复制元素节点中的innerHTML
+			 
+			 8,removeChild()方法     -->移除节点 
+			 【格式】:node(当前元素节点).parentNode（父节点）.removeChild(node当前元素节点);
+			 
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				var oSpan = document.getElementsByTagName("span")[0];
+				var node = oDiv.cloneNode(true);
+				oSpan.parentNode.insertBefore(node,oSpan);
+				
+				oDiv.parentNode.removeChild(oDiv);
+			}
+		</script>
+	</head>
+	<body>
+		<p>p</p>
+		<div id="div1">div</div>
+		<span>span</span>
+	</body>
+</html>

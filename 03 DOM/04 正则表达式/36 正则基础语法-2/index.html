@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则基础语法-2(实例)</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				background-image: url(img/pic-01.jpg);
+				background-repeat: no-repeat;
+			}
+
+			div {
+				width: 800px;
+				height: 380px;
+				margin: 150px auto;
+				background-color: rgba(255,192,203,.5);
+				border: 4px solid white;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+				text-align: center;
+			}
+			
+			div h1{
+				font-family:幼圆;
+				font-weight:bolder;
+				display:block;
+				padding-top:20px;
+				width:800px;
+				height:50px;
+				background-color:rgba(255,0,0,.5);
+				border-bottom:2px solid black;
+				border-top-left-radius: 10px;
+				border-top-right-radius: 10px;
+			}
+
+			div form {
+				width: 800px;
+				height: 300px;
+				font-size: 18px;
+			}
+
+			div form input {
+				border-radius: 5px;
+				border-style: groove;
+				margin-top: 30px;
+				width: 220px;
+				height: 25px;
+			}
+
+			div form .class1 {
+				width: 80px;
+				cursor: pointer;
+				background-color:cadetblue;
+				border:1px solid black;
+			}
+			div form .class1:hover{
+				background-color:rgba(255,0,0,.5);
+				color:white;
+			}
+			.right{
+				color:green;
+				font-size:13px;
+				border:1px solid green;
+			}
+			.error{
+				color:red;
+				font-size:13px;
+				border:1px solid red;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 正则表达式应用于表单验证的实例*/
+			window.onload = function() {
+				var username = document.getElementById("username");
+				var username1 = document.getElementById("username1");
+				var aInput = document.getElementsByTagName("input");
+				aInput[0].onblur = function() {
+					//用户名由数字和字母组成，6-10位
+					if (username.value == "") {
+						username1.innerHTML = "用户名不能为空！";
+						username1.className = "error";
+					} else {
+						if (username.value.length < 6 || username.value.length > 10) {
+							username1.innerHTML = "用户名长度为6-10";
+							username1.className = "error";
+						} else {
+							var reg = /^[0-9a-zA-Z]{6,10}$/;
+							if (reg.test(username.value)) {
+								username1.innerHTML = "输入用户名正确!";
+								username1.className = "right";
+								//console.log("输入用户名正确!");
+							} else {
+								username1.innerHTML = "格式不正确!";
+								username1.className = "error";
+								//console.log("格式不正确!")
+							}
+						}
+					}
+				}
+				
+				var password = document.getElementById("password");
+				var password1 = document.getElementById("password1");
+				aInput[1].onblur = function(){
+					if(password.value == ""){
+						password1.innerHTML = "密码不能为空！";
+						password1.className = "error";
+					}
+					else{
+						if(password.value.length<8 || password.value.length>16){
+							password1.innerHTML = "密码长度为8-16位";
+							password1.className = "error";
+						}
+						else{
+							var reg1 = /^[0-9a-zA-Z]{8,16}$/;
+							if(reg1.test(password.value)){
+								password1.innerHTML="密码输入正确！";
+								password1.className = "right";
+							}
+							else{
+								password1.innerHTML = "密码格式错误！";
+								password1.className = "error";
+							}
+						}
+					}
+				}
+				
+				var table = document.getElementById("table");
+				var table1 = document.getElementById("table1");
+				aInput[2].onblur = function(){
+					if(table.value == ""){
+						table1.innerHTML = "手机号不能为空！";
+						table1.className = "error";
+					}
+					else{
+						if(table.value.length != 11){
+							table1.innerHTML = "手机号必须为11位";
+							table1.className = "error";
+						}
+						else{
+							var reg2 = /^1[0-9]{10}$/;
+							if(reg2.test(table.value)){
+								table1.innerHTML = "手机号输入正确！";
+								table1.className = "right";
+							}
+							else{
+								table1.innerHTML = "手机号格式不正确！";
+								table1.className = "error";
+							}
+						}
+					}
+				}
+				
+			    aInput[3].onclick = function(){
+					//用户名:1704240131    密码:05241617   手机号:13037175382
+					if(aInput[0].value == "1704240131" && aInput[1].value == "05241617" && aInput[2].value == "13037175382"){
+						alert("登录成功！");
+						window.open("case.html");
+					}
+					else{
+						alert("登录失败，请核实您输入的信息！");
+					}
+					aInput[0].value = "";
+					aInput[1].value = "";
+					aInput[2].value = "";
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<h1>相册登录界面</h1>
+			<form action="">
+				<br>
+				<label>用户名:&nbsp;&nbsp;&nbsp;</label><input type="text" id="username" placeholder="请输入用户名！">
+				<span id="username1"></span>
+				<br>
+				<label>密码:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label><input type="password" id="password" placeholder="请输入密码！">
+				<span id="password1"></span>
+				<br>
+				<label>手机号:&nbsp;&nbsp;&nbsp;</label><input type="text" id="table" placeholder="请输入手机号！">
+				<span id="table1"></span>
+				<br>
+				<input type="button" value="登录" class="class1">
+			</form>
+		</div>
+	</body>
+</html>

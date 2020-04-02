@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>跨域_CORS</title>
+		<style type="text/css"></style>
+		<script type="text/javascript" src="jquery-3.4.1.js"></script>
+		<script type="text/javascript">
+			/* CORS-->全称为跨域资源共享 
+			   Origin字段-->判断是否允许跨域，主要是服务器端操作
+			 */
+			window.onload = function(){
+				$.get("http://localhost:8080/HBuilderProjects/JS基础内容/53 跨域_CORS/test.php",function(resp){
+					console.log(resp);
+				})
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

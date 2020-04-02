@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>实例</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#contain{
+				width:600px;
+				height:300px;
+				margin: 50px auto;
+				border:2px solid black;
+			}
+			#contain div{
+				width:600px;
+				height:250px;
+				background-color:white;
+			}
+			#contain form{
+				height:50px;
+				background-color:darkgray;
+				text-align:center;
+				line-height:50px;
+			}
+			#contain form input:nth-child(1){
+				width:400px;
+				height:30px;
+				margin: 10px;
+			}
+			#contain form input:nth-child(2){
+				width:50px;
+				height:30px;
+				border:none;
+				text-align:center;
+				line-height:30px;
+				background-color:cadetblue;
+				border:1px solid black;
+				cursor:pointer;
+			}
+			#contain form input:nth-child(2):hover{
+				background-color:black;
+				color:white;
+			}
+		</style>
+		<script type="text/javascript">
+			window.onload = function(){
+				var oDiv = document.getElementsByTagName("div")[1];
+				var aInput = document.getElementsByTagName("input");
+				aInput[1].onclick = comment;
+				function comment(){
+					var Txt = aInput[0].value;
+					oDiv.innerHTML += Txt;
+				}
+				aInput[0].onkeydown = function(e){
+					var evt = e||event;
+					if(evt.ctrlKey && evt.keyCode == 13){
+						comment();
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="contain">
+		   <div></div>
+		   <form action="">
+		      <input type="text">
+		      <input type="button" value="发送">
+		   </form>
+		</div>
+	</body>
+</html>

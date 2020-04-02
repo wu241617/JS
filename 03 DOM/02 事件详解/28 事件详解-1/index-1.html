@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+		    常用的几种HTML事件处理函数
+		        [1]表单提交相关:
+				  
+			 
+			 */
+			window.onload = function(){
+				var oFrom = document.getElementsByTagName("form")[0];
+				var oInput = document.getElementsByTagName("input");
+				//1,表单提交的时候触发
+				oFrom.onsubmit = function(){
+					console.log("onsubmit");
+					return false;
+				}
+				//2,输入框鼠标获得焦点的时候触发
+				oInput[0].onfocus = function(){
+					console.log("onfocus");
+				}
+				//3,输入框鼠标失去焦点的时候触发
+				oInput[0].onblur = function(){
+					console.log("onblur");
+				}
+				//4,输入框内容改变，并且失去焦点的时候触发
+				oInput[0].onchange = function(){
+					console.log("onchange");
+				}
+				//5,输入框内容改变的时候触发
+				oInput[0].oninput = function(){
+					console.log("oninput");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<form action="">
+			<input type="text">
+			<input type="submit" value="提交" />
+		</form>
+	</body>
+</html>

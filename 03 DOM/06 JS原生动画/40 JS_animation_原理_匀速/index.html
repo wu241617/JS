@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JS_animation_原理_匀速</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			div{
+				height:100px;
+				width:100px;
+				background-color:pink;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			 JS原生动画:
+			           【1】,JS动画原理:
+					         1,匀速
+							 2,碰撞
+					   
+					   【2】,动画函数封装:
+					        1,getStyle
+							2,减速
+							3,透明度
+							4,多属性
+					   
+					   【3】,轮播:
+					        1,透明度
+							2,水平
+			 */
+			//匀速 或者斜线运动
+			window.onload = function(){
+				var speedX = 5;
+				var speedY = 3;
+				//var oDiv = document.querySelector("div");
+				var oDiv = document.getElementsByTagName("div")[0];
+				
+				function move() {
+					var currentLeft = parseInt(window.getComputedStyle(oDiv).left);//获取元素属性值
+					var currentTop = parseInt(window.getComputedStyle(oDiv).top); 
+					var left = currentLeft + speedX;
+					var top = currentTop + speedY;
+					oDiv.style.left = left + "px";
+					oDiv.style.top = top + "px";
+				}
+				
+				setInterval(function(){
+					move()
+					},50);
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

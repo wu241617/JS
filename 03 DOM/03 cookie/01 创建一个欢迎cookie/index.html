@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		
+		<script>
+			//cookie的封装
+			//setCookie方法的封装
+			function setCookie(name,value,day){//day为几天之后过期
+				var oDate = new Date();
+				oDate.setDate(oDate.getDate()+day);
+				document.cookie = name + "=" +vaule + "expires=" +oDate;//参数拼接字符串
+			}
+			
+			//getCookie方法的封装
+			function getCookie(name){//得到某一条，确定name的，cookie值
+				var str = document.cookie;//获取到所有cookie值
+				var arr = str.split("; ");
+				for(var i = 0; i < arr.length; i++){
+					var arr1 = arr[i].split("=");//分解成一个二维数组arr1
+					if(arr1[0] == name){
+						return arr1[1];
+					}
+				}
+			}
+			
+			function removeCookie(name){
+				/* var oDate = new Date();
+				oDate.setDate(oDate.getDate()-1);
+				document.cookie = name + "=" +vaule + "expires=" +oDate;*/
+				setCookie(name,1,-1);
+			}
+			
+			document.querySelector("body").onload = function(){
+				var user=getCookie("username");//调用封装好的getCookie函数，来判断是否存在
+				if (user!=""){
+					alert("欢迎 " + user + " 再次访问");
+				}
+				else {
+					user = prompt("请输入你的名字:","");//输入框，当点击确定按钮时，将输入的值赋值给user
+			  		if (user!="" && user!=null){
+			    		setCookie("username",user,30);//调用setCookie函数，来设置一条新的cookie
+			    	}
+				}
+			}
+			
+		</script>
+	</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>es6基础语法-3</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			ES6-->JS最新版本
+			
+			 6,生成器函数(generator):
+			 			 
+			 7,类class（了解）
+			 
+			 
+			 */
+			window.onload = function(){
+				//=========================生成器函数(generator):============================
+				 function* foo(x){
+					yield x+1;//yield-->中断返回
+					yield x+2;//yield-->中断返回
+					return x+3;//return-->程序执行完返回
+				}
+				var f = foo(1);
+				console.log(f);
+				//第一个f.next()的值，未执行完false;第二个f.next()的值，未执行完false;第三个f.next()的值，程序执行完成true
+				console.log(f.next(),f.next(),f.next());
+				
+				//next()方法参数表示,上一次的返回值(yield(...))
+				function* foo1(x){
+					var y = 2*(yield(x+1));
+					var z = yield(y/3);
+					return (x+y+z);
+				}
+				var it = foo1(5);
+				console.log(it.next(3));
+				console.log(it.next(12));//yield(x+1) = 12;
+				console.log(it.next(13));//yield(y/3) = 13;
+				
+				 
+				//斐波拉契数列
+				function* feiBo(n){//第三项是第一项和第二项的和......
+					let a = 0;
+					let b = 1;
+					for(let i = 0; i < n; i++){
+						yield a;
+						let temp = a + b;
+						a = b;
+						b = temp;
+					}
+				}
+				
+				var f = feiBo(5);
+				
+			    for(let i of f){
+					console.log(i);
+				} 
+				//=====================类class=================================
+				class Person{
+					constructor(name,age) {
+					    this.name = name;
+						this.age = age;
+					}
+					sayHello(){
+						console.log(this.age);
+					}
+				}
+				
+				var person = new Person("wuhao",20);
+				console.log(person.name);
+				console.log(person.sayHello());
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

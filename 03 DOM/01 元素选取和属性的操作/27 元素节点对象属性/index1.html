@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>属性节点的属性2</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			div{
+				width:100px;
+				height:100px;
+				margin: 200px auto;
+				background-color:pink;
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			3,元素节点的属性：attribute属性返回该节点的属性节点的集合【集合】
+			   集合：1，不重复   2，无序
+			  attributes.length  属性节点的个数
+			  
+			  //访问其中一个属性节点：
+			  alert(oDiv.attributes.getNameItem("id"));
+			  alert(oDiv.attributes["id"]);
+			  
+			  //属性节点
+			  nodeType   nodeName  nodeValue
+			  节点类型2   节点名     节点值
+			 
+			
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				oDiv.onclick = function(){
+					alert(1);
+					//alert(oDiv.attributes.getNamedItem("id"));
+					alert(oDiv.attributes["id"]);
+					alert(oDiv.attributes["id"].nodeType);
+					alert(oDiv.attributes["id"].nodeName);
+					alert(oDiv.attributes["id"].nodeValue);
+				}
+			}
+		</script>
+	</head> 
+	<body>
+		<div id="div1" name="wuhao" title="shuxing" class="box"></div>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DOM</title>
+		<script type="text/javascript">
+			/* 
+			【1】，DOM对象的概念：文档对象模型
+			
+			【2】，DOM中节点种类有三种：eg:<div title="测试语句">hello world</div>
+			       1，元素节点：<div></div>
+				   2，属性节点：title="测试语句"
+				   3，文本节点：hello world
+				  【注】，在JS 中每一个节点都是一个对象
+				  
+			【3】，元素节点获取方法：
+			       1，document.getElementById(id);-->返回满足条件的一个节点
+				      document.getElementsByTagName(标签名);-->返回满足条件的一个节点数组
+					  document.getElementsByName(name);-->返回满足条件的一个节点数组
+					  document.getElementsByClassName(类名);-->返回满足条件的一个节点数组 
+					  
+					  --->在低版本IE浏览器下不支持，要做浏览器兼容性操作。编写兼容性函数
+					  function getClassName(element,classStr){//参数一，元素节点 参数二，对比的类名
+						  var nodes = element.getElementsByTagName("*");
+						  var arr = [];
+						  for(var i = 0;i < nodes.length; i++){
+							  if(nodes[i].className == classStr){
+								  arr.push(nodes[i]);
+							  }
+						  }
+						  return arr;
+					  }
+					  
+				   2,元素节点的属性：tagName 和 innerHTML
+				   
+				   3,HTML属性的属性：title className style id
+				   
+		    【4】，获取当前样式的操作：
+			       1,document.getElementById("XX").style.xxx;-->只能获取行内CSS样式
+				   
+			       2,在火狐，谷歌，Safrai下用  getComputedStyle(元素节点)[获取样式类型];
+				                             -->window.getComputedStyle(元素节点).获取样式类型
+				   
+				   3,在IE浏览器下用，元素节点.currentStyle[获取样式类型];
+				   
+			【注】做浏览器兼容操作：获取当前样式的兼容函数
+				  function getStyle(element,attr){//参数一，节点   参数二 样式类型
+					  return  element.currentStyle ? element.currentStyle[attr] :getComputedStyle(element)[attr];
+				  }
+			 */   
+			window.onload = function(){
+				/* var div1 = document.getElementById("div1");//通过元素节点的ID 获取元素节点
+				
+				document.write(div1.tagName+"<br>");//访问元素节点的tagName属性,返回元素节点的标签名
+				document.write(div1.innerHTML+"<br>");//访问元素节点的innerHTML属性,返回元素节点标签之间的内容
+				div1.innerHTML = "<h1>wuhaoai</h1>";//设置元素节点标签之间的内容,自动解析其标签,将结果显示在页面面
+				
+				document.write(div1.title+"<br>");//访问title属性
+				document.write(div1.className+"<br>");//访问className属性
+				document.write(div1.style.width+"<br>");//访问style里面的具体属性值
+				document.write(div1.style.backgroundColor+"<br>");//在JS 中  background-color 要写成backgroundColor这种
+				//[注]设置各个属性的值的时候,直接用=赋值 */
+				
+				/* var arr = document.getElementsByTagName("li");
+				document.write(arr.length+"<br>");
+				 */
+				var ul1 = document.getElementById("ul1");
+				var arr1 = ul1.document.getElementsByTagName("li");
+				document.write(arr1.length+"<br>")
+				for(var i = 0; i < arr1.length; i++){
+					document.write(arr1[i]+"<br>")
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id = "div1" title="测试语句" class="test" style="width:300px; height:400px; background-color:blue; ">hello world</div>
+		<ul id="ul1">
+			<li>11111</li>
+			<li>22222</li>
+			<li>33333</li>
+			<li>44444</li>
+		</ul>
+		<ol>
+			<li>55555</li>
+			<li>66666</li>
+			<li>77777</li>
+			<li>88888</li>
+		</ol>
+		
+	</body>
+</html>

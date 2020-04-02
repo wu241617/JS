@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Promise解决Ajax的依赖调用</title>
+		<style type="text/css"></style>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	</head>
+	<body>
+		<p></p>
+		<script>
+			//Promise解决Ajax的依赖调用
+			function getPara1(){
+				return new Promise(function(resolve,reject){
+					$.get("p1.txt",function(p1){
+						resolve(p1)
+					})
+				});
+			}
+			
+			function getPara2(){
+				return new Promise(function(resolve,reject){
+					$.get("p2.txt",function(p2){
+						resolve(p2)
+					})
+				});
+			}
+			
+			function getPara3(){
+				return new Promise(function(resolve,reject){
+					$.get("p3.txt",function(p3){
+						resolve(p3)
+					})
+				});
+			}
+			
+			function getPara4(){
+				return new Promise(function(resolve,reject){
+					$.get("p4.txt",function(p4){
+						resolve(p4)
+					})
+				});
+			}
+			
+			var article = "";
+			
+			getPara1().then(function(p1){
+				article += p1 + "<br>";
+				return getPara2();
+			}).then(function(p2){
+				article += p2 + "<br>";
+				return getPara3();
+			}).then(function(p3){
+				article += p3 + "<br>";
+				return getPara4();
+			}).then(function(p4){
+				article += p4 + "<br>";
+				$("p").html(article);
+			})
+			
+		</script>
+	</body>
+</html>

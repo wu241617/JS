@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			
+			 6,repalceChild()方法    -->用新节点代替旧节点
+			   【格式】:parent（父节点）.repalceChild(newNode,oldNode);
+			           node(当前元素节点).parentNode（父节点）.removeChild(node当前元素节点);
+			   【功能】:用newNode替换oldNode
+			   
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				var node = document.createElement("strong");
+				oDiv.parentNode.replaceChild(node,oDiv);
+			}
+		</script>
+	</head>
+	<body>
+		<p>p</p>
+		<div id="div1"></div>
+		<span>span</span>
+	</body>
+</html>

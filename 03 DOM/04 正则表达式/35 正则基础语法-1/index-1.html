@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则表达式中原字符的作用</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			【1】,原字符 . -->表示除换行符之外的所有单个字符
+			
+			【2】,原字符 * -->重复多次匹配,匹配任意次（0-n）
+			
+			【3】,原字符 + -->至少有一次重复匹配
+			
+			【4】,原字符 ? -->进行0或1次匹配
+			
+			【5】,原字符 [] -->表示可以出现的范围
+			
+			【6】,原字符 \w -->表示数字字母下划线,相当于-->[0-9a-zA-Z_]; 
+			            \W -->表示非数字字母下划线,相当于-->[a-zA-Z_]
+						
+			【7】,原字符 \d -->表示数字,相当于-->[0-9]; 
+			            \D -->表示非数字
+						  
+			【8】,原字符 \s -->表示空格 
+			
+			【9】,原字符 {m,n} -->至少匹配m次,至多匹配n次
+			            {m,}至少m次    {m}m次
+			
+			【10】,原字符 /^ -->匹配开始
+			 
+			【11】,原字符  $/ -->匹配结束
+			
+			【12】,原字符  | -->或
+			
+			【13】,原字符  () -->表示分组; 将内容作为一个整体进行匹配
+			       分组内容的获取方式 (RegExp.$1)
+			 
+			 */
+			window.onload = function(){
+				//. -->表示除换行符之外的所有单个字符
+				var reg = /g..m/gi;
+				var str = "g12mg--m"
+				var flag = reg.test(str);
+				console.log(flag);
+				console.log(str.match(reg));
+				
+				//* -->重复多次匹配,匹配任意次（0-n）
+				var reg1 = /g*/gi;
+				var str1 = "agfg";
+				console.log(reg1.test(str1),str1.match(reg1));
+				
+				//+ -->至少有一次重复匹配
+				var reg2 = /g+gle/gi;
+				var str2 = "ggle";
+				console.log(reg2.test(str2),str2.match(reg2));
+				
+				//? -->进行0或1次匹配
+				var reg3 = /g?gle/gi;
+				var str3 = "gle";
+				console.log(reg3.test(str3),str3.match(reg3));
+				
+				//[] -->表示可以出现的范围
+				var reg4 = /[0-9a-zA-Z]/gi;
+				var str4 = "gle12";
+				console.log(reg4.test(str4),str4.match(reg4));
+				
+				//\w -->表示数字字母下划线,相当于-->[0-9a-zA-Z_]
+				var reg5 = /\w/gi;
+				var str5 = "e_12";
+				console.log(reg5.test(str5),str5.match(reg5));
+				
+				//....................
+				
+				//原字符  () -->表示分组; 将内容作为一个整体进行匹配  分组内容的获取方式 (RegExp.$1)
+			    var reg6 = /(.*)\s(.*)/;
+				var str = "baidu taobao";
+				console.log(str.replace(reg6,"$2 $1"));
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

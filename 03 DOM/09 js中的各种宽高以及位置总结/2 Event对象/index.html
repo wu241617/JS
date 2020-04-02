@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Event对象</title>
+	</head>
+	<body>
+		<ol>
+			<li>
+				<b>Event对象</b><br>
+				<p>在js中，对于元素的运动的操作通常都会涉及到event对象，而event对象也存在很多位置属性，
+				且由于浏览器兼容性问题会导致这些属性间相互混淆，这里一一讲解。</p>
+				<ul>
+					<li>
+						<b>clientX和clientY</b><br>
+						这对属性是当事件发生时，鼠标点击位置相对于浏览器（可视区）的坐标，即浏览器左上角坐标的（0,0），
+						该属性以浏览器左上角坐标为原点，计算鼠标点击位置距离其左上角的位置，不管浏览器窗口大小如何变化，都不会影响点击位置的坐标。<br>
+						<hr>
+					</li>
+					<li>
+						<b>screenX和screenY</b><br>
+						是事件发生时鼠标相对于屏幕的坐标，以设备屏幕的左上角为原点，事件发生时鼠标点击的地方即为该点的screenX和screenY值
+						可以看到尽管浏览器窗口被缩到很小，但是坐标值却很大，因为是相对于屏幕坐标而不是浏览器的坐标。<br>
+						<hr>
+					</li>
+					<li>
+						<b>offsetX和offsetY</b><br>
+						这一对属性是指当事件发生时，鼠标点击位置相对于该事件源的位置，即点击该div，以该div左上角为原点来计算鼠标点击位置的坐标
+						需要注意的是，IE，chrome，opera都支持该属性，唯独Firefox不支持该属性，Firefox中与此属性相对应的概念是，
+						event.layerX和event.layerY,所以需要兼容浏览器时，获取鼠标点击位置相对于事件源的坐标的兼容写法为
+						var disX=event.offsetX||event.layerX.<br>
+						<hr>
+					</li>
+					<li>
+						<b>pageX和pageY</b><br>
+						顾名思义，该属性是事件发生时鼠标点击位置相对于页面的位置，通常浏览器窗口没有出现滚动条时，
+						该属性和event.clientX及event.clientY是等价的，但是当浏览器出现滚动条的时候，pageX通常会大于clientX，
+						因为页面还存在被卷起来的部分的宽度和高度;由于浏览器出现了垂直和水平的滚动条，所以pageX和pageY大于clientX和clientY。
+                        当浏览器的滚动条没有被拖动或者浏览器没有滚动条的时候，两者是相等的。<br>
+						<hr>
+					</li>
+				</ul>
+			</li>
+		</ol>
+	</body>
+</html>

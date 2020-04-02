@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>JS_animation_碰撞检测_边缘</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			body{
+				overflow:hidden;
+			}
+			div{
+				width:100px;
+				height:100px;
+				background-color:green;
+				border:1px solid black;
+				position:absolute;
+				left:0;
+				top:0;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			 JS原生动画:
+			        【1】,JS动画原理:
+			 		 2,碰撞
+					 -->单个元素浏览器边缘碰撞
+					 -->两个元素之间的碰撞
+			 
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementsByTagName("div")[0];//确定运动的元素
+				var speedX = 10;//X方向的速度
+				var speedY = 5;//Y方向的速度
+				function move(){//移动的函数
+					collisionDetection(oDiv);//边界限定，速度反向的函数
+					var currentLeft = parseInt(window.getComputedStyle(oDiv).left);//使用parseInt()方法，将px去掉
+					var currentTop = parseInt(window.getComputedStyle(oDiv).top);
+					var left = speedX + currentLeft;//变化位置值
+					var top = speedY + currentTop;
+					oDiv.style.left = left + "px";//更新位置值
+					oDiv.style.top = top + "px";
+				}
+				function collisionDetection(element){//边界限定，速度反向函数，参数是所操作的那个元素
+					var style = window.getComputedStyle(element);
+					var left = parseInt(style.left);//距离左边的距离获取
+					var top = parseInt(style.top);//距离上边的距离获取
+					var w = parseInt(style.width);//元素本身的宽度获取
+					var h = parseInt(style.height);//元素本身的高度获取
+					if(left < 0){//到达左侧零界点  X方向上
+						left = 0;
+						speedX *= -1;//速度反向 
+					}
+					if(left > window.innerWidth - w){//到达右侧零界点  X方向上
+						left = window.innerWidth -w;
+						speedX *= -1;//速度反向 
+					}
+					if(top < 0){//到达上侧零界点  Y方向上
+						top = 0;
+						speedY *= -1;//速度反向 
+					}
+					if(top > window.innerHeight - h){//到达下侧零界点  Y方向上
+						top = window.innerHeight -h;
+						speedY *= -1;//速度反向 
+					}
+					oDiv.style.left = left + "px";//更新位置数值
+					oDiv.style.top = top +  "px";
+				}
+				setInterval(function(){//设置定时器，循环移动
+					move()
+				},30);
+			}
+		</script>
+	</head>
+	<body>
+		<div></div>
+	</body>
+</html>

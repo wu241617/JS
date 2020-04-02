@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>封装的函数</title>
+		<script type="text/javascript">
+			/*
+			 获取元素节点的四种方法：
+			 1,通过id   --> document.getElementById(id);-->返回的是唯一一个元素节点
+			 2,通过className   --> document.getELementsByClassName(class);-->返回一个数组
+			 3,通过Name  --> node.getELementByName(name);-->返回一个数组
+			 4,通过标签名TagName --> document.getELementByTagName(标签名);-->返回一个数组
+			 
+			 给以上四个方法封装一个函数，实现获取元素节点的功能：
+			 
+			 */
+			function getClassName(element, classStr) {
+				var nodes = element.getElementsByTagName("*");
+				var arr = [];
+				for (var i = 0; i < nodes.length; i++) {
+					if (nodes[i].className == classStr) {
+						arr.push(nodes[i]);
+					}
+				}
+				return arr;
+			}
+
+			function $(vArg) {
+				switch (vArg[0]) {
+					case "#": //vArg="#xxx"
+						return document.getElementById(vArg.substring(1));
+						break;
+					case ".": //vArg=".xxx"
+						return getClassName(document, vArg.substring(1));
+						break;
+					default: //vArg="name=xxx"
+						if (vArg.substring(0, 5) == "name=") {
+							return document.getELementsByName(vArg.substring(5));
+						} else { //vArg="xxx"
+							return document.getElementsByTagName(vArg);
+						}
+						break;
+				}
+			}
+
+			window.onload = function() {
+				//调用封装好的函数
+				/* document.write("<br>");
+				document.write($("#div1").innerHTML+"<br>");
+				document.write($(".class1").innerHTML+"<br>");
+				document.write($("#div2").innerHTML+"<br>");
+				document.write($(".class2").innerHTML+"<br>");
+				document.write($("div").innerHTML+"<br>");
+				document.write($("name='hello'").innerHTML+"<br>"); */
+				alert($("#div1").innerHTML);
+				alert($(".class1").innerHTML);
+				alert($(".class2").innerHTML);
+				alert($("name='hello'").innerHTML);
+				alert($("#div2").innerHTML);
+				alert($("div").innerHTML);
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">wo</div>
+		<div class="class1">men</div>
+		<div class="class2">zhi</div>
+		<div name="hello">jian</div>
+		<div id="div2">shule</div>
+	</body>
+</html>

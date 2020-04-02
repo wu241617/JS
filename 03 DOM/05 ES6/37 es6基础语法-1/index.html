@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>es6基础语法</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/*
+			 ES6-->JS的最新标准
+			 1,===================let的使用==============
+			 -->let,用来声明变量,用法和var相似;但是所声明的变量只有在let命令的代码块中有效
+			    【注】: 1,存在块级作用域;-->{}之间有效(局部变量)
+				       2,不存在声明提升;
+				       3,不允许重复声明（包括普通变量和函数参数）
+			 -->const,用来声明常量(不可修改),不要试图改变常量的值,语法用法和let相似
+			 
+			 2,===================解构赋值===========
+			 -->按照一定模式,从数组和对象中提取值，对变量进行赋值
+			 
+			 3,===================模板字符串==================
+			 -->将变量或表达式直接嵌入字符串
+			 
+			 使用反引号（``）拼接多行字符串
+			 
+			 4,==================箭头函数(Arrow Function)=====================
+			   -->只含有一个表达式;   含有多条语句;  this的指向问题
+			 
+			 5,set结构 和 map结构
+			 
+			 6,生成器函数
+			 
+			 7,类class（了解）
+			 
+			 */
+			window.onload = function(){
+				//=======let 和 const 关键字==============================================
+				let a = 10;
+				console.log(a);
+				
+				const b = 20;
+				console.log(b);
+				
+				//===================解构赋值-->按照一定模式,从数组和对象中提取值，对变量进行赋值=======
+				//数组:
+				let [a1,a2,a3] = [1,2,3];
+				console.log(a1,a2,a3);//a1,a2,a3逐个对应赋值
+				
+				let [b1=3,b2] = [2];
+				console.log(b1,b2);//b1,对应赋值修改为3,b2没有进行赋值
+				
+				//默认赋值
+				[d1,d2=2] = [3];
+				console.log(d1,d2);//d1,对应赋值修改为3,d2没有进行赋值
+				
+				let c1;
+				[c2=3] = [c1];
+				console.log(c2);//c2没有对应赋值为undefined
+				
+				//对象:
+				let {e1,e2} = {e1:"111",e2:"222"};
+				console.log(e1,e2);
+				
+				let {f1:f2} = {f1:"111"};
+				console.log(f2);
+				
+				let {g1,g2=3} = {g1:2};
+				console.log(g1,g2);
+				
+				//=============================模板字符串==========================================
+				//ES5写法:
+				var obj = {"name":"wuhao","age":20};
+				var name = obj.name;
+				var age = obj.age;
+				console.log(name+" 的年龄是: "+age);
+				//ES6写法:
+				let obj1 = {"name1":"lijun","age1":19};
+				let {name1,age1} = obj1;
+				console.log(`${name1} 的年龄是: ${age1}`);//获得集体的数值,用${...}
+				//模板字符串的拼接
+				let arr = [0,1,2,3,4];
+				let oUl = document.getElementById("test");
+				let html = "";
+				/* for(var i in arr){
+					html += "<li>"+arr[i]+"</li>";
+				} */
+				for(var i in arr){
+					html += `<li><a>${arr[i]}</a><p>第${arr[i]}行</p></li>`
+				}
+				oUl.innerHTML = html;
+				
+				//=======================箭头函数（Arrow Function）==================
+				//1，只含有一个表达式;
+				//ES5中:
+				var foo = function(){
+					return 1;
+				}
+				console.log(foo());
+				//ES6中:
+				let foo1 = () => 2;
+				console.log(foo1());
+				
+				let foo2 = (a) => a;
+				console.log(foo2(10));
+				
+				//2,含有多条语句;
+				let foo3 = (a) => {
+					let x = 6;
+					return x+a;
+				}
+				console.log(foo3(10));
+				
+				//3,this指向问题:
+				/* let foo4 = () =>{
+					console.log(this);//此处this指向window 对象
+				}
+				foo4();*/
+				
+				let name2 = "window"
+				/*let obj2 = {
+					"name":"wuhao",
+					"age":20,
+					"score":459,
+					"display":function(){
+						console.log(this.name,this.age,this.score);
+					}
+				}
+				obj2.display(); */
+				
+				let obj3 = {//this指向定义时所在的作用域,而不是执行时所在的作用域
+					"name2":"wuhao",
+					"display1":()=>{
+						console.log(this);//当前this所指向定义时所在的作用域为window
+						console.log(this.name2);
+					}
+				}
+				obj3.display1();
+			}
+		</script>
+	</head>
+	<body>
+		<ul id="test"></ul>
+	</body>
+</html>

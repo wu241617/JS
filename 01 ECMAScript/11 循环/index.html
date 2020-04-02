@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<title>循环</title>
+		<script type="text/javascript">
+			/* 
+			循环:重复性的做一些事情
+			分类: 1,while循环  先判断，在循环  【循环的嵌套】
+			
+			     2,for循环   【循环的嵌套】
+				 
+				 3,do....while循环 先执行，在判断-->至少执行一次  【循环的嵌套】
+				 
+				 4,死循环：while(ture)/while(1)   do...while(1)   for( ; ; )
+				 
+				 5，break 和 continue :
+				    break --> 跳出循环语句，顺序执行循环之后的语句    【终止当前循环】
+					continue --> 跳出循环语句，回到循环开始的地方，继续重头执行循环    【跳出此次循环】
+			 
+			 */
+			
+			// 求1-100的和
+			var sum = 0;
+			var i = 1;
+			while(i <= 100){
+				sum += i;
+				i++;
+			}
+			document.write("sum="+sum+"<br>");
+			
+			// 求100之内7的倍数
+			var i = 0;
+			while(i <= 100){
+				if(i % 7 == 0){
+					document.write(i+"  ");
+				}
+				i++;
+			}
+			document.write("<br>");
+			
+			// 求100以内的奇数
+			var i = 0;
+			while(i <= 100){
+				if(i % 2 != 0){
+					document.write(i+"  ");
+				}
+				i++;
+			}
+			document.write("<br>");
+			
+			// 求100以内所有偶数的和
+			var sum1 = 0;
+			var i = 0;
+			while(i <= 100){
+				if(i % 2 == 0){
+					sum1 += i ;
+				}
+				i++;
+			}
+			document.write("sum1="+sum1+"<br>");
+			// do.....while语句
+			var i = 0;
+			var sum2 = 0;
+			do{
+				sum2 += i;
+				i++;
+				
+			}while(i <= 100);
+			document.write("sum2="+sum2+"<br>");
+			
+			// for循环
+			var sum3 = 0;
+			// var i = 0;
+			for(var i = 0; i <= 100; i++){
+				sum3 += i;
+			}
+			document.write("sum3="+sum3+"<br>");
+			// 打三角形,多重循环
+			
+			for(var i = 0; i < 5; i++){
+				for(var j = 0; j <= i; j++){
+					 document.write(" * ");
+				}
+				document.write("<br>");
+			}
+			// 打倒三角形,多重循环
+       			
+			for(var i = 0; i < 5; i++){
+				for(var k = 0; k <= 5 - i - 1; k++){
+					document.write("&nbsp;&nbsp;");
+				}
+				for(var j = 0; j <= i; j++){
+					 document.write(" * ");
+				}
+				document.write("<br>");
+			}	
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

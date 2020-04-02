@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>原型链和继承</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			原型链和继承
+			 1,原型prototype
+			 -->原型创建对象的方式
+			 
+			 2,基于原型的继承
+			  -->Object.create();
+		     
+			 3,原型链
+			 
+			 */
+			window.onload = function(){
+
+				function Person(){
+				}
+				
+				Person.prototype.name = "wuhao";
+				Person.prototype.age = 16;
+				Person.prototype.sayHello = function(){
+					console.log(this.name,this.age);
+				}
+				
+				//new的时候,解释器做的事情
+				//1,创建一个对象
+				//_proto_
+				//2,this指针指向了这个对象
+				//3,执行构造函数里面的代码
+				//4,返回这个对象
+				var p = new Person();
+				p.sayHello();
+				
+				
+				function Student(){
+					
+				}
+				Student.prototype = Object(Person.prototype);//原型链的继承
+				
+				Student.prototype.id = 1001;
+				Student.prototype.study = function(){
+					console.log(this.name,this.age,this.id);
+				}
+				
+				var s = new Student();
+				s.study();
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

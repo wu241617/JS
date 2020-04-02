@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* 
+			location 属于BOM中的一种对象
+			
+			 【1】，location:相当于浏览器地址栏上输入框  -->提供导航功能和当前页面窗口加载的文档有关信息
+			 location对象： window.location()  location()  window.document.location() -->是等价的
+			 
+			 【2】，location的属性：
+			      1,hash:锚点 #... 在运行程序时，URL后面跟的#的部分   锚点可以实现页内跳转
+			        获取：  location.hash   设置：   location.hash = "#xxx";
+				  2,host:主机名：端口号  浏览器端口号，默认值为8080  电脑上软件唯一编号
+				  3，hostname:主机名  域名/IP地址
+				  4，href:整个URL
+				  5，pathname:路径名
+				  6，port:端口号
+				  7，protocol:协议  http网络协议加载URL;   file本地文件协议加载URL
+				  8,search:查询字符串   跟在？后面的部分
+			    【注】URL ：统一资源定位符  -->
+				 protocol(协议):host(主机名):port(端口号)/pathname(路径)？search(查询字符串，检索部分)#hash(锚点)
+				 
+			【3】，location的方法：
+			      1,assign() -->跳转到指定的URL
+				  2,reload() -->重载当前URL   页面刷新   可以传参数true 
+				  3,replace() -->用新的URL替换当前页面，可以避免跳转前的历史记录
+				  
+			 */
+		window.onload = function(){
+			var btn1 = document.getElementById("btn1");
+			btn1.onclick = function(){
+				//location.assign("http://www.baidu.com");
+				location.reload();
+				location.reload(true);//服务器从头开始加载URL,跳过缓存区阶段
+				
+			}
+		}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="按钮" id="btn1">
+	</body>
+</html>

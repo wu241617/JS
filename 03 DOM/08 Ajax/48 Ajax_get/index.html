@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ajax_get</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			Ajax:
+			 1,什么是Ajax
+			 -->是一种异步加载数据的技术,可以实现页面的局部刷新
+			 
+			 2,Ajax的用法
+			 -->Ajax的核心对象XMLHttpRequest:
+			 
+			 -->GET
+			 
+			 -->POST
+			 
+			 3,JSON
+			 
+			 */
+			window.onload = function(){
+				//Ajax-->get数据跟在url后面
+				
+				//1,创建Ajax对象
+				var xhr = new XMLHttpRequest();
+				//4,监听数据返回
+				xhr.onreadystatechange = function(){
+					//当xhr对象的readyState属性发生变化时，onreadystatechange事件会触发
+					//readyState
+					//--->0  xhr对象已经创建，但没有完成初始化
+					//--->1  xhr对象已经调用了open()
+					//--->2  xhr 已经发出了Ajax请求
+					//--->3  已经返回部分数据
+					//--->4  数据全部返回 
+					if(xhr.readyState !== 4){
+						return;
+					}
+					if(xhr.status >= 200 && xhr.status <= 300){
+						//status-->状态码（200-300之间表示正常） 特殊404（页面未找到）304 202......
+						//返回的数据放在responseText中（string-->用JSON可进行转换）
+						document.querySelector("h2").innerText = xhr.responseText;
+					}else{
+						console.error("请求失败！");
+					}
+				}
+				//2,打开这个对象
+				xhr.open("get","test.txt",true);//true为异步,false为同步
+				
+				//3,发送请求
+				xhr.send();
+			}
+		</script>
+	</head>
+	<body>
+		<h2></h2>
+	</body>
+</html>

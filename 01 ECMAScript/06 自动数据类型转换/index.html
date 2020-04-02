@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自动数据类型转换</title>
+	</head>
+	<script type="text/javascript">
+		/* 
+		 1,任何类型与字符串类型做加法的时候，最终结果都会转换为字符串类型。
+		 
+		 2，NaN类型，任何类型与字符串类型做除加法之外的运算时，最终结果还是NaN类型，包括NaN本身和NaN做运算
+		 NaN：不是一个数字-->eg:"2a"
+		 
+		 3，数字和除字符串以外的类型，做加法以外的运算都会转换为数字类型
+		 
+		 4，特殊数据类型：
+		 eg:1 + true -->2;(true转换为1，flase转换为0)
+		 eg:1 +null -->1;(null转换为0)
+		 eg:1 + undefind -->NaN；（undefind转换为NaN类型）
+		 
+		 */
+		var tmp =1+"3";//为字符串类型
+		document.write(tmp+"<br>");
+		
+		var a ="34"+true;
+		document.write(a+"<br>");
+		
+		var tmp3= 1 - "2";//转换为数字类型
+		document.write(tmp3+"<br>");
+		
+		var tmp1=1-"2a";//为NaN类型
+		document.write(tmp1+"<br>");
+		
+		var tmp2=NaN - "3f";//为NaN类型
+		document.write(tmp2+"<br>");
+		
+		var b = "wuhao" + undefined;
+		document.write(b+"<br>");
+		
+		var c = 1 + true;
+		document.write(c+"<br>");
+		
+		var d = 1 + false;
+		document.write(d+"<br>");
+		
+		var e = 1 + null;
+		document.write(e+"<br>");
+		
+	    var f = 1 + undefined;
+		document.write(f+"<br>");
+		
+		//document.write(c+"<br>");//c-->undefind类型
+		
+	</script>
+	<body>
+	</body>
+</html>

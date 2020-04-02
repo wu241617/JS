@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>碰撞检测块与块</title>
+		<style type="text/css">
+		    *{
+				margin:0;
+				padding:0;
+			}
+			body{
+				overflow:hidden;
+				background-color:darkgray;
+			}
+			div{
+				width:180px;
+				height:180px;
+				background-color:black;
+				border:3px solid white;
+				text-align:center;
+				line-height:180px;
+				font-size:36px;
+				color:red;
+				font-weight:bolder;
+				position:absolute;
+				top:0;
+				left:0;
+			}
+			div:nth-child(2){
+				left:500px;
+				top:300px;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			 JS原生动画:
+			        【1】,JS动画原理:
+			 		 2,碰撞
+					 -->单个元素浏览器边缘碰撞
+					 -->两个元素之间的碰撞
+			 
+			 */
+			//两个元素之间的碰撞
+			window.onload = function(){
+				var div1 = document.getElementById("div1");//获取运动的元素1
+				var div2 = document.getElementById("div2");//获取运动的元素2
+				
+				var speedX = 10;
+				var speedY = 5;
+				div1.speedX = 10;//分别绑定对应方向上的速度
+				div1.speedY = 5;
+				div2.speedX = 10;
+				div2.speedY = 5;
+				
+				function move(element){
+					
+					var currentLeft = parseInt(window.getComputedStyle(element).left);//元素距离左边的距离
+					var currentTop = parseInt(window.getComputedStyle(element).top);//元素距离上边的距离
+					
+					check_box_collision(element);//边界检测
+					var tempX,tempY;
+					if(check_block_collision(div1,div2)){//交换彼此的速度
+						tempX = -div1.speedX;
+						tempY = -div1.speedY;
+						
+						div1.speedX = -div2.speedX;
+						div1.speedY = -div2.speedY;
+						
+					    div2.speedX = tempX;
+						div2.speedY = tempY;
+					}
+					
+					var left = element.speedX + currentLeft;
+					var top = element.speedY + currentTop;
+					element.style.left = left + "px";
+					element.style.top = top + "px";
+				}
+				
+				function check_box_collision(element){//边界检测，速度方向的函数
+					var style = window.getComputedStyle(element);
+					var left = parseInt(style.left);
+					var top = parseInt(style.top);
+					var w = parseInt(style.width);
+					var h = parseInt(style.height);
+					if(left < 0){
+						left = 0;
+						element.speedX *= -1;
+					}
+					if(left > window.innerWidth - w){
+						left = window,innerWidth -w;
+						element.speedX *= -1;
+					}
+					if(top < 0){
+						top = 0;
+						element.speedY *= -1;
+					}
+					if(top > window.innerHeight - h){
+						top = window.innerHeight -h;
+						element.speedY *= -1;
+					}
+					element.style.left = left + "px";
+				    element.style.top = top +  "px";
+				}
+				
+				function check_block_collision(block1,block2){//检测两个元素之间是否发生了碰撞
+					var left1 = parseInt(window.getComputedStyle(block1).left);
+					var left2 = parseInt(window.getComputedStyle(block2).left);
+					
+					var top1 = parseInt(window.getComputedStyle(block1).top);
+					var top2 = parseInt(window.getComputedStyle(block2).top);
+					
+					var width1 = parseInt(window.getComputedStyle(block1).whith);
+					var width2 = parseInt(window.getComputedStyle(block2).whith);
+					
+					var height1 = parseInt(window.getComputedStyle(block1).height);
+					var height2 = parseInt(window.getComputedStyle(block2).height);
+					
+					var center1 = {//获取元素中心位置
+						x: left1 + width1/2,
+						y: top1 + height1/2
+					}
+					
+					var center2 = {//获取元素中心位置
+						x: left2 + width2/2,
+						y: top2 + height2/2
+					}
+					
+					var diffX = Math.abs(center1.x - center2.x);//x1 - x2的平方
+					var diffY = Math.abs(center1.y - center2.y);//y1 - y2的平方
+					
+					if(diffX < (width1 + width2)/2 && diffY < (height1 + height2)/2){
+						return true;
+					}
+				    return false;
+				}
+				
+				setInterval(function(){
+					move(div1)
+					move(div2)
+				},60);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">1</div>
+		<div id="div2">2</div>
+	</body>
+</html>

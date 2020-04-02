@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* 
+			
+			 1，函数——递归 函数自己调用自己
+			 
+			【注】必须有参数  必须有return -->缺点:在短时间内会使内存剧增
+			 
+			 */
+			//计算1-n之间数的和
+			function sum(n) {
+				if (n == 1) {
+					return 1;
+				} else {
+					return sum(n - 1) + n;
+				}
+			}
+			var sum = sum(100);
+			document.write("sum=" + sum + "<br>");
+			
+			// 使用递归打印n个hello world!
+			function print(n) {
+
+				if (n == 0) {
+					return;
+				}
+				document.write("hello world" + "<br>");
+				return print(n - 1);
+
+			}
+			document.write(print(3));
+			
+			// 事件驱动函数
+			window.onload = function() { //写在这里的代码在页面加载完成之后执行
+				var button = document.getElementById("btn0");//获取元素节点
+				button.onclick = function() { //给元素节点添加事件驱动函数
+					var text = document.getElementById("text1");
+					text.value = "";
+				}
+
+				/* var num1 = Number(document.getElementById("num1").value);
+				var num2 = Number(document.getElementById("num2").value);*/
+				var button1 = document.getElementById("btn1");
+				var button2 = document.getElementById("btn2");
+				var button3 = document.getElementById("btn3");
+				var button4 = document.getElementById("btn4"); 
+				button1.onclick = function() {
+					var num1 = Number(document.getElementById("num1").value);
+					var num2 = Number(document.getElementById("num2").value);
+					var result = document.getElementById("result");
+					result.value = num1 + num2;
+					
+				}
+				button2.onclick = function() {
+					var num1 = Number(document.getElementById("num1").value);
+					var num2 = Number(document.getElementById("num2").value);
+					var result = document.getElementById("result");
+					result.value = num1 - num2;
+					
+				}
+				button3.onclick = function() {
+					var num1 = Number(document.getElementById("num1").value);
+					var num2 = Number(document.getElementById("num2").value);
+					var result = document.getElementById("result");
+					result.value = num1 * num2;
+					
+				}
+				button4.onclick = function() {
+					var num1 = Number(document.getElementById("num1").value);
+					var num2 = Number(document.getElementById("num2").value);
+					var result = document.getElementById("result");
+					result.value = num1 / num2;
+					
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<br>
+		<label>用户名：</label><input type="text" value="默认的文字" id="text1" />
+		<input type="button" value="Clear" id="btn0" />
+		<h1>简易计算机</h1>
+		<label>num1:</label><input type="text" id="num1">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="加" id="btn1">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="减" id="btn2">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="乘" id="btn3">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="除" id="btn4">&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>num2:</label><input type="text" id="num2">&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="button" value="=" id="btn5">&nbsp;&nbsp;&nbsp;&nbsp;
+		<label>result:</label><input type="text" id="result">
+	</body>
+</html>

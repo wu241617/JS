@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件详解一</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#div1{
+				width:200px;
+				height:100px;
+				margin: 100px auto;
+				background-color:violet;
+				text-align:center;
+				line-height:100px;
+				color:black;
+				border:2px solid red;
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			事件 Event
+			[1],事件基础
+			
+			[2],事件处理函数
+			JS可以处理的事件函数的内容:鼠标事件，键盘事件，HTML事件
+			事件处理函数  -->  由 on + 事件名称组成
+			
+			[3],事件对象
+			
+			[4],事件默认行为及其阻止方式
+			
+			[5],DOM2级事件处理程序
+			
+			[6],事件委托机制
+			 
+			 
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				//【1】常用的几种鼠标事件处理函数
+				//鼠标单击
+				oDiv.onclick = function(){
+					/* alert(this.innerText);//显示文本内容*/
+					console.log("onclick");//控制台输出
+				}
+				//鼠标移出
+				/* oDiv.onmouseover = function(){
+					alert(this.innerText);
+				} */
+				//鼠标按下
+				oDiv.onmousedown = function(){
+					console.log("onmousedown");
+				}
+				//鼠标松开
+				oDiv.onmouseup = function(){
+					console.log("onmouseup");
+				}
+				
+				
+				//【2】常用的几种HTML事件处理函数
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">所要显示的文本内容:</div>
+	</body>
+</html>

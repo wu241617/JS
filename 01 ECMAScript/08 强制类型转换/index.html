@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>强制类型转换</title>
+		<script type="text/javascript">
+			/* 
+			 [1],Boolean()-->将其他数据类型转换为布尔值
+			 
+			 1,将数字转换为布尔值:0转换为false,1和除0之外的其他数字都转换为true
+			 
+			 2，将字符串转换为布尔值:空字符串转成布尔值为false,非空字符串转成布尔值为true
+			 
+			 3,特殊数据类型，null和undefined转换为布尔值都为false
+			 
+			 */
+			var a = Boolean(1);
+			document.write(a+"<br>");
+			
+			var b = Boolean(0);
+			document.write(b+"<br>");
+			
+			var c = Boolean(-1);
+			document.write(c+"<br>");
+			
+			var d = Boolean("123");
+			document.write(d+"<br>");
+			
+			var e = Boolean("");
+			document.write(e+"<br>");
+			
+			var f = Boolean(null);
+			document.write(f+"<br>");
+			
+			var g = Boolean(undefined);
+			document.write(g+"<br>");
+			/* 
+			 [2],Number()-->将其他数据类型转换为数字
+			 
+			     parseInt()-->兼容Number所有功能，还有取整功能-->   "3.15"-->3    "123a"-->123
+				 
+			     parseFloat()-->兼容Number所有功能，还有取浮点数功能-->   "3.15"-->3.15  
+				 
+			 1，布尔值：true-->1  false-->0
+			 
+			 2,字符串：纯数字的字符串-->数字    非纯数字字符串转换为NaN
+			 
+			 3,特殊数据类型：null-->0   undfined-->NaN
+			 
+			 */
+			var a1 = Number(true);
+			document.write(a1+"<br>");
+			
+			var b1 = Number(false);
+			document.write(b1+"<br>");
+			
+			var c1 = Number("123");
+			document.write(c1+"<br>");
+			
+			var d1 = Number("134a");
+			document.write(d1+"<br>");
+			
+			var e1 = Number(null);
+			document.write(e1+"<br>");
+			
+			var f1 = Number(undefined);
+			document.write(f1+"<br>");
+			/* 
+			 被除数为0的情况
+			 */
+			var tmp = 1/0;
+			document.write(tmp+"<br>");//Infinity 无穷大
+			
+			var tmp1 = -1/0;
+			document.write(tmp1+"<br>");//-Infinity 无穷小
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

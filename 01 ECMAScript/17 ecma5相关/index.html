@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ecma5</title>
+		<script type="text/javascript">
+			/*
+			 1,ECMA标准   ECMAScript
+			 
+			 2,ECMA5    第五版
+			 最新为ECMA6
+			 
+			 3,ECMA5下的严格模式：
+			 使用  "use strict";
+			 
+			 4,ECMA5新增数组方法：
+			   【1】查找元素位置：  
+			   数组.indexof(元素，start);-->
+			   参数为：要去查找的元素和开始查找位置的下标    返回值为：所查找元素的位置下标
+			   
+			   【2】遍历数组：      
+			   数组.forEach(function(item,index,array){});-->
+			   参数为：item 当前元素  index  当前元素下标   array 数组  将数组中元素遍历
+			   
+			   【3】遍历操作数组：  
+			   数组.map(function(item,index,array){});-->
+			   参数为：item 当前元素  index  当前元素下标   array 数组   遍历->操作->返回
+			   
+			   【4】当前和之前的和  归并：          
+			   数组.reduce(function(pre,next,index,array){});-->
+			   参数为：pre 上一次遍历return后面的值   next 当前遍历到的元素  index  当前元素下标   array 数组
+			   
+			   【5】过滤  
+			    数组.filter(function(){item,index,array});-->
+				参数为：item 当前元素  index  当前元素下标   array 数组 
+				
+			   【6】some 有些  判断return 后面条件是否成立  成立返回true  不成立返回false
+			   数组.some(function(item,index,array){});-->
+			   参数为：item 当前元素  index  当前元素下标   array 数组 
+			   【注】如果匹配成功  则返回true  后面不在进行遍历
+			   
+			   【7】every 全部  要求全部符合要求时返回true  否则返回false
+			   数组.every(function(item,index,array){});-->
+			   参数为：item 当前元素  index  当前元素下标   array 数组 
+			    【注】如果匹配不成功  则返回false  后面不在进行遍历
+			 */
+			function print(){//普通情况下  不给max声明  系统将会认为 max 时全局变量   不会出错
+				max = 10;
+				document.write(max+"<br>");
+			}
+			print();
+			/* function print(){//严格模式下  不给max声明 会出错
+			    "use strict";
+				max = 10;
+				document.write(max+"<br>");
+			}
+			print(); */
+			
+			//查找数组中元素的位置
+			var arr = [10, 20, 30, 40, 50];
+			var a = arr.indexOf(30,1);//查找元素30  开始查找的元素位置下标1
+			document.write(a+"<br>");
+			
+			//forEach（）遍历
+			arr.forEach(function(item, index, array){//item-->当前元素  index-->当前元素下标   array-->所有操作的数组
+				document.write(item+"&nbsp;&nbsp;"+index+"&nbsp;&nbsp;"+array+"<br>");
+			}); 
+			// arr.forEach(alert);将数组中元素遍历
+			
+			//map() 遍历操作
+			var newarr = arr.map(function(item, index, array){//遍历->操作->返回
+				return item + 2;
+			});
+			document.write(newarr); 
+			
+			//reduce()  归并
+			var res = arr.reduce(function(pre, next, index, array){//pre-->上一次归并return后的结果  next-->当前的元素
+				return pre + next;
+			});
+			document.write(res+"<br>");
+			
+			//filter() 过滤
+			var res1 = arr.filter(function(item,index,array){
+				return item > 30;
+			});
+			document.write(res1+"<br>");
+			
+			//some 有些  判断return 后面条件是否成立  成立返回true  不成立返回false
+			var res2 = arr.some(function(item, index, array){
+				return item == 30;//数组里面是否存在元素30,此处判断条件可以时任意
+			});
+			document.write(res2+"<br>");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

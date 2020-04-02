@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>秒表的实现</title>
+		<style>
+			#contain{
+				margin:200px auto;
+				padding-top: 80px;
+				width:500px;
+				height:550px;
+				border:2px solid black;
+				background-color:beige;
+				text-align:center;
+				font-size:5em;
+			}
+			#result{
+				width:500px;
+				height:150px;
+				margin-bottom:25px;
+				border-bottom:2px solid black;
+			}
+			#start,#pause,#end{
+				width:300px;
+				height:50px;
+			    margin-top:40px;
+				border:2px solid black;
+				background-color:cadetblue;
+				font-size:0.4em;
+				cursor:pointer;
+			}
+			#start:hover,#pause:hover,#end:hover{
+				color:white;
+				background-color:black;
+			}
+		</style>
+	
+		<script type="text/javascript">
+			function $(id){//分装获取ID的函数
+				return document.getElementById(id);
+			}
+			function showNum(num){//对个位数的显示
+				if(num < 10){
+					return "0" + num;
+				}else{
+					return num;
+				}
+			}
+			window.onload = function(){
+				var count = 0;//总累计数
+				var timer = null;//用来存储定时器的ID 号
+				var hours = $("hours");
+				var minters = $("minters");
+				var seconds = $("seconds");
+				
+				var start = $("start");//获取节点
+				start.onclick = function(){//给节点添加相应的时间驱动函数
+					timer = setInterval(function(){//设置定时器
+						count++;//在定时器里面做加一操作
+						hours.innerHTML = showNum(parseInt(count / 3600));//利用parseInt()函数给数值取整
+						minters.innerHTML = showNum(parseInt(count / 60) % 60);
+						seconds.innerHTML = showNum(count % 60);
+					},1000);
+				}
+	            
+				var pause = $("pause");
+				pause.onclick = function(){
+					clearInterval(timer);//关闭定时器,使用timer参数
+				}
+				
+				var end = $("end");
+				end.onclick = function(){
+					clearInterval(timer);//关闭定时器,使用timer参数
+					count = 0;//总累计数清零
+					hours.innerHTML = "00";//页面显示数据清零
+					minters.innerHTML = "00";
+					seconds.innerHTML = "00";
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="contain">
+			<div id="result">
+				<span id="hours">00</span>:
+				<span id="minters">00</span>:
+				<span id="seconds">00</span>
+			</div>
+			<input type="button" value = "start" id="start">
+			<input type="button" value = "pause" id="pause">
+			<input type="button" value = "end" id="end">
+		</div>
+		
+	</body>
+</html>

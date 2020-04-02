@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title></title>
+		<script text="javascript">
+			/* 
+			【注】函数的声明中  funcation show(){};   等价于   var show = function(){};  将函数当作一个变量
+			
+			【1】，对象概念：一种数据类型  复合数据类型 即引用数据类型
+			    -->单个数据存储： 用变量 ；    多个数据存储：  用数组 ；    多个数据和函数存储：  用对象；
+				
+			【2】，对象的声明创建：
+			  var person = new Object();
+			
+			  var person = Object();
+			
+			  var person = {};
+			  
+			【3】，通过delete删除对象的属性  delete person.name;等
+			 
+			 */
+			//在一个对象中的数据,叫做对象的属性   对象中的函数,叫做对象的方法
+			var person = new Object();//声明创建对象
+			//var person = {};
+			//var person = Object();
+			person.name = "wuhao";//为对象添加属性  或者 person["name"]
+			person.age = 18;
+			person.showname = function(){//为对象添加方法  或者peerson["showname"]
+				document.write(person.name+"<br>");
+			}
+			person.showname();
+			
+			var student = {};
+			student.english = 67;
+			student.math = 89;
+			student.computer = 97;
+			student.display = function(){
+				document.write(student.english+","+student.math+","+student.computer+"<br>");
+			}
+			student.display();
+			
+			
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

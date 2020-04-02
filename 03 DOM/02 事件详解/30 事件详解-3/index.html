@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件详解3-键盘事件</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			【1】键盘事件:
+			
+			     1,onkeydown-->表示键盘的按下，按下任意键盘按键时触发
+			
+			     2,onkeypress-->表示键盘的按下，按下字符键时触发
+			 
+			     3,onkeyup-->表示键盘的弹起，键盘按键弹起时触发
+				 
+		   【2】键盘事件的三个属性  --> 
+		        三个特殊的键(返回值为布尔值，按下为true,否则为flase)
+		     
+			    1,altKey
+				
+				2,shiftKey
+				
+				3,ctrlKey
+			
+		   【3】判断是否按了某个键（键盘事件的属性-->keyCode）
+			   console.log(evt.keyCode);
+			   
+			 */
+			window.onload = function(){
+				document.onkeypress = function(){//onkeypress-->按下字符键触发
+					console.log("keypress");
+				}
+				document.onkeydown = function(){//onkeydown-->按下任意键触发
+					console.log("keydown");
+				}
+				document.onkeyup = function(){//onkeyup-->按键弹起触发
+					console.log("keyup");
+				}
+				document.onkeydown = function(e){
+					var evt = e||event;//事件对象
+					console.log(evt.shiftKey,evt.ctrlKey,evt.altKey);
+					
+					//判断是否按了某个键
+					console.log(evt.keyCode);
+				}
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

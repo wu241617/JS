@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>数组和相关方法</title>
+		<script type="text/javascript">
+			/* 
+			数组：【1】，定义
+			          1，var arr = new Array(1, true, "hello");
+					
+					  2，var arr = Array(1, true, "hello");
+					
+					  3，var arr = [1, true, "hello"];
+					
+				  【2】,属性[.length 可读可修改] 和 遍历(for   for...in) 访问  赋值
+				  
+				  【3】,
+				        1栈结构  （有底） -->先进后出
+                     方法一： 数组.push(参数。。。。)-->在数组末尾添加元素   有参数    返回值为-->添加完成之后数组的长度
+					 方法二： 数组.pop()-->移除数组末尾的元素    无参数    返回值为-->移除的元素
+								 
+					    2,队列结构   （无底）	-->先进先出
+					   方法一：数组.push(参数。。。。)-->在数组末尾添加元素   有参数    返回值为-->添加完成之后数组的长度
+					   方法二：数组.shift()-->移除数组头部的元素    无参数    返回值为-->移除的元素
+					   方法三：数组.unshift(参数。。。。)--> 数组头部插入元素     有参数     返回值为-->添加完成之后数组的长度
+								  
+				  4，数组常用方法
+				     【1】，数组1.concat(数组2)  
+					 -->将两个数组合并成一个新数组  原数组不会被改变   返回值是新数组
+					 
+					 【2】，数组.slice(start,end)
+					 -->截取原数组中的指定区域的元素，形成一个新数组   原数组不变  返回值为指定区域元素形成的新数组（不包括end下标元素）
+					 
+					 【3】，splice方法  可以实现  元素的删除  修改  添加
+					 -->参数1：截取的开始位置
+					    参数2：截取的长度
+						参数3：要添加的元素
+						删除的实现：数组.splice（1，1）；  返回值为被删除的元素  多于一个以数组形式返回
+						修改的实现：数组.splice(1，1，元素...)；先删除在修改
+						添加的实现：数组.splice（1，元素...）;在第几个元素之后插入新元素
+						
+					 【4】，数组.join(拼接符)  使用拼接符将数组中元素拼接为字符串
+					 -->参数为拼接符   返回值为拼接好的字符串
+								 
+               */
+			var arr = [1, true, "hello"];
+			document.write(arr);
+			document.write("<br>");
+			
+			var arr1 = ["red","blue","black","green"];
+			/* for(var i = 0; i < arr1.length; i++){//for 方式遍历
+				document.write(arr1[i]+"<br>");
+			} */
+			for(var i in arr){//for  in  方式遍历(快速)
+				document.write(arr1[i]+"<br>");
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

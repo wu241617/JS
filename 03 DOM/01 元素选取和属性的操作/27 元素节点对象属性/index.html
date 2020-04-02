@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>元素节点对象属性</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#btn1{
+				width:200px;
+				height:200px;
+				margin: 100px auto;
+				background-color:pink;
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			1,ownerDocument 属性
+			属性返回该节点的文档对象根节点，返回的对象相当于document
+			 
+			2,parentNode,previousSibling,nextSibling属性
+			parentNode      -->  属性返回该节点的父节点
+			previousSibling -->  属性返回该节点的前一个同级节点
+			nextSibling     --> 属性返回该节点的后一个同级节点
+			
+			3,元素节点的属性：attribute属性返回该节点的属性节点的集合【集合】
+			   集合：1，不重复   2，无序
+			  attributes.length  属性节点的个数
+			  
+			  //访问一个属性节点：
+			  
+			 */
+			
+			
+			
+			/*空白节点的删除  -->用到正则表达式 /^\s+$/.test() 是空白节点返回true  否则返回false*/
+			function removeShapeNode(nodes) {
+				var arr1 = [];
+				for (var i = 0; i < nodes.length; i++) {
+					if (nodes[i].nodeType == 3 && /^\s+$/.test(nodes[i].nodeValue)) {
+			            continue;
+					} else {
+						arr1 = nodes[i];
+					}
+				}
+			}
+			
+			function removeShapeNode1(parten) {
+				var arr2 = parten.childNodes;
+				for (var i = 0; i >= 0; i--) {
+					if (arr2[i].nodeType == 3 && (/^\s+$/).test(arr2[i].nodeValue)) {
+			             continue;
+					} else {
+						arr2[i].removeChild();
+					}
+				}
+			}
+			window.onload = function(){
+				var btn1 = document.getElementById("btn1");
+				btn1.onclick = function(){
+					removeShapeNode1(btn1.parentNode);
+					/* alert(btn1.ownerDocument == document);
+					alert(btn1.parentNode.nodeName);
+					alert(btn1.previousSibling.nodeName); */
+					alert(btn1.nextSibling.nodeName);
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<span></span>
+		<div id="btn1"></div>
+		<p></p>
+	</body>
+</html>

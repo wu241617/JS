@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>空白节点的删除</title>
+		<script type="text/javascript">
+			/* 
+			空白节点的删除  -->用到正则表达式 /^\s+$/.test() 是空白节点返回true  否则返回false
+			 
+			 */
+			function removeShapeNode(nodes) {
+				var arr1 = [];
+				for (var i = 0; i < nodes.length; i++) {
+					if (nodes[i].nodeType == 3 && /^\s+$/.test(nodes[i].nodeValue)) {
+                        continue;
+					} else {
+						arr1 = nodes[i];
+					}
+				}
+			}
+
+			function removeShapeNode1(parten) {
+				var arr2 = parten.childNodes;
+				for (var i = 0; i >= 0; i--) {
+					if (arr2[i].nodeType == 3 && (/^\s+$/).test(arr2[i].nodeValue)) {
+                         continue;
+					} else {
+						arr2[i].removeChild();
+					}
+				}
+			}
+			window.onload = function() {
+				var div1 = document.getElementById("div1");
+				var arr = div1.childNodes;
+				document.write(arr.length + "<br>");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<em>wuhao</em>
+			hello world
+			<strong>wangwenyan</strong>
+		</div>
+	</body>
+</html>

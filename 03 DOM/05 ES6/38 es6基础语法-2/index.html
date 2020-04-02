@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>es6基础语法-2</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			ES6-->JS的最新版本
+			
+			   5,set结构 和 map结构(ES6中新增的两种数据结构)
+			   -->set:  let set = new Set([1,2,3,4]);//构造函数，值不重复
+			   
+			   -->map:  let map = new Map([["name","wuhao"],["age",22]]);//构造函数
+			 
+			 */
+			window.onload = function(){
+	//============-=======================set结构-->默认把重复的值忽略,将数组转换为set结构=============
+				let set = new Set([2,3,5,4,3]);
+				console.log(set);
+				
+				//===========使用扩展运算符 ... ,把set结构转换为数组========
+			    let arr = [...set];
+				console.log(arr);
+				
+				//===============使用 for  of 遍历set==========
+				let set1 = new Set([4,3,2,1]);
+				for(let i of set1){//这里的i表示的是元素
+					console.log(i);
+				}
+				
+				//===================set相关的属性和方法==============
+				//set.size-->表示这个set结构的长度
+				//set.add(0)-->向当前这个set结构中添加一个值;  
+				//set.delete(0)-->从当前这个set结构中删除一个值;  
+				//set.has(0)-->判断当前这个set结构中是否存在某一个值;
+				//set.clear()-->清空当前这个set结构
+				
+				//set.keys():返回键名的遍历器
+				//set.values():返回键值的遍历器
+				//set.entries():返回键值对的遍历器
+				//set.forEach():使用回调函数遍历每个成员
+				
+				let set2 = new Set([9,8,7,6,5,4]);
+				for(let item of set2.keys()){
+					console.log(item);
+				}
+				for(let item of set2.values()){
+					console.log(item);
+				}
+				for(let [key,item] of set2.entries()){
+					console.log(key,item);
+				}
+				set2.forEach((item,key)=>console.log(item*2,key*2));
+				
+	//=============================================================map结构=================================
+				let map = new Map([["name","wuhao"],["age",22]]);
+				console.log(map);
+				
+				//==================map.set("x","y");向map中增加新的属性键值对===========
+				map.set("sex","male");
+				console.log(map);
+				
+				//====================map相应的属性和方法========================
+				//1,map.size;-->表示这个map结构的长度
+				//2,map.set(key,value);-->向这个map结构中增加新的键值对
+				//3,map.get(key);-->通过key,得到它对应的值
+				//4,map.delete(key);-->删除key对象的键值对
+				//5,map.has(key);-->判断是否存在某个key
+				//6,map.clear();-->清除这个map结构
+				
+				//map.keys():返回键名的遍历器
+				//map.values():返回键值的遍历器
+				//map.entries():返回键值对的遍历器
+				//map.forEach():使用回调函数遍历每个成员
+				let map1 = new Map([["name","wuhao"],["stuno",1704240131],["sex","male"],["age",22]]);
+				for( let item of map1.keys()){
+					console.log(item);
+				}
+				for( let item of map1.values()){
+					console.log(item);
+				}
+				for( let [key,value] of map1.entries()){
+					console.log(key,value);
+				}
+				map1.forEach((key,value)=>console.log(key,value*2));
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

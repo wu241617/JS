@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>运算符</title>
+		<script type="text/javascript">
+			/* 
+			 [1],一元运算符：
+			     a++:=>先取a的值
+				 ++a：=> 先加1，再取a的值
+				 
+				 a--：=> 先取a的值
+				 --a：=> 先减1，再取a的值
+			 */
+			var a = 5;
+			document.write(a+++"<br>");
+			document.write(a+"<br>");
+			document.write(++a+"<br>");
+			document.write(a+"<br>");
+			
+			var b = 4;
+			document.write(b--+"<br>");
+			document.write(b+"<br>");
+			document.write(--b+"<br>");
+			document.write(b+"<br>");
+			/* 
+			[2],关系运算符
+			1,两个操作数都为数值时，比较
+			2，两个操作数为字符串时，比较[逐位比较ASCII码值]
+			3，有一个操作数为数字，将另一个操作数转换为数字，在进行比较
+			4,等于和不等于 eg:1==NaN -->false   1!=NaN -->true
+			5,全等和不全等（数值和数据类型两方面考虑） ===   !==
+			 */
+			document.write(3>5);
+			document.write("<br>");
+			document.write("abcf">"abd");
+			document.write("<br>");
+			document.write(2>true);
+			document.write("<br>");
+			document.write(20 === "20");
+			document.write("<br>");
+			/* 
+			[3],逻辑运算符
+			 与  表达式1  &&  表达式2
+			 [短路操作] 表达式1为假时，不执行表达式2，直接返回结果false
+			 
+			 或   表达式1 || 表达式2
+			 [短路操作] 表达式1为真时，不执行表达式2，直接返回结果true
+			 
+			 
+			 非   ！表达式 -->先将操作数转换为布尔值，在做取反操作，最后的返回值是一个布尔值
+			 
+			 */
+			document.write(!""+"<br>");
+			/*
+			[4],三目运算符  表达式1 ？ 表达式2 ：表达式3
+			  */
+			 var num1 = 40;
+			 var num2 = 50;
+			 var max = num1 > num2 ? num1 : num2;
+			 document.write(max);
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

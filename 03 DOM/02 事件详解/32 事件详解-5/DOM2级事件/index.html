@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>DOM2级事件</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#outer{
+				box-sizing: border-box;
+				width:200px;
+				height:200px;
+				margin: 100px auto;
+				padding-left:50px;
+				padding-top:50px;
+				background-color:red;
+				border:2px solid black;
+				cursor:pointer;
+			}
+			#inner{
+				box-sizing: border-box;
+				width:100px;
+				height:100px;
+				background-color:green;
+				border:1px solid black;
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			DOM2级事件处理程序:-->可以给一个事件源添加多个事件
+			    1,添加事件监听器:addEventListener(事件名，处理函数，布尔值);
+			    -->事件名是不带on的   处理函数可以是指针或者具体的函数实体    布尔值，默认为false(冒泡) true(捕获)
+			  
+			    2,移除事件监听器:removeEventListtener(事件名，处理函数);
+				-->事件名是不带on的   处理函数可以是指针或者具体的函数实体    
+			  
+		  【注】:IE下的事件监听器:
+			    1,添加事件监听器:attachEvent(事件名，处理函数);
+				-->事件名是带on的  处理函数可以是指针或者具体的函数实体
+			  
+			    2,移除事件监听器:detachEvent(事件名，处理函数);
+				-->事件名是带on的  处理函数可以是指针或者具体的函数实体
+			 
+			 */
+			 window.onload = function(){
+				var outer = document.getElementById("outer");
+				var inner = document.getElementById("inner");
+				
+				//现代浏览器下
+				outer.addEventListener("click",foo,true);
+				inner.addEventListener("click",foo1,true);
+				outer.removeEventListener("click",foo);
+				inner.removeEventListener("click",foo);
+				
+				//IE浏览器下
+				//outer.attachEvent("onclick",fun);
+				//inner.attachEvent("onclick",fun1)
+				//outer.detachEvent("onclick",fun);
+				//inner.detachEvent("onclick",fun1);
+
+                function foo(){
+					console.log("outer");
+				}
+				function foo1(){
+					console.log("inner");
+				} 
+				function fun(){
+					console.log("outer1");
+				}
+				function fun1(){
+					console.log("inner1");
+				}
+				
+				//添加和移除事件监听器的兼容性写法:
+				function addEvent(obj,type,fun){//obj-->事件源  type-->事件名（类型） fun-->处理函数  
+					if(obj.addEventListener()){
+						obj.addEventListener(type,fun,false);
+					}else{
+						obj.attachEvent("on"+type,fun);
+					}
+				}
+				
+				function removeEvent("obj",type,fun){
+					if(obj.removeEventListener()){
+						obj.removeEventListener(type,fun,false);
+					}else{
+						obj.detachEvent("on"+type,fun);
+					}
+				}
+			} 
+		</script>
+	</head>
+	<body>
+		<div id="outer">
+			<div id="inner"></div>
+		</div>
+	</body>
+</html>

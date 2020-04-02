@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>流程语句</title>
+		<script type="text/javascript">
+			/* 
+			顺序
+			
+			分支（选择）单分支  双分支  多分支 / switch [多重嵌套]  
+			
+			循环 for  while  do while  [多重嵌套]  
+			 
+			 */
+			// 顺序语句
+			var num1 = 20;
+			var num2 = 30;
+			var tmp;
+			tmp = num1;
+			num1 = num2;
+			num2 = tmp;
+			document.write("num1=" + num1 + "<br>");
+			document.write("num2=" + num2 + "<br>");
+			
+			// 单分支语句
+			var A = 28;
+			if (A % 2 == 0) {
+				document.write("A为单数!" + "<br>");
+			}
+			
+			// 双分支语句
+			var a = 27;
+			if (a % 2 != 0) {
+				document.write("a为单数!" + "<br>");
+			} else {
+				document.write("a为双数!" + "<br>");
+			}
+
+			if (num1 > num2) {
+				document.write("num1为最大数！" + "<br>");
+			} else {
+				document.write("num2为最大数！" + "<br>");
+			}
+			
+			// 多分支语句
+			var score = 91;
+			if (score < 60) {
+				document.write("成绩不合格！" + "<br>");
+			} else if (score == 60) {
+				document.write("成绩刚合格！" + "<br>");
+			} else if (score > 60 && score < 70) {
+				document.write("成绩为中等！" + "<br>");
+			} else if (score > 70 && score < 80) {
+				document.write("成绩为良好！" + "<br>");
+			} else {
+				document.write("成绩为优秀！" + "<br>");
+				// 条件语句的嵌套
+				if (score > 95 && score <= 100) {
+					document.write("奖励1000元！" + "<br>");
+				} else if (score > 90 && score <= 95) {
+					document.write("奖励500元！" + "<br>");
+				} else {
+					document.write("奖励300元！" + "<br>");
+				}
+			}
+			
+			//  多分支语句 switch
+			var tmp = "A";
+			switch(tmp){
+				case "A":
+				document.write("80-100"+"<br>");
+				break;
+				case "B":
+				document.write("70-80"+"<br>")
+				break;
+				case "c":
+				document.write("60-70"+"<br>");
+				break;
+				case "D":
+				document.write("< 60"+"<br>");
+				break;
+				default :
+				document.write("error"+"<br>");
+				break;
+			}
+		</script>
+	</head>
+	<body>
+		<input type="text" placeholder="请输入数字(0-9)">
+
+		<script type="text/javascript">
+			var num = document.querySelector("input");
+			
+			num.onchange = function(){
+				switch(Number(num.value)){
+					case 0:console.log("输入的数字0");
+					break;
+					case 1:console.log("输入的数字1");
+					break;
+					case 2:console.log("输入的数字2");
+					break;
+					case 3:console.log("输入的数字3");
+					break;
+					case 4:console.log("输入的数字4");
+					break;
+					case 5:console.log("输入的数字5");
+					break;
+					case 6:console.log("输入的数字6");
+					break;
+					case 7:console.log("输入的数字7");
+					break;
+					case 8:console.log("输入的数字8");
+					break;
+					case 9:console.log("输入的数字9");
+					break;
+					default:console.log("请输入0-9");
+					break;
+				}
+			}
+			
+		</script>
+	</body>
+</html>

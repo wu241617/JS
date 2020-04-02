@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>opener</title>
+		<style>
+			body{
+				background-color:lightblue;
+			}
+			#btn1{
+				width:100px;
+				height:30px;
+				text-align:center;
+				line-height:30px;
+				background-color:cadetblue;
+				border:1px solid black;
+				margin-left:50px;
+				margin-top:50px;
+				cursor:pointer;
+			}
+			#btn1:hover{
+				color:white;
+				background-color:black;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			 opener: 打开当前窗口的父窗口的window对象   在当前页面操作父页面
+			 */
+			window.onload = function(){
+				var btn1 = document.getElementById("btn1");
+				btn1.onclick = function(){
+					opener.document.write("子窗口让我输出！！！");
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<input type="button" value = "按钮" id ="btn1">
+	</body>
+</html>

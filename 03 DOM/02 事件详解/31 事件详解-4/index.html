@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件详解-4</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#div0{
+				width:200px;
+				height:200px;
+				margin: 50px auto;
+				background-color:green;
+				cursor:pointer;
+			}
+			#div0 #div1{
+				width:100px;
+				height:100px;
+				margin: 50px auto;
+				background-color:red;
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			【1】，事件流:描述页面接收事件的顺序
+			      1，事件流的三个阶段:捕获，目标，冒泡
+				  阻止冒泡:
+				         evt.cancelBubble = true;
+				         evt.stopPropagation();
+				  事件委托机制:利用事件冒泡的原理，把本应给某元素上的事件委托给它的父级（外层）
+			 
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementById("div0");
+				var oDiv1 = document.getElementById("div1");
+				oDiv.onclick = function(){
+					console.log("div0");
+				}
+				oDiv1.onclick = function(e){
+					var evt = e||event;
+					console.log("div1");
+					//阻止冒泡:
+					evt.cancelBubble = true;
+					//evt.stopPropagation();
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div0">
+			<div id="div1"></div>
+		</div>
+	</body>
+</html>

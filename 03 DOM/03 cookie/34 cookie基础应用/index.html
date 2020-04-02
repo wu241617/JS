@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>cookie基础应用-实例：七天免登录</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			div{
+				box-sizing: border-box;
+				width:300px;
+				height:300px;
+				margin: 100px auto;
+				text-align:center;
+				border:2px solid black;
+				background-image: linear-gradient(#cecece,#8f8f8f);
+				padding-top:50px;
+			}
+			div .class1{
+				background-color:cadetblue;
+				border:1px solid black;
+				color:black;
+				cursor:pointer;
+				width:50px;
+				height:30px;
+				text-align:center;
+				line-height:30px;
+			}
+		</style>
+		<script type="text/javascript">
+			
+			function setCookie(name,value,day){
+				var oDate  = new Date();
+				oDate.setDate(oDate.getDate()+day);
+				document.cookie = name + "=" + value + "expires=" +oDate;
+			}
+			
+			function getCookie(name){
+				var str = document.cookie;
+				var arr = str.split("; ");
+				for(var i = 0; i < arr.length; i++){
+					var arr1 = arr[i].split("=");
+					if(arr1[0] == name){
+						return arr1[1];
+					}
+				}
+			}
+			
+			function removeCookie(name){
+				setCookie(name,1,-1);
+			}
+	/* ======================================================================= */		
+			window.onload = function(){
+				var aInput = document.getElementsByTagName("input");
+				
+				if(getCookie("username")){
+					aInput[0].value = getCookie("username").replace("expires","");
+					aInput[1].value = getCookie("password").replace("expires","");
+				}
+				
+				aInput[3].onclick = function(){
+					var username = aInput[0].value;
+					var password = aInput[1].value;
+					if(aInput[2].checked){//判断复选框被勾选
+					   setCookie("username",username,7);
+					   setCookie("password",password,7);
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div>
+			<br>
+			用户名: <input type="text"><br>
+			<br>
+			&nbsp;&nbsp;密码: <input type="password"><br>
+			<br>
+			<label><input type="checkbox">7天免登录!</label><br>
+			<br>
+			<input type="button" value="登录" class="class1">
+		</div>
+	</body>
+</html>

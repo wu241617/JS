@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>BOM</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			body{
+				background-color:lightskyblue;
+			}
+			#btn{
+				width:100px;
+				height:30px;
+				text-align:center;
+				line-height:30px;
+				border:1px solid black;
+				background-color:cadetblue;
+				margin-top:50px;
+				margin-left:50px;
+				cursor:pointer;
+			}
+			#btn:hover{
+				color:white;
+				background-color:black;
+			}
+		</style>
+		<script type="text/javascript">
+			/*
+			 BOM:
+			 【1】，概念：BOM -->浏览器对象模型  BOM对象 --> 当前整个浏览器
+			 
+			 【2】，通过window对象来控制BOM   window对象 --> 当前浏览器打开的一个窗口，为全局对象
+			 
+			 【3】，window对象下的属性和方法-->【注】window下的函数可以省略window. 去直接调用函数
+			       1，系统对话框：-->通过系统提供的方法，调用系统对话框，来显示信息
+				   
+				      alert();/window.alert();-->直接弹出警告框  参数：要显示的内容
+					  
+					  confirm();/window.confirm();-->弹出带有确认和取消按钮的警告框  参数：提示的内容 
+					  返回值：点击确定的时候为true 点击取消的时候为false
+					  
+					  prompt();/window.prompt();-->弹出带输入框的提示框  参数：第一个：要显示的内容;  第二个：默认的提示框里面的初始值
+					  返回值：点击确定的时候为输入的内容   点击取消的时候为null
+						  
+			       2,window.open();
+				     参数：第一个参数：URL  打开一个新窗口，加载URL路径的页面
+					       第二个参数：给打开的窗口，起的名字  -->之后在运行时，在此窗口下加载
+						   第三个参数：一串特殊的字符串，是对打开新窗口属性的设置，
+						   eg: "width=100,height=100,top=200,left=200"  -->新窗口的宽和高：width 和 height不能小于100
+			 */
+			/* alert("Hello World");
+		    var str = confirm("你是否要提交数据？");
+			document.write(str+"<br>");
+			var res = prompt("请输入您所选择的出生日期：","1998-02-08");
+			document.write(res+"<br>");
+			 */
+			window.onload = function(){
+				var btn = document.getElementById("btn");
+				btn.onclick = function(){
+					//window.open("http://www.baidu.com","百度","width=600,height=600,top=300,left=300");
+					window.open("opener.html","子窗口","width=500,height=500,top=200,left=200");
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" value="按钮" id="btn">
+	</body>
+</html>

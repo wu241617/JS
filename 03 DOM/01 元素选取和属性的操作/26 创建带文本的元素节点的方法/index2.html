@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#div1{
+				width:300px;
+				height:300px;
+				margin: 100px auto;
+				background-color:green;
+			}
+			#btn1{
+				margin: 0 400px;
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			5,insertBefore()方法    -->将新节点插入到节点node1前面
+			【格式】旧节点.父节点（parentNode）.insertBefore(插入的节点，node1);
+			       node1.parentNode.insertBefore(node,node1);
+			【功能】将插入的节点插入到旧节点之前
+			
+			
+			注: JS中没有提供 insertAfter()方法 ，要自己封装函数实现   -->将新节点插入到后面
+			【格式】旧节点.父节点（parentNode）.insertBefore(插入的节点，旧节点);
+			【功能】将插入的节点插入到旧节点之后
+			 */
+			function insertAfter(newNode,oldNode){
+				//判断oldNode是否为最后一个节点
+				var parent = oldNode.parentNode;
+				if(oldNode == parent.lastChild){
+					//最后一个节点，直接插入到子节点的末尾
+					parent.appendChild(newNode);
+				}else{
+					//不是最后一个节点，插入到oldName下一个节点(用.nextSibling实现)之前
+					parent.insertBefore(newNode,oldNode.nextSibling);
+				}
+			}
+			
+			
+			/* ========================================================= */
+			function createElementWithText(tagName,Txt){
+				var node = document.createElement(tagName);
+				var txt = document.createTextNode(Txt);
+				node.appendChild(txt);
+				return node;
+			}
+			
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");
+				var oBtn = document.getElementById("btn1");
+				var oSpan = document.getElementsByTagName("span")[0];
+				oBtn.onclick = function(){
+					var node = createElementWithText("strong","strong文本");
+					var node1 = createElementWithText("b","b文本");
+					//oDiv.appendChild(node);
+					//oSpan.parentNode.insertBefore(node,oSpan);
+					insertAfter(node,oSpan);
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<p>p</p>
+			<span>span</span>
+			<em>em</em>
+		</div>
+		<button id="btn1">添加！</button>
+	</body>
+</html>

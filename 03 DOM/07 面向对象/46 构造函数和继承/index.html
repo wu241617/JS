@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>构造函数和继承</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			1,构造函数和继承
+			 【注】:直接通过函数方法调用,this指针为全局变量window;通过某个对象方法调用的时候,this指针指的是这个方法前面那个对象
+			 
+			2,apply 和 call 将函数类this指针的指向改变
+			  -->apply 
+			  Person.apply(this,[name,age]);this指向Student;通过apply方法把Person里面的this 指向也指向Student
+			  Person.call(this,name,age);
+			  
+			  -->apply 和 call 都是改变this指针的指向
+			  区别: this 之后的参数的输入形式;apply是[name,age]数组形式整体作为第二个参数传入
+			  call是 name,age 一个一个传入
+			 */
+			window.onload = function(){
+				//构建一个Person类
+				function Person(name,age){
+					this.name = name;
+					this.age = age;
+					this.sayHello = function(){
+						alert(this.name);
+					}
+				}
+				
+				//过程中所做的事:
+				//1,创建一个对象
+				//2,this指针指向了这个对象
+				//3,执行构造函数里面的代码
+				//4,返回这个对象
+				var p = new Person();//利用构造函数声明一个p对象
+				
+				//构造一个Student类
+				function Student(name,age,id){
+					//Person(name,age);//直接调用函数方法,this指针指向window
+					Person.apply(this,[name,age]);//this指向Student;通过apply方法把Person里面的this 指向也指向Student
+					//Person.call(this,name,age);//this指向Student;通过apply方法把Person里面的this 指向也指向Student
+					
+					this.id = id;
+					this.sayHello = function(){
+						alert(this.name);
+					}
+				}
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

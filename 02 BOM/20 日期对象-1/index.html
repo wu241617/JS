@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* 
+			【1】，日期对象概念：在JS中日期也是一种数据类型（复合数据类型） 是对象
+			
+			【2】，日期对象  Date 的创建：
+			     1，var d = new Date();
+			     2，参数：如果创建对象的时候不传参，默认的是当前系统的时间
+				 3，有参数：生成日期对象的参数方式：1: Date("1997/05/24")  2: Date("1997-05-24")  3: Date(1997,05,24,13,14,50)
+				 4，【注】参数可以是毫秒数  （1秒=1000毫秒）  从1970年1月1日0时0分0秒开始 加上毫秒数后  显示最终时间 
+				 
+			【3】，日期对象的方法：
+			     1，日期对象的格式化方法：通过某种格式输出  日期对象.方法（）；
+				 
+				 2，set 和 get类型方法：
+				    set/getDate();从Date对象中返回一个月中的某一天（1-31）
+				    getDay();从Date对象中返回一周中的某一天（0-6）-->0为周日
+				    set/getMonth();从Date对象中返回一年中的某个月（0-11）
+				    set/getFullYear();从Date对象中返回四位数的年份
+				    set/getHours();从Date对象中返回小时（0-23）
+			        set/getMinutes();从Date对象中返回分钟（0-59）
+				    set/getSeconds();从Date对象中返回秒钟（0-59）
+			        set/getMilliseconds();从Date对象中返回毫秒
+			        set/getTime();从1970年1月1日，到现在的毫秒数
+				    set/getTimezoneOffset();本地时间与格林标准时间的分钟差
+					
+				 3，d.setTime();  设置  从1970年1月1日，到现在的毫秒数
+				    d.getTime();  得到  从1970年1月1日，到现在的毫秒数
+					Date.parse("2017-08-21");  参数为一个日期格式的字符串  返回这个日期距离1970年的毫秒值
+			 */
+			var a = new Date();
+			document.write(a+"<br>");
+			
+			var b = new Date("1997/05/24");
+			document.write(b+"<br>");
+			
+			var c = new Date("1997-05-24");
+			document.write(c+"<br>");
+			
+			var d = new Date(1997,05,24,16,17,50);
+			document.write(d+"<br>");
+			
+			var e = new Date(1000);
+			document.write(e+"<br>");
+			
+			//日期对象的练习  
+			//1,显示当前时间
+			function displaydate(){
+				var d = new Date();//创建一个时间对象
+				var year = d.getFullYear();//年
+				var month = d.getMonth() + 1;//月
+				var date = d.getDate();//日
+				var week = d.getDay();//星期
+				if(week == 0){
+					week = "日";
+				}
+				var hours = d.getHours();//小时
+				var minuters = d.getMinutes();//分钟
+				var seconds = d.getSeconds();//秒
+				return year + "年"+month+"月"+date+"日"+"&nbsp;&nbsp;星期"+week+"&nbsp;&nbsp;"+hours+":"+minuters+":"+seconds;
+			}
+			var str = displaydate();
+			document.write(str+"<br>");
+			
+			//2,返回n天后的日期
+			function newdate(n){
+				var a1 = new Date();
+				var date = a1.getDate();
+				a1.setDate(date + n);
+				return a1;
+			}
+			document.write(newdate(4)+"<br>");
+			
+			
+			
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

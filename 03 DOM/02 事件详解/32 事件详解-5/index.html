@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>事件默认行为</title>
+		<style type="text/css">
+			form input:nth-child(2){
+				cursor:pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			 浏览器的默认行为:
+			 JS事件本身所具有的属性:例如，a标签的跳转，Submit按钮的提交，右键菜单，文本框的输入等
+			 
+			 阻止默认行为的方法:
+			 1,event.preventDefault();
+			 2,event.returnValue = false;
+			 3,return false;
+			 
+			 */
+			window.onload = function(){
+				var oLink = document.getElementsByTagName("a")[0];
+				var oForm = document.getElementsByTagName("form")[0];
+				var aInput = document.getElementsByTagName("input");
+				oLink.onclick = function(){//禁止a标签的跳转
+					console.log("aaaaaa");
+					return false;
+				}
+				oForm.onsubmit = function(e){//禁止Submit按钮的提交
+					var evt = e||event;
+					console.log("bbbbb");
+					//evt.preventDefault();
+					//return false;
+					evt.returnValue = false;
+				 }
+				 aInput[0].onkeydown = function(){//禁止文本框的输入
+					return false;
+				}
+				document.oncontextmenu = function(){//禁止右键菜单
+					return false;
+				} 
+			}
+		</script>
+	</head>
+	<body>
+		<a href="#">test</a>
+		<form action="">
+			<input type="text" />
+			<input type="submit" value="提交" />
+		</form>
+	</body>
+</html>

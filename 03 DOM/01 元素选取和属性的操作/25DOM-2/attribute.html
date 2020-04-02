@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>attribute</title>
+		<script type="text/javascript">
+			/*
+		    【1】
+			    1,setAttribute  -->对某元素节点属性做赋值操作
+			    2,getAttribute -->对某元素节点属性做取值操作
+			    3,removeAttribute  -->对某元素节点属性做移除操作
+				
+			【2】Attribute系列的方法(ondes.getAttribute("class"))对属性的操作和属性点操作(ondes.className)的区别
+			    1,属性点操作使用className  Attribute系列使用class
+				2,set/getAttribute对自定义属性是支持的   
+				3,removeAttribute
+			
+			 */
+			window.onload = function(){
+				var div1 = document.getElementById("div1");
+				document.write(div1.className+"<br>");
+				document.write(div1.getAttribute("class")+"<br>");
+				document.write(div1.getAttribute("name")+"<br>");
+				document.write(div1.getAttribute("title")+"<br>");
+				div1.setAttribute("class","class2");
+				div1.removeAttribute("name");
+			}
+		</script>
+	</head>
+	<body>
+		<div id="div1" class="class1" name="hello" title="wuhao"></div>
+	</body>
+</html>

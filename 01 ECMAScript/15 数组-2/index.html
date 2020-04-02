@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script type="text/javascript">
+			/* 
+			【1】，二维数组
+			
+			【2】，数组系统排序
+			      1,逆向排序  reverse  --> 数组.reverse();
+				  2,升序排序(从小到大)  sort(默认是按字符串排序的)     --> arr.sort();
+				  
+		    【3】，自己定义排序方法
+			      1，冒泡排序
+				  2，选择排序
+				  
+			【4】,数组引用  复合数据类型  即引用数据类型
+			
+			 */
+			
+			// 生成一个二维数组(1-25)
+			var count = 0;
+			var arr = [];
+			for (var i = 0; i < 5; i++) {
+				var newarray = [];
+				for (var j = 0; j < 5; j++) {
+					newarray.push(++count);
+				}
+				arr.push(newarray);
+			}
+			document.write(arr);
+			document.write("<br>");
+			
+			//输出左下三角形
+			for(var i = 0; i < 5; i++){
+				for(var j = 0; j <= i; j++){
+					document.write(arr[i][j]+"&nbsp;&nbsp;");
+				}
+				document.write("<br>");
+			}
+			
+			// 冒泡排序
+			var a = [33,45,32,65,23];
+			var length = a.length;
+			for(var i = 0; i < length; i++){
+				for(var j = 0; j < length - i -1; j++){
+					if(a[j] < a[j+1]){
+					var tmp = a[j];
+						a[j] = a[j+1];
+						a[j+1] = tmp;
+					}
+				}
+			}
+			document.write(a);
+			document.write("<br>");
+			
+			//选择排序
+			var c = [3,5,4,2,6,9];
+			var length1 = c.length;
+			for(var i = 0; i < length1 - 1; i++){
+				for(var j = i + 1; j < length1; j++){
+					if(c[i] < c[j]){
+						var tmp = c[i];
+						c[i] = c[j];
+						c[j] = tmp;
+					}
+				}
+			}
+			document.write(c);
+			document.write("<br>");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

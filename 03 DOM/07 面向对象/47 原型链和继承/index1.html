@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>组合/混合继承</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			组合（混合继承）-->原型链继承加构造函数继承
+			 
+			 */
+			window.onload = function(){
+				
+				function Person(name,age){//属性放在对象上
+					this.name = name;
+					this.age = age;
+				}
+				Person.prototype.sayHello = function(){//方法在原型上
+					console.log(this.name,this.age);
+				}
+				
+				function Student(name,age,id){
+					Person.apply(this,[name,age]);//构造函数继承
+					this.id = id;
+				}
+				
+				Student.prototype = Object.create(Person.prototype);//原型链继承
+				Student.prototype.display = function(){
+						console.log(this.name,this.age,this.id);
+				}
+				
+				var s = new Student("lijun",3,4);
+				s.sayHello();
+				s.display();
+				
+			}
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

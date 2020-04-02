@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>chain</title>
+		<style type="text/css"></style>
+		<!-- Jquery的在线引用 -->
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	</head>
+	<body>
+		<p></p>
+		<script>
+			/* 
+			Ajax的链式调用(chain):Ajax的依赖调用
+			
+			Promise解决Ajax的依赖调用
+						 
+			 */
+			var article = "";
+			$.get("./p1.txt",function(p1){//Ajax的依赖调用,引起了回调地狱的问题
+				article += p1 + "<br>";
+				$.get("./p2.txt",function(p2){
+					article += p2 + "<br>";
+					$.get("./p3.txt",function(p3){
+						article += p3 + "<br>";
+						$.get("./p4.txt",function(p4){
+							article += p4;
+							$("p").html(article);
+						})
+					})
+				})
+			})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>创建带文本节点的方法</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			#div1{
+				width:200px;
+				height:200px;
+				background-color:green;
+				margin: 50px;
+			}
+			button{
+				margin:50px;
+				cursor: pointer;
+			}
+		</style>
+		<script type="text/javascript">
+			/* 
+			【1】，节点操作：DOM不仅仅能查找节点，也可以创建，复制，插入，删除，替换节点
+			
+			    1,write()方法    -->可以将任意字符串插入到文档中
+				使用document.write()添加内容时  会把原来的内容覆盖
+				
+				2,createElement()方法   -->创建一个元素节点
+				var node = document.createElement("标签名");
+				
+				3,appendChild()方法     -->将新节点追加到子节点列表尾部
+				parentNode(父节点/容器节点).appendChild(newNode新节点);
+				
+			    4,createTextNode()方法  -->创建文本节点
+				var txt = document.createTextNode("文本");
+				
+				5,insertBefore()方法    -->将新节点插入到前面
+				旧节点（当前操作的节点）.父节点（parentNode）.insertBefore(插入的新节点，旧节点);
+				
+				6,repalceChild()方法    -->用新节点代替旧节点
+				node(当前元素节点).parentNode（父节点）.removeChild(node当前元素节点);
+				
+				7,cloneNode()方法       -->复制节点
+				var node = node（要复制的当前元素节点）.cloneNode(true);
+				
+				8,removeChild()方法     -->移除节点
+				node(当前元素节点).parentNode（父节点）.removeChild(node当前元素节点);
+			 
+			 */
+			window.onload = function(){
+				var oDiv = document.getElementById("div1");//获取元素节点oDiv
+				var btn1 = document.getElementById("btn1");//获取元素节点btn1
+				btn1.onclick = function(){//给元素节点btn1添加时间驱动函数
+					alert(1);
+					document.write("<h1>我是标题内容！</h1>");
+				}
+			}
+		</script>
+	</head> 
+	<body>
+		<div id="div1"></div>
+		<button id="btn1">新增</button>
+	</body>
+</html>

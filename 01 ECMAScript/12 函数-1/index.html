@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>函数</title>
+		<script type="text/javascript">
+			/* 
+			1,函数:  -->内置函数（系统本身所提供的函数）   -->自定义函数（自己定义的函数）
+		
+			2,无参函数
+			
+			3,有参函数
+			
+			4,arguments[] --> 函数内置存放形参的一个数组   当不确定传入形参个数的时候 
+			
+			5,函数返回值 return  ,return 后面的语句不能被执行!!!
+			
+			6,作用域
+			       全局作用域   声明的变量-->全局变量   整个程序结束之后，被销毁
+				   局部作用域   声明的变量-->局部变量   函数内使用完，函数调用完之后被销毁
+			【注】在有变量名重复时，采取就近原则
+			 */
+			//无参函数:
+			function print(){
+				for( var i = 0; i < 10; i++ ){
+					document.write("Hello World"+"<br>");
+				}
+			}
+			print();//函数调用
+			//有参函数
+			function print1(n){
+				for( var i = 0; i < 10; i++ ){
+					document.write(n);
+				}
+			}
+			print1(" * ");
+			
+			// arguments --> 函数内置存放形参的一个数组   当不确定传入形参个数的时候
+			 function add(){
+				var sum = 0;
+				for(var i = 0; i < arguments.length; i++){
+					sum += arguments[i];
+				}
+				document.write("<br>"+sum+"<br>");
+			} 
+			add(3,4,6,7);
+			
+			// 函数返回值
+			function max(num1,num2){
+				return num1 > num2 ? num1 : num2;
+				document.write("hello world!");//return 后面的语句不能被执行!!!
+			}
+			var max = max(5,7);
+			document.write(max+"<br>");
+			
+			// 函数练习
+			//1,判断一个年份是不是闰年
+			function leapYear(year){
+				if(year % 400 == 0 || year % 4 ==0 && year % 100 !=0){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			if(leapYear(2017)){
+				document.write("是闰年!"+"<br>");
+			}
+			else{
+				document.write("不是闰年！"+"<br>");
+			}
+			// 判断一个数是否为素数
+			function primeNumber(num){
+				var k = 0;
+				for(var i = 2; i < num; i++){
+					if(num % i == 0){
+						k++;
+					}
+				}
+				if(k == 0){
+					return true;
+				}
+				else{
+					return false;
+				}
+			} 
+			if(primeNumber(67)){
+				document.write("这个数是一个素数！"+"<br>");
+			}
+			else{
+				document.write("这个数不是一个素数！"+"<br>");
+			}
+		
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

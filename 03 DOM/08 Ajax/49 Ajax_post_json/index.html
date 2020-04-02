@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Ajax_post_json</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* Ajax_post_json */
+			window.onload = function() {
+				//post
+				//1,创建Ajax对象
+				
+				var xhr = new XMLHttpRequest();
+
+				//5,监听数据返回
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState !== 4) {
+						return;
+					}
+
+					if (xhr.status >= 200 && xhr.status <= 300) {
+						var resp = JSON.parse(xhr.responseText);
+						if (resp.result) {
+							alert("登录成功！");
+						} else {
+							alert("登录失败！");
+						}
+						
+					} else {
+						console.error("请求失败！");
+					}
+				}
+
+				//2,打开（配置）xhr对象
+				xhr.open("post", "test.php", true); //true为异步请求,false为同步请求
+
+				//3,设置请求头，指明body中数据是何格式
+				xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+				//4,发送数据
+				xhr.send("user=wuhao&password=05241617");
+			}
+		</script>
+	</head>
+	<body>
+		<h1>hello world</h1>
+	</body>
+</html>

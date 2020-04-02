@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>search</title>
+		<script type="text/javascript">
+			/* 
+			编写解析search的函数
+			search: eg--> ?id=5&search=ok&name=wuhao
+			 */
+			function showValue(search,key){//第一个参数为整个search字符串   第二个参数为要输入的子串(key值)
+				var start = search.indexOf(key);
+				if(start == -1){//没有找到符合要求的子串(key值)
+					return;//程序结束
+				}else{
+					var end = search.indexOf("&",start);//字符串返回子串的位置
+					if(end == -1){
+						//当前为最后一个键值对
+						end = search.length;
+					}
+				}
+				var str = search.substring(start,end);//字符串的截取
+				var arr = str.split("=");
+				return arr[1];
+			}
+			var search = "?id=5&search=ok&name=wuhao";
+			
+			var str1 = showValue(search,"id");
+			var str2 = showValue(search,"search");
+			var str3 = showValue(search,"name");
+			document.write(str1+"<br>"+str2+"<br>"+str3+"<br>");
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

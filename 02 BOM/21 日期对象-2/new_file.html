@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>定时器概念</title>
+		<script type="text/javascript">
+			/* 
+			【1】，定时器：setInterval(函数名，毫秒数);  等价于 setInterval(function(){},毫秒数);
+			功能：每个参数中所定义的毫秒数之后，执行一次参数中传入的函数
+			返回值：当前页面上对于这个定时器的唯一标识，相当于定时器的ID 
+			
+			【2】，clearInterval(ID);清除定时器  
+			参数为：定时器的ID
+			
+			【3】，innerHTML: -->标签间的所有内容 设置和获取
+			 
+			 */
+			/*var i = 0;
+			 var show = function() {
+				document.write(i++ + "<br>");
+			} */
+
+			/* window.onload = function() {
+				var btn1 = document.getElementById("btn1");
+				btn1.onclick = function() {
+					var timer = setInterval(function() {
+					document.write(i++ + "<br>");
+					if(i == 6){
+						clearInterval(timer);
+					} 
+					}, 1000);
+				}
+			} */
+			window.onload = function(){
+			var container = document.getElementById("container");
+			var btn2 = document.getElementById("btn2");
+			btn2.onclick = function(){
+				//document.write(container.innerHTML);
+				container.innerHTML = "<h1>我是替换文本</h1>";
+			}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<input type="button" value="启动定时器" id="btn1">
+		<div id = "container"><h1><em>Hello World</em></h1></div>
+		<input type="button" value="操作" id="btn2">
+	</body>
+</html>

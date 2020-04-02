@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>正则基础语法-1</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/*
+			 正则表达式:
+			 
+			 1,正则表达式的概念和作用
+			 -->正则表达式是由普通字符和特殊字符组成的对字符串进行过滤的逻辑公式
+			 
+			 2,正则表达式的创建方式
+			  -->字面量方式 : var reg = /abc/
+			 
+			 -->构造函数方式 : var reg = new RegExp("abc");
+			 
+			 3,正则表达式用法
+			  -->test用法: 正则表达式方法  reg.test(str);
+			  
+			  -->exec用法: 正则表达式的方法  reg.exec(str);将匹配成功的内容放在数组里，没有匹配成功返回null
+			  
+			  -->match方法: 字符串方法 str.match(reg);返回值为符合规则的子串
+			  
+			  -->seach方法:字符串方法 str.seach(reg);用于查找符合规则子串的位置(只返回第一个匹配的位置)
+			  
+			  -->split方法:字符串方法 str.split(reg);用reg规律来拆分字符串在一个数组里面
+			  
+			  -->replace方法:字符串方法  str.replace(reg,"str1");用字符串的规律来替换原字符串里面的一个字串
+			  
+			  -->给正则表达式添加修饰符 g i   (g表示全局匹配,i表示忽略大小写)
+			 
+			 */
+			window.onload = function(){
+				//正则表达式创建方式-->字面量方式
+				var reg = /abc/;
+				
+				//正则表达式创建方式-->构造函数方式
+				//var reg = new RegExp("abc");
+				
+				var str = "ab";
+				
+				//正则表达式使用方法之test();包含所要查找的子串，返回true;否则返回false
+				var flag = reg.test(str);
+				console.log(flag);
+				
+				var reg1 = /abc/g;
+			    var str1 = "abcabc";
+				console.log(str1.match(reg1));
+				
+				var reg2 = /ab/gi;
+				var str2 = "abABaBAb";
+				console.log(str2.match(reg2));
+				
+			}
+		</script>
+	</head> 
+	<body>
+	</body>
+</html>

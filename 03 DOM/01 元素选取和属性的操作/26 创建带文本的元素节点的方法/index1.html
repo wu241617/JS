@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* 
+			
+			2,createElement()方法   -->创建一个元素节点
+			【格式】document.createElement(标签名);
+			
+			3,appendChild()方法     -->将新节点追加到子节点列表尾部
+			【格式】parent.appendChild(newNode);
+			【功能】将newNode添加在parent子节点的末尾
+			
+			4,createTextNode()方法  -->创建文本节点
+			【格式】document.createTextNode(文本);
+			【功能】创建一个文本节点
+			
+			*/
+		   window.onload = function(){
+			   var oBtn = document.getElementById("btn1");
+			   var oDiv = document.getElementById("div1");
+			   oBtn.onclick = function(){
+				   /*=========================创建含文本的元素节点=================== 
+				   //1,创建span元素节点
+				    var node = document.createElement("span");
+					
+					//2,创建span的文本节点
+					var oText = document.createTextNode("我们不一样");
+					
+					//3,将创建好的文本节点，插入到元素节点中
+					node.appendChild(oText);
+					
+					//4,将创建好的元素节点，插入到子节点列表尾部 
+					oDiv.appendChild(node);
+					*/
+				   var node = createElementWithTxt("div","美好的世界！！！");
+					oDiv.appendChild(node);
+			   }
+			   
+			   //函数的封装
+			   function createElementWithTxt(tagName,Txt){
+				   var node = document.createElement(tagName);
+				   var txt = document.createTextNode(Txt);
+				   node.appendChild(txt);
+				   return node;
+			   }
+			   
+		   }
+		</script>
+	</head>
+	<body>
+		<div id="div1">
+			<p>p</p>
+			<em>em</em>
+		</div>
+		<button id="btn1">按钮</button>
+	</body>
+</html>

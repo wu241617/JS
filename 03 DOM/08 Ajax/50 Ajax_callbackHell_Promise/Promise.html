@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Promise</title>
+		<style type="text/css"></style>
+		<script type="text/javascript">
+			/* Promise:
+			   //通过Pormise这个构造函数，来创建一个对象
+			   //这个Pormise对象有三种状态,
+			      pending(等待),
+			      fulfill(返回满足条件的状态),
+			      reject(延时对象，没有满足)状态
+			  //Promise构造函数，有一个参数；这个参数是一个回调；这个回调接受两个参数，这两个参数都能改变Promise的状态
+			  -->第一个参数将状态从pending切换到fulfill(调用成功);第二个参数将状态从pending(调用失败)切换到reject;
+			  
+			  //用法模板
+			 var pormise = new Promise(function(resolve,reject){
+			 	if(成功){
+			 		resolve();
+			 	}else{
+			 		reject();
+			 	}
+			 });
+			 pormise.then(function(x){
+				
+			 }).catch(function(){
+				 
+			 });
+			 */
+		</script>
+	</head>
+	<body>
+		<script>
+			//3秒随机出0-100之间的一个数，并判断是不是偶数
+			var promise = new Promise(function(resolve, reject) {
+				setInterval(function() {
+					var num = Math.floor(Math.random() * 100);
+					if (num % 2 === 0) {
+						resolve(num);
+					} else {
+						reject(num);
+					}
+				}, 3000);
+			});
+
+			promise.then(function(num) {//满足
+				console.log("resovle:" + num);
+			}).catch(function(num) {//不满足
+				console.log("reject:" + num);
+			});
+		</script>
+	</body>
+</html>
