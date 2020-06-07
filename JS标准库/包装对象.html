@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>包装对象</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			#box{
+				height:auto;
+				width:30rem;
+				margin:1rem auto;
+				border:0.1rem solid black;
+				box-shadow:0.5rem 0.5rem 0.5rem #666;
+				font-size:0.8rem;
+			}
+			h3{
+				height:1.5rem;
+				line-height:1.5rem;
+				background-color:black;
+				color:white;
+				text-align:center;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				#box{
+					width:auto;
+					height:auto;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<main>
+				<h3>包装对象相关</h3>
+				<section>
+					<ul>
+						<li>对象是 JavaScript 语言最主要的数据类型，三种原始类型的值——数值、字符串、布尔值——在一定条件下，也会自动转为对象，也就是原始类型的“包装对象”（wrapper）。</li>
+						<li>所谓“包装对象”，指的是与数值、字符串、布尔值分别相对应的Number、String、Boolean三个原生对象。这三个原生对象可以把原始类型的值变成（包装成）对象。</li>
+						<li>Number、String和Boolean这三个原生对象，如果不作为构造函数调用（即调用时不加new），而是作为普通函数调用，常常用于将任意类型的值转为数值、字符串和布尔值。</li>
+					</ul>
+				</section>
+	            <section>
+					<h3>实例方法</h3>
+					<ul>
+						<li>
+							三种包装对象各自提供了许多实例方法，详见后文。这里介绍两种它们共同具有、从Object对象继承的方法：valueOf()和toString()。
+						</li>
+						<li>valueOf()方法返回包装对象实例对应的原始类型的值。</li>
+						<li>toString()方法返回对应的字符串形式。</li>
+					</ul>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>

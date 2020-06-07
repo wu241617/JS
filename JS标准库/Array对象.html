@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover" />
+		<title>Array对象</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			#box{
+				width:80%;
+				height:auto;
+				margin:5% 10%;
+				border:2px solid black;
+				box-shadow:10px 10px 10px 10px #666;
+			}
+			h3{
+				height:40px;
+				line-height:40px;
+				background-color:black;
+				color:white;
+				text-align:center;
+			}
+			ol{
+				list-style-position:inside;
+				padding:20px;
+			}
+			ol li{
+				margin:10px 0;
+				border-bottom:1px solid black;
+				padding-bottom:10px;
+			}
+			span{
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<main>
+				<h3>Array 对象常用方法</h3>
+				<section>
+					<ol>
+						<li><span>Array.isArray()</span><br>
+						方法返回一个布尔值，表示参数是否为数组。它可以弥补typeof运算符的不足。</li>
+						<li><span>valueOf()</span><br>
+						方法是一个所有对象都拥有的方法，表示对该对象求值。不同对象的valueOf方法不尽一致，数组的valueOf方法返回数组本身。</li>
+						<li><span>toString()</span><br>
+						方法也是对象的通用方法，数组的toString方法返回数组的字符串形式</li>
+						<li><span>push()</span><br>
+						方法用于在数组的末端添加一个或多个元素，并返回添加新元素后的数组长度。注意，该方法会改变原数组。</li>
+						<li><span>pop()</span><br>
+						方法用于删除数组的最后一个元素，并返回该元素。注意，该方法会改变原数组。</li>
+						<li>push()和pop()结合使用，就构成了“后进先出”的栈结构（stack）。</li>
+						<li><span>shift()</span><br>
+						方法用于删除数组的第一个元素，并返回该元素。注意，该方法会改变原数组。</li>
+						<li>push()和shift()结合使用，就构成了“先进先出”的队列结构（queue）。</li>
+						<li><span>unshift()</span><br>
+						方法用于在数组的第一个位置添加元素，并返回添加新元素后的数组长度。注意，该方法会改变原数组。</li>
+						<li><span>join()</span><br>
+						方法以指定参数作为分隔符，将所有数组成员连接为一个字符串返回。如果不提供参数，默认用逗号分隔。如果数组成员是undefined或null或空位，会被转成空字符串。</li>
+						<li><span>concat()</span><br>
+						方法用于多个数组的合并。它将新数组的成员，添加到原数组成员的后部，然后返回一个新数组，原数组不变。</li>
+						<li><span>reverse()</span><br>
+						方法用于颠倒排列数组元素，返回改变后的数组。注意，该方法将改变原数组。</li>
+						<li><span>slice()</span><br>
+						方法用于提取目标数组的一部分，返回一个新数组，原数组不变。</li>
+						<li><span>splice()</span><br>
+						方法用于删除原数组的一部分成员，并可以在删除的位置添加新的数组成员，返回值是被删除的元素。注意，该方法会改变原数组。</li>
+						<li><span>sort()</span><br>
+						方法对数组成员进行排序，默认是按照字典顺序排序。排序后，原数组将被改变。</li>
+						<li><span>map()</span><br>
+						方法将数组的所有成员依次传入参数函数，然后把每一次的执行结果组成一个新数组返回。</li>
+						<li><span>forEach()</span><br>
+						方法与map方法很相似，也是对数组的所有成员依次执行参数函数。但是，forEach方法不返回值，只用来操作数据。这就是说，如果数组遍历的目的是为了得到返回值，那么使用map方法，否则使用forEach方法。
+forEach的用法与map方法一致，参数是一个函数，该函数同样接受三个参数：当前值、当前位置、整个数组。</li>
+						<li><span>filter()</span><br>
+						方法用于过滤数组成员，满足条件的成员组成一个新数组返回。
+它的参数是一个函数，所有数组成员依次执行该函数，返回结果为true的成员组成一个新数组返回。该方法不会改变原数组。</li>
+						<li><span>some()</span><br>
+						方法是只要一个成员的返回值是true，则整个some方法的返回值就是true，否则返回false。</li>
+						<li><span>every()</span><br>
+						方法是所有成员的返回值都是true，整个every方法才返回true，否则返回false。</li>
+						<li><span>reduce()</span><br>
+						方法和reduceRight方法依次处理数组的每个成员，最终累计为一个值。它们的差别是，reduce是从左到右处理（从第一个成员到最后一个成员），reduceRight则是从右到左（从最后一个成员到第一个成员），其他完全一样。</li>
+						<li><span>indexOf()</span><br>
+						方法返回给定元素在数组中第一次出现的位置，如果没有出现则返回-1。</li>
+						<li><span>lastIndexOf()</span><br>
+						方法返回给定元素在数组中最后一次出现的位置，如果没有出现则返回-1。</li>
+						<li>这些数组方法之中，有不少返回的还是数组，所以可以链式使用。</li>
+					</ol>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>

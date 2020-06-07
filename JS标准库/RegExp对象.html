@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>RegExp 对象</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+				border:0.1rem solid black;
+			}
+			h3{
+				height:1.5rem;
+				line-height:1.5rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem;
+			}
+			p{
+				text-align:center;
+				font-weight:bold;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h3>RegExp 对象相关</h3>
+			<section>
+				<ul>
+					<li>正则表达式（regular expression）是一种表达文本模式（即字符串结构）的方法，有点像字符串的模板，常常用来按照“给定模式”匹配文本。比如，正则表达式给出一个 Email 地址的模式，然后用它来确定一个字符串是否为 Email 地址。JavaScript 的正则表达式体系是参照 Perl 5 建立的。</li>
+					<li>新建正则表达式有两种方法。一种是使用字面量，以斜杠表示开始和结束。var regex = /xyz/;</li>
+					<li>另一种是使用RegExp构造函数。var regex = new RegExp('xyz');</li>
+				</ul>
+			</section>
+			<section>
+				<h3>实例属性</h3>
+				<ul>
+					<li>RegExp.prototype.ignoreCase：返回一个布尔值，表示是否设置了i修饰符。</li>
+					<li>RegExp.prototype.global：返回一个布尔值，表示是否设置了g修饰符</li>
+					<li>RegExp.prototype.multiline：返回一个布尔值，表示是否设置了m修饰符。</li>
+					<li>RegExp.prototype.flags：返回一个字符串，包含了已经设置的所有修饰符，按字母排序。
+上面四个属性都是只读的。</li>
+					<li>RegExp.prototype.lastIndex：返回一个整数，表示下一次开始搜索的位置。该属性可读写，但是只在进行连续搜索时有意义。</li>
+					<li>RegExp.prototype.source：返回正则表达式的字符串形式（不包括反斜杠），该属性只读。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>实例方法</h3>
+				<ul>
+					<li>RegExp.prototype.test() <br>正则实例对象的test方法返回一个布尔值，表示当前模式是否能匹配参数字符串。</li>
+					<li>RegExp.prototype.exec() <br>正则实例对象的exec()方法，用来返回匹配结果。如果发现匹配，就返回一个数组，成员是匹配成功的子字符串，否则返回null。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>字符串的实例方法</h3>
+				<ul>
+					<li>String.prototype.match()：返回一个数组，成员是所有匹配的子字符串。</li>
+					<li>String.prototype.search()：按照给定的正则表达式进行搜索，返回一个整数，表示匹配开始的位置。</li>
+					<li>String.prototype.replace()：按照给定的正则表达式进行替换，返回替换后的字符串。</li>
+					<li>String.prototype.split()：按照给定规则进行字符串分割，返回一个数组，包含分割后的各个成员。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>匹配规则</h3>
+				<p>......</p>
+			</section>
+		</main>
+	</body>
+</html>

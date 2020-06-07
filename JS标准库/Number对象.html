@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Number 对象</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:35rem;
+				height:auto;
+				border:0.1rem solid black;
+				box-shadow:0.5rem 0.5rem 0.5rem 0.5rem #666;
+				margin:2rem auto;
+				padding:2rem;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					overflow:hidden;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h3>Number 对象</h3>
+			<section>
+				<ul>
+					<li>Number对象是数值对应的包装对象，可以作为构造函数使用，也可以作为工具函数使用。作为构造函数时，它用于生成值为数值的对象。</li>
+					<li>作为工具函数时，它可以将任何类型的值转为数值。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>静态属性</h3>
+				<ul>
+					<li>Number对象拥有以下一些静态属性（即直接定义在Number对象上的属性，而不是定义在实例上的属性）。</li>
+					<li>Number.POSITIVE_INFINITY：正的无限，指向Infinity。</li>
+					<li>Number.NEGATIVE_INFINITY：负的无限，指向-Infinity。</li>
+					<li>Number.NaN：表示非数值，指向NaN。</li>
+					<li>Number.MIN_VALUE：表示最小的正数（即最接近0的正数，在64位浮点数体系中为5e-324），相应的，最接近0的负数为-Number.MIN_VALUE。</li>
+					<li>Number.MAX_SAFE_INTEGER：表示能够精确表示的最大整数，即9007199254740991。</li>
+					<li>Number.MIN_SAFE_INTEGER：表示能够精确表示的最小整数，即-9007199254740991。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>实例方法</h3>
+				<ul>
+					<li>Number.prototype.toString();<br>Number对象部署了自己的toString方法，用来将一个数值转为字符串形式。</li>
+					<li>Number.prototype.toFixed();<br>toFixed()方法先将一个数转为指定位数的小数，然后返回这个小数对应的字符串。</li>
+					<li>Number.prototype.toExponential();<br>toExponential方法用于将一个数转为科学计数法形式。</li>
+					<li>Number.prototype.toPrecision();<br>Number.prototype.toPrecision()方法用于将一个数转为指定位数的有效数字。</li>
+					<li>Number.prototype.toLocaleString();<br>Number.prototype.toLocaleString()方法接受一个地区码作为参数，返回一个字符串，表示当前数字在该地区的当地书写形式。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
