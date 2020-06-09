@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>实例对象与 new 命令</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				height:auto;
+				width:30rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+				margin:2rem auto;
+				padding:1.5rem;
+			}
+			h3{
+				height:1.5rem;
+				line-height:1.5rem;
+				background-color:black;
+				color:white;
+				text-align:center;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.25rem 0;
+			}
+			hr{
+				background-color:red;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h3>实例对象与 new 命令</h3>
+			<section>
+				<ul>
+					<li>对象是单个实物的抽象。</li>
+					<li>对象是一个容器，封装了属性（property）和方法（method）。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>构造函数</h3>
+				<ul>
+					<li>JavaScript 语言的对象体系，不是基于“类”的，而是基于构造函数（constructor）和原型链（prototype）。</li>
+					<li>JavaScript 语言使用构造函数（constructor）作为对象的模板。所谓”构造函数”，就是专门用来生成实例对象的函数。它就是对象的模板，描述实例对象的基本结构。一个构造函数，可以生成多个实例对象，这些实例对象都有相同的结构。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>构造函数的特征</h3>
+				<ul>
+					<li>函数体内部使用了this关键字，代表了所要生成的对象实例。</li>
+					<li>生成对象的时候，必须使用new命令。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>new 命令</h3>
+				<ul>
+					<li>new命令的作用，就是执行构造函数，返回一个实例对象。</li>
+					<li>使用new命令时，根据需要，构造函数也可以接受参数。</li>
+					<li>new命令本身就可以执行构造函数，所以后面的构造函数可以带括号，也可以不带括号。</li>
+					<li></li>
+				</ul>
+			</section>
+			<section>
+				<h3>使用new命令时，做的事</h3>
+				<ul>
+					<li>创建一个空对象，作为将要返回的对象实例。</li>
+					<li>将这个空对象的原型，指向构造函数的prototype属性。</li>
+					<li>将这个空对象赋值给函数内部的this关键字。</li>
+					<li>开始执行构造函数内部的代码。</li>
+					<hr>
+					<li>如果构造函数内部有return语句，而且return后面跟着一个对象，new命令会返回return语句指定的对象；否则，就会不管return语句，返回this对象。</li>
+					<li>如果对普通函数（内部没有this关键字的函数）使用new命令，则会返回一个空对象。</li>
+					<li>函数内部可以使用new.target属性。如果当前函数是new命令调用，new.target指向当前函数，否则为undefined。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Object.create() 创建实例对象</h3>
+				<ul>
+					<li>构造函数作为模板，可以生成实例对象。但是，有时拿不到构造函数，只能拿到一个现有的对象。我们希望以这个现有的对象作为模板，生成新的实例对象，这时就可以使用Object.create()方法。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

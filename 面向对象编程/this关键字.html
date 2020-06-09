@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>this关键字</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+			}
+			h3{
+				height:1.5rem;
+				line-height:1.5rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h3>this 关键字</h3>
+			<section>
+                <ul>
+					<li>this可以用在构造函数之中，表示实例对象。除此之外，this还可以用在别的场合。但不管是什么场合，this都有一个共同点：它总是返回一个对象。简单说，this就是属性或方法“当前”所在的对象。</li>
+					<li>JavaScript 语言之中，一切皆对象，运行环境也是对象，所以函数都是在某个对象之中运行，this就是函数运行时所在的对象（环境）。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>实质</h3>
+				<ul>
+					<li>JavaScript 语言之所以有 this 的设计，跟内存里面的数据结构有关系。</li>
+					<li>由于函数可以在不同的运行环境执行，所以需要有一种机制，能够在函数体内部获得当前的运行环境（context）。所以，this就出现了，它的设计目的就是在函数体内部，指代函数当前的运行环境。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>使用场合</h3>
+				<ul>
+					<li>全局环境使用this，它指的就是顶层对象window。</li>
+					<li>构造函数中的this，指的是实例对象。</li>
+					<li>对象的方法里面包含this，this的指向就是方法运行时所在的对象。该方法赋值给另一个对象，就会改变this的指向。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>使用注意点</h3>
+				<ul>
+					<li>由于this的指向是不确定的，所以切勿在函数中包含多层的this。</li>
+					<li>数组的map和foreach方法，允许提供一个函数作为参数。这个函数内部不应该使用this。</li>
+					<li>foreach方法的回调函数中的this，其实是指向window对象。使用中间变量固定this,解决这个问题。</li>
+					<li>回调函数中的this往往会改变指向，最好避免使用。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>绑定this的方法</h3>
+				<ul>
+					<li>this的动态切换，固然为 JavaScript 创造了巨大的灵活性，但也使得编程变得困难和模糊。有时，需要把this固定下来，避免出现意想不到的情况。JavaScript 提供了call、apply、bind这三个方法，来切换/固定this的指向。</li>
+					<li>Function.prototype.call() <br>函数实例的call方法，可以指定函数内部this的指向（即函数执行时所在的作用域），然后在所指定的作用域中，调用该函数。</li>
+					<li>call方法的参数，应该是一个对象。如果参数为空、null和undefined，则默认传入全局对象</li>
+					<li>Object.prototype.hasOwnProperty.call(obj, 'toString') // false,call方法,它将hasOwnProperty方法的原始定义放到obj对象上执行。</li>
+					<li>Function.prototype.apply() <br>apply方法的作用与call方法类似，也是改变this指向，然后再调用该函数。唯一的区别就是，它接收一个数组作为函数执行时的参数。</li>
+					<li>Function.prototype.bind() <br>bind()方法用于将函数体内的this绑定到某个对象，然后返回一个新函数。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
