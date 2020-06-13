@@ -1,0 +1,35 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	height:100%;
+	width:100%;
+}
+html{
+	font-size:20px;
+}
+main{
+	width:30rem;
+	height:auto;
+	margin:2rem auto;
+	padding:1.5rem;
+	border:0.1rem solid black;
+	box-shadow:0 0 0.8rem 0.8rem #666;
+	font-size:0.8rem;
+}
+h3{
+	height:2rem;
+	line-height:2rem;
+	text-align:center;
+	background-color:black;
+	color:white;
+	margin:0.5rem 0;
+}
+ul{
+	list-style-position:inside;
+	padding:1rem;
+}
+ul li{
+	margin:0.5rem 0;
+}

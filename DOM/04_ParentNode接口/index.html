@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ParentNode接口,ChildNode接口</title>
+		<meta name="viewport" content="width=device-width,inital-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<link rel="stylesheet" href="./index.css">
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top h3{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>ParentNode接口,ChildNode接口</h3>
+				<ul>
+					<li>节点对象除了继承 Node 接口以外，还拥有其他接口。ParentNode接口表示当前节点是一个父节点，提供一些处理子节点的方法。ChildNode接口表示当前节点是一个子节点，提供一些相关方法。</li>
+				</ul>
+			</section>
+		     <section>
+				 <h3>ParentNode 接口</h3>
+				 <ul>
+					 <li>如果当前节点是父节点，就会混入了（mixin）ParentNode接口。由于只有元素节点（element）、文档节点（document）和文档片段节点（documentFragment）拥有子节点，因此只有这三类节点会拥有ParentNode接口。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ParentNode.children</h3>
+				 <ul>
+					 <li>children属性返回一个HTMLCollection实例，成员是当前节点的所有元素子节点。该属性只读。</li>
+					 <li>children属性只包括元素子节点，不包括其他类型的子节点（比如文本子节点）。如果没有元素类型的子节点，返回值HTMLCollection实例的length属性为0。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ParentNode.firstElementChild</h3>
+				 <ul>
+					 <li>firstElementChild属性返回当前节点的第一个元素子节点。如果没有任何元素子节点，则返回null。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ParentNode.lastElementChild</h3>
+				 <ul>
+					 <li>lastElementChild属性返回当前节点的最后一个元素子节点，如果不存在任何元素子节点，则返回null。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ParentNode.childElementCount</h3>
+			     <ul>
+					 <li>childElementCount属性返回一个整数，表示当前节点的所有元素子节点的数目。如果不包含任何元素子节点，则返回0。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ParentNode.append()</h3>
+				 <ul>
+					 <li>append方法为当前节点追加一个或多个子节点，位置是最后一个元素子节点的后面。</li>
+					 <li>该方法不仅可以添加元素子节点，还可以添加文本子节点。</li>
+					 <li>ParentNode.prepend()</li>
+					 <li>为当前节点追加一个或多个子节点，位置是第一个元素子节点的前面。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ChildNode 接口</h3>
+				 <ul>
+					 <li>如果一个节点有父节点，那么该节点就拥有了ChildNode接口。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ChildNode.remove() </h3>
+				 <ul>
+					 <li>remove方法用于从父节点移除当前节点。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ChildNode.before()</h3>
+				 <ul>
+					 <li>before方法用于在当前节点的前面，插入一个或多个同级节点。两者拥有相同的父节点。</li>
+					 <li>该方法不仅可以插入元素节点，还可以插入文本节点。</li>
+				 </ul>
+			 </section>
+			 <section>
+				 <h3>ChildNode.after()</h3>
+				 <ul>
+					 <li>方法用于在当前节点的后面，插入一个或多个同级节点，两者拥有相同的父节点。</li>
+					 <li>该方法不仅可以插入元素节点，还可以插入文本节点。</li>
+				 </ul>
+			 </section>
+             <section>
+				 <h3>ChildNode.replaceWith()</h3>
+				 <ul>
+					 <li>replaceWith方法使用参数节点，替换当前节点。参数可以是元素节点，也可以是文本节点。</li>
+				 </ul>
+			 </section>
+		</main>
+	</body>
+</html>

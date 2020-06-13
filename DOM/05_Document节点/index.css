@@ -1,0 +1,37 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	height:100%;
+	width:100%;
+}
+html{
+	font-size:20px;
+}
+main{
+	font-size:0.8rem;
+	width:30rem;
+	height:auto;
+	border:0.1rem solid black;
+	box-shadow:0 0 0.7rem 0.7rem #666;
+	margin:2rem auto;
+	padding:1.5rem;
+}
+h3{
+	display:flex;
+	min-height:2rem;
+	justify-content:center;
+	align-items:center;
+	flex-wrap:wrap;
+	text-align:center;
+	background-color:black;
+	color:white;
+}
+ul{
+	list-style-position:inside;
+	padding:1rem;
+}
+ul li{
+	margin:0.5rem 0;
+}

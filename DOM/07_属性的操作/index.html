@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>属性的操作</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<link rel="stylesheet" href="./index.css">
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+					box-shadow: 0 0 0 0;
+					border:0;
+				}
+	            h3{
+					margin:1rem;
+				}
+				.top{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>属性的操作</h3>
+				<ul>
+					<li>HTML 元素包括标签名和若干个键值对，这个键值对就称为“属性”（attribute）。</li>
+					<li>属性本身是一个对象（Attr对象），但是实际上，这个对象极少使用。一般都是通过元素节点对象（HTMlElement对象）来操作属性。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.attributes 属性</h3>
+				<ul>
+					<li>元素对象有一个attributes属性，返回一个类似数组的动态对象，成员是该元素标签的所有属性节点对象，属性的实时变化都会反映在这个节点对象上。其他类型的节点对象，虽然也有attributes属性，但返回的都是null，因此可以把这个属性视为元素对象独有的</li>
+					<li>属性节点对象有name和value属性，对应该属性的属性名和属性值，等同于nodeName属性和nodeValue属性。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>元素的标准属性</h3>
+				<ul>
+					<li>HTML 元素的标准属性（即在标准中定义的属性），会自动成为元素节点对象的属性。</li>
+					<li>这些属性都是可写的。无法删除属性，delete运算符在这里不会生效。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.getAttribute()</h3>
+				<ul>
+					<li>Element.getAttribute方法返回当前元素节点的指定属性，如果指定属性不存在，则返回null</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.getAttributeNames()</h3>
+				<ul>
+					<li>Element.getAttributeNames()返回一个数组，成员是当前元素的所有属性的名字。如果当前元素没有任何属性，则返回一个空数组。使用Element.attributes属性，也可以拿到同样的结果，唯一的区别是它返回的是类似数组的对象。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.setAttribute()</h3>
+				<ul>
+					<li>Element.setAttribute方法用于为当前元素节点新增属性。如果同名属性已存在，则相当于编辑已存在的属性。该方法没有返回值。</li>
+					<li>属性值总是字符串，其他类型的值会自动转成字符串，比如布尔值true就会变成字符串true；</li>
+					<li>disable属性是一个布尔属性，对于<!button>元素来说，这个属性不需要属性值，只要设置了就总是会生效，因此setAttribute方法里面可以将disabled属性设成任意值。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.hasAttribute()</h3>
+				<ul>
+					<li>Element.hasAttribute方法返回一个布尔值，表示当前元素节点是否包含指定属性。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.hasAttributes()</h3>
+				<ul>
+					<li>Element.hasAttributes方法返回一个布尔值，表示当前元素是否有属性，如果没有任何属性，就返回false，否则返回true。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Element.removeAttribute()</h3>
+				<ul>
+					<li>Element.removeAttribute方法移除指定属性，该方法没有返回值。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>dataset属性</h3>
+				<ul>
+					<li>有时，需要在HTML元素上附加数据，供 JavaScript 脚本使用。一种解决方法是自定义属性。</li>
+					<li>使用标准提供的data-*属性。然后，使用元素节点对象的dataset属性，它指向一个对象，可以用来操作 HTML 元素标签的data-*属性。删除一个data-*属性，可以直接使用delete命令。</li>
+					<li>
+<pre>
+	//html中
+	data-foo="bar"
+	//JS中
+	var n = document.querySelector('#mydiv');
+	n.dataset.foo//bar
+	n.dataset.foo='baz'//baz
+	delete n.dataset.foo;
+</pre>
+					</li>
+					<li>除了dataset属性，也可以用getAttribute('data-foo')、removeAttribute('data-foo')、setAttribute('data-foo')、hasAttribute('data-foo')等方法操作data-*属性。</li>
+					<li>data-后面的属性名有限制，只能包含字母、数字、连词线（-）、点（.）、冒号（:）和下划线（_)。而且，属性名不应该使用A到Z的大写字母，比如不能有data-helloWorld这样的属性名，而要写成data-hello-world。</li>
+				</ul>
+			</section>
+		</main>
+		
+		<script>
+			let aUl,aH3;
+			aUl = document.querySelectorAll('ul');
+			aH3 = document.querySelectorAll('h3');
+			//单击打开
+			for(let i=0; i<aH3.length; i++){
+				aH3[i].index = i;
+				aH3[i].onclick = function(){
+						aUl.forEach(item => item.setAttribute('class','none'));
+						aH3.forEach(item => item.style.backgroundColor = 'black');
+						aUl[this.index].setAttribute('class','block');
+						this.style.backgroundColor='green';
+				}
+			}
+			//双击合起
+			for(let i=0; i<aH3.length; i++){
+				aH3[i].index = i;
+				aH3[i].ondblclick = function(){
+						aUl.forEach(item => item.setAttribute('class','none'));
+						aH3.forEach(item => item.style.backgroundColor = 'black');
+				}
+			}
+		</script>
+	</body>
+</html>

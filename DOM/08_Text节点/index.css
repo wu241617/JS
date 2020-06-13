@@ -1,0 +1,39 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	heignt:100%;
+	width:100%;
+}
+html{
+	font-size:20px;
+}
+main{
+	font-size:0.8rem;
+	width:30rem;
+	margin:2rem auto;
+	padding:1.5rem;
+	border:0.1rem solid #666;
+	box-shadow: 0 0 0.6rem 0.6rem rgba(255,0,0,.3);
+}
+h3{
+	height:2rem;
+	line-height:2rem;
+	text-align:center;
+	color:white;
+	background-color:black;
+	margin:0.5rem 0;
+}
+h3:hover{
+	background-color:rgba(255,87,23,.5);
+	color:black;
+	cursor:pointer
+}
+ul{
+	list-style-position:inside;
+	padding:1rem;
+}
+ul li{
+	margin:0.5rem 0;
+}

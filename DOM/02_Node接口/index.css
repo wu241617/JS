@@ -1,0 +1,46 @@
+*{
+	margin:0;
+	padding:0;
+}
+heml,body{
+	height:auto;
+	width:auto;
+}
+html{
+	font-size:20px;
+}
+main{
+	font-size:0.8rem;
+	width:30rem;
+	height:auto;
+	margin:2rem auto;
+	padding:1.5rem;
+	border:0.1rem solid black;
+	box-shadow:0 0 0.7rem 0.7rem #666;
+}
+h2,h3{
+	height:2rem;
+	line-height:2rem;
+	background-color:green;
+	color:white;
+	text-align:center;
+	margin:1rem 0;
+}
+h3{
+	background-color:black;
+	height:1.5rem;
+	line-height:1.5rem;
+}
+h2:nth-child(1){
+	background-color:red;
+}
+ul{
+	list-style-position:inside;
+}
+section{
+	width:90%;
+	margin:0 5%;
+}
+ul li{
+	margin:0.5rem 0;
+}

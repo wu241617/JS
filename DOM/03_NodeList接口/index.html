@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>NodeList接口和HTMLCollection接口</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<link rel="stylesheet" href="./index.css">
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top{
+					margin-top:0;
+				}
+				ul{
+					background-color:rgba(255,0,0,.1);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h3 class="top">NodeList接口</h3>
+			<section>
+				<ul>
+					<li>节点都是单个对象，有时需要一种数据结构，能够容纳多个节点。DOM 提供两种节点集合，用于容纳多个节点：NodeList和HTMLCollection</li>
+					<li>这两种集合都属于接口规范。许多 DOM 属性和方法，返回的结果是NodeList实例或HTMLCollection实例。主要区别是，NodeList可以包含各种类型的节点，HTMLCollection只能包含 HTML 元素节点。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList接口</h3>
+				<ul>
+					<li>NodeList实例是一个类似数组的对象，它的成员是节点对象。通过以下方法可以得到NodeList实例。</li>
+					<li>Node.childNodes</li>
+					<li>document.querySelectorAll()等节点搜索方法</li>
+					<li>NodeList实例很像数组，可以使用length属性和forEach方法。但是，它不是数组，不能使用pop或push之类数组特有的方法。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList.prototype.length</h3>
+				<ul>
+					<li>length属性返回 NodeList 实例包含的节点数量</li>
+					<li>上面代码中，document.querySelectorAll返回一个 NodeList 集合。对于那些不存在的 HTML 标签，length属性返回0。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList.prototype.forEach()</h3>
+				<ul>
+					<li>forEach方法用于遍历 NodeList 的所有成员。它接受一个回调函数作为参数，每一轮遍历就执行一次这个回调函数，用法与数组实例的forEach方法完全一致。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList.prototype.item()</h3>
+				<ul>
+					<li>item方法接受一个整数值作为参数，表示成员的位置，返回该位置上的成员。</li>
+					<li>如果参数值大于实际长度，或者索引不合法（比如负数），item方法返回null。如果省略参数，item方法会报错。</li>
+					<li>所有类似数组的对象，都可以使用方括号运算符取出成员。一般情况下，都是使用方括号运算符，而不使用item方法。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList.prototype.keys()</h3>
+				<ul>
+					<li>返回一个 ES6 的遍历器对象，可以通过for...of循环遍历获取每一个成员的信息。</li>
+					<li>keys()返回键名的遍历器</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList.prototype.values()</h3>
+				<ul>
+					<li>返回一个 ES6 的遍历器对象，可以通过for...of循环遍历获取每一个成员的信息。</li>
+					<li>values()返回键值的遍历器</li>
+				</ul>
+			</section>
+			<section>
+				<h3>NodeList.prototype.entries()</h3>
+				<ul>
+					<li>返回一个 ES6 的遍历器对象，可以通过for...of循环遍历获取每一个成员的信息。</li>
+					<li>entries()返回的遍历器同时包含键名和键值的信息。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>HTMLCollection 接口</h3>
+				<ul>
+					<li>HTMLCollection是一个节点对象的集合，只能包含元素节点（element），不能包含其他类型的节点。它的返回值是一个类似数组的对象，但是与NodeList接口不同，HTMLCollection没有forEach方法，只能使用for循环遍历。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>HTMLCollection.prototype.length</h3>
+				<ul>
+					<li>length属性返回HTMLCollection实例包含的成员数量。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>HTMLCollection.prototype.item()</h3>
+				<ul>
+					<li>item方法接受一个整数值作为参数，表示成员的位置，返回该位置上的成员。</li>
+					<li>item(0)表示返回0号位置的成员。由于方括号运算符也具有同样作用，而且使用更方便，所以一般情况下，总是使用方括号运算符。</li>
+					<li>如果参数值超出成员数量或者不合法（比如小于0），那么item方法返回null。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>HTMLCollection.prototype.namedItem()</h3>
+				<ul>
+					<li>namedItem方法的参数是一个字符串，表示id属性或name属性的值，返回对应的元素节点。如果没有对应的节点，则返回null。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
