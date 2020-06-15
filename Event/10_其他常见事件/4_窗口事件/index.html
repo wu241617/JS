@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>窗口事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=1.0,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>窗口事件</h3>
+				<ul>
+					<li>scroll事件在文档或文档元素滚动时触发，主要出现在用户拖动滚动条。window.addEventListener('scroll', callback);</li>
+					<li>该事件会连续地大量触发，所以它的监听函数之中不应该有非常耗费计算的操作。推荐的做法是使用requestAnimationFrame或setTimeout控制该事件的触发频率，然后可以结合customEvent抛出一个新事件。</li>
+					<li>lodash函数库提供了现成的throttle函数，可以直接使用。</li>
+					<li>debounce的概念，throttle与它区别在于，throttle是“节流”，确保一段时间内只执行一次，而debounce是“防抖”，要连续操作结束后再执行。以网页滚动为例，debounce要等到用户停止滚动后才执行，throttle则是如果用户一直在滚动网页，那么在滚动过程中还是会执行。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>resize 事件</h3>
+				<ul>
+					<li>resize事件在改变浏览器窗口大小时触发，主要发生在window对象上面。</li>
+					<li>该事件也会连续地大量触发，所以最好像上面的scroll事件一样，通过throttle函数控制事件触发频率。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>fullscreenchange 事件,fullscreenerror事件</h3>
+				<ul>
+					<li>fullscreenchange事件在进入或退出全屏状态时触发，该事件发生在document对象上面</li>
+					<li>fullscreenerror事件在浏览器无法切换到全屏状态时触发。</li>
+				</ul>
+			</section>
+		</main>
+		<script>
+			(function(){
+				//添加滚动事件
+				window.addEventListener('scroll',scrollThrottler,false);
+				//定义定时器标识
+				let scrollTimeout;
+				function scrollThrottler(){
+					//如果当前没有正在等待的定时器任务，则执行新的定时器任务
+					if(!scrollTimeout){
+						scrollTimeout = setTimeout(function(){
+							//定时器任务正在执行，没有等待状态的定时器任务
+							scrollTimeout = null;
+							//调用具体的外部业务逻辑函数
+							actualScrollHandler();
+						},500)
+					}else{
+						//当前存在正在等待的定时器任务，直接return掉新开始的任务
+						return;
+					}
+				}
+			
+				//具体的业务逻辑函数
+				function actualScrollHandler(){
+					//====
+					console.log(1);
+				}
+			})()
+			
+			
+		</script>
+	</body>
+</html>

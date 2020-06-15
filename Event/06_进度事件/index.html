@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>进度事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=1.0,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				margin:0.5rem 0;
+				background-color:black;
+				color:white;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top h3{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>进度事件的种类</h3>
+				<ul>
+					<li>进度事件用来描述资源加载的进度，主要由 AJAX 请求、<!img>、<!audio>、<!video>、<!style>、<!link>等外部资源的加载触发，继承了ProgressEvent接口。它主要包含以下几种事件。</li>
+					<li>abort：外部资源中止加载时（比如用户取消）触发。如果发生错误导致中止，不会触发该事件。</li>
+					<li>error：由于错误导致外部资源无法加载时触发</li>
+					<li>load：外部资源加载成功时触发。</li>
+					<li>loadstart：外部资源开始加载时触发。</li>
+					<li>loadend：外部资源停止加载时触发，发生顺序排在error、abort、load等事件的后面。</li>
+					<li>progress：外部资源加载过程中不断触发。</li>
+					<li>timeout：加载超时时触发。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>ProgressEvent 接口 </h3>
+				<ul>
+					<li>ProgressEvent接口主要用来描述外部资源加载的进度，比如 AJAX 加载、<!img>、<!video>、<!style>、<!link>等外部资源加载。进度相关的事件都继承了这个接口。浏览器原生提供了ProgressEvent()构造函数，用来生成事件实例。</li>
+					<li>ProgressEvent()构造函数接受两个参数。第一个参数是字符串，表示事件的类型，这个参数是必须的。第二个参数是一个配置对象，表示事件的属性，该参数可选。配置对象除了可以使用Event接口的配置属性，还可以使用下面的属性，所有这些属性都是可选的。</li>
+					<li>lengthComputable：布尔值，表示加载的总量是否可以计算，默认是false。loaded：整数，表示已经加载的量，默认是0。total：整数，表示需要加载的总量，默认是0。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

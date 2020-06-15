@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>键盘事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=1.0,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				height:auto;
+				width:30rem;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top h3{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>键盘事件的种类</h3>
+				<ul>
+					<li>键盘事件由用户击打键盘触发，主要有keydown、keypress、keyup三个事件，它们都继承了KeyboardEvent接口。</li>
+					<li>keydown：按下键盘时触发。</li>
+					<li>keypress：按下有值的键时触发，即按下 Ctrl、Alt、Shift、Meta 这样无值的键，这个事件不会触发。对于有值的键，按下时先触发keydown事件，再触发这个事件。</li>
+					<li>keyup：松开键盘时触发该事件。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>KeyboardEvent 接口概述</h3>
+				<ul>
+					<li>KeyboardEvent接口用来描述用户与键盘的互动。这个接口继承了Event接口，并且定义了自己的实例属性和实例方法。</li>
+					<li>浏览器原生提供KeyboardEvent构造函数，用来新建键盘事件的实例。</li>
+					<li>KeyboardEvent构造函数接受两个参数。第一个参数是字符串，表示事件类型；第二个参数是一个事件配置对象，该参数可选。除了Event接口提供的属性，还可以配置以下字段，它们都是可选。</li>
+					<li>key：字符串，当前按下的键，默认为空字符串。</li>
+					<li>code：字符串，表示当前按下的键的字符串形式，默认为空字符串。</li>
+					<li>location：整数，当前按下的键的位置，默认为0。</li>
+					<li>ctrlKey：布尔值，是否按下 Ctrl 键，默认为false。</li>
+					<li>shiftKey：布尔值，是否按下 Shift 键，默认为false。</li>
+					<li>altKey：布尔值，是否按下 Alt 键，默认为false。</li>
+					<li>metaKey：布尔值，是否按下 Meta 键，默认为false。</li>
+					<li>repeat：布尔值，是否重复按键，默认为false。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>KeyboardEvent 的实例属性 </h3>
+				<ul>
+					<li>KeyboardEvent.altKey：是否按下 Alt 键</li>
+					<li>KeyboardEvent.ctrlKey：是否按下 Ctrl 键</li>
+					<li>KeyboardEvent.metaKey：是否按下 meta 键（Mac 系统是一个四瓣的小花，Windows 系统是 windows 键）</li>
+					<li>KeyboardEvent.shiftKey：是否按下 Shift 键</li>
+					<li>KeyboardEvent.code属性返回一个字符串，表示当前按下的键的字符串形式。该属性只读。</li>
+					<li>KeyboardEvent.key属性返回一个字符串，表示按下的键名。该属性只读。</li>
+					<li>KeyboardEvent.location属性返回一个整数，表示按下的键处在键盘的哪一个区域。它可能取以下值。</li>
+					<li>KeyboardEvent.repeat返回一个布尔值，代表该键是否被按着不放，以便判断是否重复这个键，即浏览器会持续触发keydown和keypress事件，直到用户松开手为止。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>KeyboardEvent 的实例方法</h3>
+				<ul>
+					<li>KeyboardEvent.getModifierState()方法返回一个布尔值，表示是否按下或激活指定的功能键。它的常用参数如下。</li>
+					<li>Alt：Alt 键</li>
+					<li>CapsLock：大写锁定键</li>
+					<li>Control：Ctrl 键</li>
+					<li>Meta：Meta 键</li>
+					<li>NumLock：数字键盘开关键</li>
+					<li>Shift：Shift 键</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

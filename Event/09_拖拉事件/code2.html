@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>接收拖拉文件</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			#output{
+				margin:2rem auto;
+				min-height:8rem;
+				font-size:0.75rem;
+				display:flex;
+				justify-content:center;
+				align-items:center;
+				width:8rem;
+				border:0.1rem solid black;
+				color:red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="output">
+			文件拖拉到这里
+		</div>
+		
+		<script>
+			let oDiv;
+			oDiv = document.querySelector('#output');
+			
+			oDiv.addEventListener('dragenter',function(e){
+				oDiv.textContent = '';
+				//阻止冒泡
+				e.stopPropagation();
+				//阻止默认行为
+				e.preventDefault();
+			},false)
+			
+			oDiv.addEventListener('dragover',function(e){
+				//阻止冒泡
+				e.stopPropagation();
+				//阻止默认行为，设置可以拖拉内容可以放置
+				e.preventDefault();
+			},false)
+			
+			oDiv.addEventListener('drop',function(e){
+				//阻止冒泡
+				e.stopPropagation();
+				//阻止默认行为
+				e.preventDefault();
+				let files = e.dataTransfer.files;
+				//通过dataTransfer.files属性读取被拖拉的文件的信息。
+				/*for (var i = 0; i < files.length; i++) {
+				    oDiv.textContent += files[i].name + ' ' + files[i].size + '字节\n';
+				  }*/
+				//读取文件内容，就要使用FileReader对象。
+				if (files.length > 0) {
+				    let file = files[0];
+				    let reader = new FileReader();
+				    reader.onloadend = function(e) {
+				      if (e.target.readyState === FileReader.DONE) {
+				        let content = reader.result;
+				        oDiv.innerHTML = 'File: ' + file.name + '\n\n' + content;
+				      }
+				    }
+				    reader.readAsBinaryString(file);
+				  }
+			},false)
+		</script>
+	</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>拖拉事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top h3{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>拖拉事件的种类</h3>
+				<ul>
+					<li>拖拉（drag）指的是，用户在某个对象上按下鼠标键不放，拖动它到另一个位置，然后释放鼠标键，将该对象放在那里。</li>
+					<li>拖拉的对象有好几种，包括元素节点、图片、链接、选中的文字等等。在网页中，除了元素节点默认不可以拖拉，其他（图片、链接、选中的文字）都是可以直接拖拉的。为了让元素节点可拖拉，可以将该节点的draggable属性设为true。</li>
+					<li>draggable属性可用于任何元素节点，但是图片（<!img>）和链接（<!a>）不加这个属性，就可以拖拉。对于它们，用到这个属性的时候，往往是将其设为false，防止拖拉这两种元素。一旦某个元素节点的draggable属性设为true，就无法再用鼠标选中该节点内部的文字或子节点了。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>触发的拖拉事件</h3>
+				<ul>
+					<li>当元素节点或选中的文本被拖拉时，就会持续触发拖拉事件，包括以下一些事件。</li>
+					<li>drag：拖拉过程中，在被拖拉的节点上持续触发（相隔几百毫秒）。</li>
+					<li>dragstart：用户开始拖拉时，在被拖拉的节点上触发，该事件的target属性是被拖拉的节点。通常应该在这个事件的监听函数中，指定拖拉的数据。</li>
+					<li>dragend：拖拉结束时（释放鼠标键或按下 ESC 键）在被拖拉的节点上触发，该事件的target属性是被拖拉的节点。它与dragstart事件，在同一个节点上触发。不管拖拉是否跨窗口，或者中途被取消，dragend事件总是会触发的。</li>
+					<li>dragenter：拖拉进入当前节点时，在当前节点上触发一次，该事件的target属性是当前节点。通常应该在这个事件的监听函数中，指定是否允许在当前节点放下（drop）拖拉的数据。如果当前节点没有该事件的监听函数，或者监听函数不执行任何操作，就意味着不允许在当前节点放下数据。在视觉上显示拖拉进入当前节点，也是在这个事件的监听函数中设置。</li>
+					<li>dragover：拖拉到当前节点上方时，在当前节点上持续触发（相隔几百毫秒），该事件的target属性是当前节点。该事件与dragenter事件的区别是，dragenter事件在进入该节点时触发，然后只要没有离开这个节点，dragover事件会持续触发。</li>
+					<li>dragleave：拖拉操作离开当前节点范围时，在当前节点上触发，该事件的target属性是当前节点。如果要在视觉上显示拖拉离开操作当前节点，就在这个事件的监听函数中设置。</li>
+					<li>drop：被拖拉的节点或选中的文本，释放到目标节点时，在目标节点上触发。注意，如果当前节点不允许drop，即使在该节点上方松开鼠标键，也不会触发该事件。如果用户按下 ESC 键，取消这个操作，也不会触发该事件。该事件的监听函数负责取出拖拉数据，并进行相关处理。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>关于拖拉事件，有以下几个注意点。</h3>
+				<ul>
+					<li>拖拉过程只触发以上这些拖拉事件，尽管鼠标在移动，但是鼠标事件不会触发。</li>
+					<li>将文件从操作系统拖拉进浏览器，不会触发dragstart和dragend事件。</li>
+					<li>dragenter和dragover事件的监听函数，用来取出拖拉的数据（即允许放下被拖拉的元素）。由于网页的大部分区域不适合作为放下拖拉元素的目标节点，所以这两个事件的默认设置为当前节点不允许接受被拖拉的元素。如果想要在目标节点上放下的数据，首先必须阻止这两个事件的默认行为。</li>
+					<li>dragover="return false";dragover="event.preventDefault()";如果不取消拖拉事件或者阻止默认行为，就不能在div节点上放下被拖拉的节点。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DragEvent 接口</h3>
+				<ul>
+					<li>拖拉事件都继承了DragEvent接口，这个接口又继承了MouseEvent接口和Event接口。</li>
+					<li>浏览器原生提供一个DragEvent()构造函数，用来生成拖拉事件的实例对象。</li>
+					<li>DragEvent()构造函数接受两个参数，第一个参数是字符串，表示事件的类型，该参数必须；第二个参数是事件的配置对象，用来设置事件的属性，该参数可选。配置对象除了接受MouseEvent接口和Event接口的配置属性，还可以设置dataTransfer属性要么是null，要么是一个DataTransfer接口的实例。DataTransfer的实例对象用来读写拖拉事件中传输的数据</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer 接口概述</h3>
+				<ul>
+					<li>所有拖拉事件的实例都有一个DragEvent.dataTransfer属性，用来读写需要传递的数据。这个属性的值是一个DataTransfer接口的实例。</li>
+					<li>浏览器原生提供一个DataTransfer()构造函数，用来生成DataTransfer实例对象。DataTransfer()构造函数不接受参数。</li>
+					<li>拖拉的数据分成两方面：数据的种类（又称格式）和数据的值。数据的种类是一个 MIME 字符串（比如text/plain、image/jpeg），数据的值是一个字符串。一般来说，如果拖拉一段文本，则数据默认就是那段文本；如果拖拉一个链接，则数据默认就是链接的 URL。</li>
+					<li>拖拉事件开始时，开发者可以提供数据类型和数据值。拖拉过程中，开发者通过dragenter和dragover事件的监听函数，检查数据类型，以确定是否允许放下（drop）被拖拉的对象。比如，在只允许放下链接的区域，检查拖拉的数据类型是否为text/uri-list。发生drop事件时，监听函数取出拖拉的数据，对其进行处理。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer 的实例属性</h3>
+				<ul>
+					<li>DataTransfer.dropEffect属性用来设置放下（drop）被拖拉节点时的效果，会影响到拖拉经过相关区域时鼠标的形状。它可能取下面的值。copy：复制被拖拉的节点;move：移动被拖拉的节点;link：创建指向被拖拉的节点的链接;none：无法放下被拖拉的节点;</li>
+					<li>dropEffect属性一般在dragenter和dragover事件的监听函数中设置，对于dragstart、drag、dragleave这三个事件，该属性不起作用。因为该属性只对接受被拖拉的节点的区域有效，对被拖拉的节点本身是无效的。进入目标区域后，拖拉行为会初始化成设定的效果。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer.effectAllowed属性设置本次拖拉中允许的效果。它可能取下面的值。</h3>
+				<ul>
+					<li>uninitialized：默认值，等同于all</li>
+					<li>copy：复制被拖拉的节点</li>
+					<li>move：移动被拖拉的节点</li>
+					<li>link：创建指向被拖拉节点的链接</li>
+					<li>copyLink：允许copy或link</li>
+					<li>copyMove：允许copy或move</li>
+					<li>linkMove：允许link或move</li>
+					<li>all：允许所有效果</li>
+					<li>none：无法放下被拖拉的节点</li>
+					<li>如果某种效果是不允许的，用户就无法在目标节点中达成这种效果。这个属性与dropEffect属性是同一件事的两个方面。前者设置被拖拉的节点允许的效果，后者设置接受拖拉的区域的效果，它们往往配合使用。</li>
+					<li>dragstart事件的监听函数，可以用来设置这个属性。其他事件的监听函数里面设置这个属性是无效的。只要dropEffect属性和effectAllowed属性之中，有一个为none，就无法在目标节点上完成drop操作。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer.files属性</h3>
+				<ul>
+					<li>DataTransfer.files属性是一个 FileList 对象，包含一组本地文件，可以用来在拖拉操作中传送。如果本次拖拉不涉及文件，则该属性为空的 FileList 对象。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer.types属性</h3>
+				<ul>
+					<li>DataTransfer.types属性是一个只读的数组，每个成员是一个字符串，里面是拖拉的数据格式（通常是 MIME 值）。比如，如果拖拉的是文字，对应的成员就是text/plain。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer.items属性</h3>
+				<ul>
+					<li>DataTransfer.items属性返回一个类似数组的只读对象（DataTransferItemList 实例），每个成员就是本次拖拉的一个对象（DataTransferItem 实例）。如果本次拖拉不包含对象，则返回一个空对象。</li>
+					<li>DataTransferItemList 实例具有以下的属性和方法。</li>
+					<li>length：返回成员的数量</li>
+					<li>add(data, type)：增加一个指定内容和类型（比如text/html和text/plain）的字符串作为成员</li>
+					<li>add(file)：add方法的另一种用法，增加一个文件作为成员</li>
+					<li>remove(index)：移除指定位置的成员</li>
+					<li>clear()：移除所有的成员</li>
+					<li>kind：返回成员的种类（string还是file）</li>
+					<li>type：返回成员的类型（通常是 MIME 值）。</li>
+					<li>getAsFile()：如果被拖拉是文件，返回该文件，否则返回null。</li>
+					<li>getAsString(callback)：如果被拖拉的是字符串，将该字符传入指定的回调函数处理。该方法是异步的，所以需要传入回调函数。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>DataTransfer 的实例方法</h3>
+				<ul>
+					<li>DataTransfer.setData()方法用来设置拖拉事件所带有的数据。该方法没有返回值。</li>
+					<li>该方法接受两个参数，都是字符串。第一个参数表示数据类型（比如text/plain），第二个参数是具体数据。如果指定类型的数据在dataTransfer属性不存在，那么这些数据将被加入，否则原有的数据将被新数据替换。如果是拖拉文本框或者拖拉选中的文本，会默认将对应的文本数据，添加到dataTransfer属性，不用手动指定。</li>
+					<li>DataTransfer.getData()方法接受一个字符串（表示数据类型）作为参数，返回事件所带的指定类型的数据（通常是用setData方法添加的数据）。如果指定类型的数据不存在，则返回空字符串。通常只有drop事件触发后，才能取出数据。getData方法返回的是一个字符串，如果其中包含多项数据，就必须手动解析。</li>
+					<li>DataTransfer.clearData()方法接受一个字符串（表示数据类型）作为参数，删除事件所带的指定类型的数据。如果没有指定类型，则删除所有数据。如果指定类型不存在，则调用该方法不会产生任何效果。该方法不会移除拖拉的文件，因此调用该方法后，DataTransfer.types属性可能依然会返回Files类型（前提是存在文件拖拉）。注意，该方法只能在dragstart事件的监听函数之中使用，因为这是拖拉操作的数据唯一可写的时机。</li>
+					<li>拖动过程中（dragstart事件触发后），浏览器会显示一张图片跟随鼠标一起移动，表示被拖动的节点。这张图片是自动创造的，通常显示为被拖动节点的外观，不需要自己动手设置。DataTransfer.setDragImage()方法可以自定义这张图片。它接受三个参数。第一个是<!img>节点或者<!canvas>节点，如果省略或为null，则使用被拖动的节点的外观；第二个和第三个参数为鼠标相对于该图片左上角的横坐标和右坐标。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

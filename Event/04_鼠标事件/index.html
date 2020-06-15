@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>鼠标事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow: 0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top h3{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>鼠标事件的种类</h3>
+				<ul>
+					<li>鼠标事件指与鼠标相关的事件，继承了MouseEvent接口。具体的事件主要有以下一些。</li>
+					<li>click：按下鼠标（通常是按下主按钮）时触发。</li>
+					<li>dblclick：在同一个元素上双击鼠标时触发。</li>
+					<li>mousedown：按下鼠标键时触发。</li>
+					<li>mouseup：释放按下的鼠标键时触发。</li>
+					<li>mousemove：当鼠标在一个节点内部移动时触发。当鼠标持续移动时，该事件会连续触发。为了避免性能问题，建议对该事件的监听函数做一些限定，比如限定一段时间内只能运行一次。</li>
+					<li>mouseenter：鼠标进入一个节点时触发，进入子节点不会触发这个事件。</li>
+					<li>mouseover：鼠标进入一个节点时触发，进入子节点会再一次触发这个事件。</li>
+					<li>mouseout：鼠标离开一个节点时触发，离开父节点也会触发这个事件。</li>
+					<li>mouseleave：鼠标离开一个节点时触发，离开父节点不会触发这个事件。</li>
+					<li>contextmenu：按下鼠标右键时（上下文菜单出现前）触发，或者按下“上下文菜单键”时触发。</li>
+					<li>wheel：滚动鼠标的滚轮时触发，该事件继承的是WheelEvent接口。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>MouseEvent 接口概述</h3>
+				<ul>
+					<li>MouseEvent接口代表了鼠标相关的事件，单击（click）、双击（dblclick）、松开鼠标键（mouseup）、按下鼠标键（mousedown）等动作，所产生的事件对象都是MouseEvent实例。此外，滚轮事件和拖拉事件也是MouseEvent实例。</li>
+					<li>MouseEvent接口继承了Event接口，所以拥有Event的所有属性和方法。它还有自己的属性和方法。浏览器原生提供一个MouseEvent构造函数，用于新建一个MouseEvent实例。</li>
+					<li>MouseEvent构造函数接受两个参数。第一个参数是字符串，表示事件名称；第二个参数是一个事件配置对象，该参数可选。除了Event接口的实例配置属性，该对象可以配置以下属性，所有属性都是可选的。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>MouseEvent 接口的实例属性</h3>
+				<ul>
+					<li>MouseEvent.altKey、MouseEvent.ctrlKey、MouseEvent.metaKey、MouseEvent.shiftKey这四个属性都返回一个布尔值，表示事件发生时，是否按下对应的键。它们都是只读属性。</li>
+					<li>altKey属性：Alt 键</li>
+					<li>ctrlKey属性：Ctrl 键</li>
+					<li>metaKey属性：Meta 键（Mac 键盘是一个四瓣的小花，Windows 键盘是 Windows 键）</li>
+					<li>shiftKey属性：Shift 键</li>
+					<li>MouseEvent.button属性返回一个数值，表示事件发生时按下了鼠标的哪个键。该属性只读</li>
+					<li>0：按下主键（通常是左键），或者该事件没有初始化这个属性（比如mousemove事件）。</li>
+					<li>1：按下辅助键（通常是中键或者滚轮键）。</li>
+					<li>2：按下次键（通常是右键）。</li>
+					<li>MouseEvent.clientX属性返回鼠标位置相对于浏览器窗口左上角的水平坐标（单位像素），MouseEvent.clientY属性返回垂直坐标。这两个属性都是只读属性。</li>
+					<li>MouseEvent.movementX属性返回当前位置与上一个mousemove事件之间的水平距离（单位像素）。MouseEvent.movementY属性返回当前位置与上一个mousemove事件之间的垂直距离（单位像素）。</li>
+					<li>MouseEvent.screenX属性返回鼠标位置相对于屏幕左上角的水平坐标（单位像素），MouseEvent.screenY属性返回垂直坐标。这两个属性都是只读属性。</li>
+					<li>MouseEvent.offsetX属性返回鼠标位置与目标节点左侧的padding边缘的水平距离（单位像素），MouseEvent.offsetY属性返回与目标节点上方的padding边缘的垂直距离。这两个属性都是只读属性。</li>
+					<li>MouseEvent.pageX属性返回鼠标位置与文档左侧边缘的距离（单位像素），MouseEvent.pageY属性返回与文档上侧边缘的距离（单位像素）。它们的返回值都包括文档不可见的部分。这两个属性都是只读。</li>
+					<li>MouseEvent.relatedTarget属性返回事件的相关节点。对于那些没有相关节点的事件，该属性返回null。该属性只读。</li>
+					<li>不同事件的target属性值和relatedTarget属性值义。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>MouseEvent 接口的实例方法</h3>
+				<ul>
+					<li>MouseEvent.getModifierState方法返回一个布尔值，表示有没有按下特定的功能键。它的参数是一个表示功能键的字符串。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>WheelEvent 接口</h3>
+				<ul>
+					<li>WheelEvent 接口继承了 MouseEvent 实例，代表鼠标滚轮事件的实例对象。目前，鼠标滚轮相关的事件只有一个wheel事件，用户滚动鼠标的滚轮，就生成这个事件的实例。</li>
+					<li>浏览器原生提供WheelEvent()构造函数，用来生成WheelEvent实例。</li>
+					<li>WheelEvent()构造函数可以接受两个参数，第一个是字符串，表示事件类型，对于滚轮事件来说，这个值目前只能是wheel。第二个参数是事件的配置对象。该对象的属性除了Event、UIEvent的配置属性以外，还可以接受以下几个属性，所有属性都是可选的。</li>
+					<li>deltaX：数值，表示滚轮的水平滚动量，默认值是 0.0。deltaY：数值，表示滚轮的垂直滚动量，默认值是 0.0。deltaZ：数值，表示滚轮的 Z 轴滚动量，默认值是 0.0。deltaMode：数值，表示相关的滚动事件的单位，适用于上面三个属性。0表示滚动单位为像素，1表示单位为行，2表示单位为页，默认为0。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>WheelEvent 接口实例属性</h3>
+				<ul>
+					<li>WheelEvent事件实例除了具有Event和MouseEvent的实例属性和实例方法，还有一些自己的实例属性，但是没有自己的实例方法。</li>
+					<li>WheelEvent.deltaX：数值，表示滚轮的水平滚动量。</li>
+					<li>WheelEvent.deltaY：数值，表示滚轮的垂直滚动量。</li>
+					<li>WheelEvent.deltaZ：数值，表示滚轮的 Z 轴滚动量。</li>
+					<li>WheelEvent.deltaMode：数值，表示上面三个属性的单位，0是像素，1是行，2是页。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

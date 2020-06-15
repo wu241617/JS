@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=1.0,viewport-fit=cover">
+		<title>焦点事件</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+				border:0.1rem solid black;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>焦点事件</h3>
+				<ul>
+					<li>焦点事件发生在元素节点和document对象上面，与获得或失去焦点相关。它主要包括以下四个事件。</li>
+					<li>focus：元素节点获得焦点后触发，该事件不会冒泡。</li>
+					<li>blur：元素节点失去焦点后触发，该事件不会冒泡。</li>
+					<li>focusin：元素节点将要获得焦点时触发，发生在focus事件之前。该事件会冒泡。</li>
+					<li>focusout：元素节点将要失去焦点时触发，发生在blur事件之前。该事件会冒泡。</li>
+					<li>这四个事件都继承了FocusEvent接口。FocusEvent实例具有以下属性。</li>
+					<li>FocusEvent.target：事件的目标节点。</li>
+					<li>FocusEvent.relatedTarget：对于focusin事件，返回失去焦点的节点；对于focusout事件，返回将要接受焦点的节点；对于focus和blur事件，返回null。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>CustomEvent 接口 </h3>
+				<ul>
+					<li>CustomEvent 接口用于生成自定义的事件实例。那些浏览器预定义的事件，虽然可以手动生成，但是往往不能在事件上绑定数据。如果需要在触发事件的同时，传入指定的数据，就可以使用 CustomEvent 接口生成的自定义事件对象。</li>
+					<li>浏览器原生提供CustomEvent()构造函数，用来生成 CustomEvent 事件实例。</li>
+					<li>CustomEvent()构造函数接受两个参数。第一个参数是字符串，表示事件的名字，这是必须的。第二个参数是事件的配置对象，这个参数是可选的。CustomEvent的配置对象除了接受 Event 事件的配置属性，只有一个自己的属性。</li>
+					<li>detail：表示事件的附带数据，默认为null。</li>
+					<li>CustomEvent 的事件实例，除了具有 Event 接口的实例属性，还具有detail属性。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

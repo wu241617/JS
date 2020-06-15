@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			div{
+				margin:5rem 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<script type="text/javascript">
+			//节流throttle代码：
+			function throttle(fn,delay) {
+			    let canRun = true; // 通过闭包保存一个标记；当前没有延迟调用函数未执行
+			    return function () {
+			        // 在函数开头判断标记是否为true，不为true（当前有延迟调用函数未执行）则return
+			        if (!canRun) return;
+			        // 立即设置为false
+			        canRun = false;
+			        // 将外部传入的函数的执行放在setTimeout中
+			        setTimeout(() => { 
+			        // 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。
+			        // 当定时器没有执行的时候标记永远是false，在开头被return掉
+			            fn.apply(this, arguments);
+			            canRun = true;
+			        }, delay);
+			    };
+			}
+			 
+			function sayHi(e) {
+			    console.log('节流：', e.target.innerWidth, e.target.innerHeight);
+			}
+			window.addEventListener('resize', throttle(sayHi,500));
+			//防抖debounce代码
+			function debounce (fn,delay){
+				//创建一个标记用来存放定时器的返回值
+				let timeout;
+				timeout = null;
+				return function(e){
+					//每当用户输入的时候把前一个定时器clear掉
+					clearTimeout(timeout);
+					//然后创建一个新的定时器
+					timeout = setTimeout(() => {
+						fn.apply(this,arguments);
+					},delay)
+				}
+			}
+			//处理函数
+			function handle(){
+				console.log('防抖',Math.random());
+			}
+			//滚动事件
+			window.addEventListener('scroll',debounce(handle,500));
+			
+		</script>
+	</body>
+</html>

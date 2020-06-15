@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>网页状态事件</title>
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow: 0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				margin:0.5rem 0;
+				text-align:center;
+				background-color:black;
+				color:white;
+				cursor:pointer;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>网页状态事件</h3>
+				<ul>
+					<li>DOMContentLoaded 事件</li>
+					<li>网页下载并解析完成以后，浏览器就会在document对象上触发 DOMContentLoaded 事件。这时，仅仅完成了网页的解析（整张页面的 DOM 生成了），所有外部资源（样式表、脚本、iframe 等等）可能还没有下载结束。也就是说，这个事件比load事件，发生时间早得多。</li>
+					<li>注意，网页的 JavaScript 脚本是同步执行的，脚本一旦发生堵塞，将推迟触发DOMContentLoaded事件。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>readystatechange 事件 </h3>
+				<ul>
+					<li>readystatechange事件当 Document 对象和 XMLHttpRequest 对象的readyState属性发生变化时触发。document.readyState有三个可能的值：loading（网页正在加载）、interactive（网页已经解析完成，但是外部资源仍然处在加载状态）和complete（网页和所有外部资源已经结束加载，load事件即将触发）。这个事件可以看作DOMContentLoaded事件的另一种实现方法。</li>
+				</ul>
+			</section>
+		</main>
+		<script>
+			document.addEventListener('DOMContentLoaded',function(e){
+				console.log('DOM生成');
+			},false)
+			//这个事件可以看作DOMContentLoaded事件的另一种实现方法
+			document.addEventListener('readystatechange',function(e){
+				if(document.readyState === 'interactive'){
+					//....
+				}
+			},false)
+		</script>
+	</body>
+</html>

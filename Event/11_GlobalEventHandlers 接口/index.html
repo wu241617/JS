@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>GlobalEventHandlers 接口</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head> 
+	<body>
+		<main>
+			<section>
+				<h3>GlobalEventHandlers 接口</h3>
+				<ul>
+					<li>指定事件的回调函数，推荐使用的方法是元素的addEventListener方法。div.addEventListener('click', clickHandler, false);</li>
+					<li>除了之外，还有一种方法可以直接指定事件的回调函数。div.onclick = clickHandler;</li>
+					<li>这个接口是由GlobalEventHandlers接口提供的。它的优点是使用比较方便，缺点是只能为每个事件指定一个回调函数，并且无法指定事件触发的阶段（捕获阶段还是冒泡阶段）。</li>
+					<li>HTMLElement、Document和Window都继承了这个接口，也就是说，各种 HTML 元素、document对象、window对象上面都可以使用GlobalEventHandlers接口提供的属性。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>GlobalEventHandlers.onabort</h3>
+				<ul>
+					<li>某个对象的abort事件（停止加载）发生时，就会调用onabort属性指定的回调函数。</li>
+					<li>各种元素的停止加载事件，到底如何触发，目前并没有统一的规定。因此实际上，这个属性现在一般只用在<img>元素上面。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>GlobalEventHandlers.onerror </h3>
+				<li>error事件发生时，就会调用onerror属性指定的回调函数。error事件分成两种。一种是 JavaScript 的运行时错误，这会传到window对象，导致window.onerror()。</li>
+				<li>window.onerror = function (message, source, lineno, colno, error) {
+  // ...
+}</li>
+				<li>message：错误信息字符串;source：报错脚本的 URL;lineno：报错的行号，是一个整数;colno：报错的列号，是一个整数;error： 错误对象;</li>
+				<li>另一种是资源加载错误，比如<!img>或<!script>加载的资源出现加载错误。这时，Error 对象会传到对应的元素，导致该元素的onerror属性开始执行。</li>
+				<li>element.onerror = function (event) {
+  // ...
+}</li>
+			</section>
+			<section>
+				<h3>GlobalEventHandlers.onload</h3>
+				<ul>
+					<li>元素完成加载时，会触发load事件，执行onload()。它的典型使用场景是window对象和<img>元素。对于window对象来说，只有页面的所有资源加载完成（包括图片、脚本、样式表、字体等所有外部资源），才会触发load事件。</li>
+					<li>GlobalEventHandlers.onloadstart</li>
+					<li>对于<img>和<video>等元素，加载开始时还会触发loadstart事件，导致执行onloadstart。</li>
+				</ul>
+			</section>
+		</main>
+		    <section>
+				<h3>GlobalEventHandlers.onfocus</h3>
+				<ul>
+					<li>当前元素获得焦点时，会触发element.onfocus；失去焦点时，会触发element.onblur。</li>
+					<li>如果不是可以接受用户输入的元素，要触发onfocus，该元素必须有tabindex属性。</li>
+					<li>GlobalEventHandlers.onscroll,页面或元素滚动时，会触发scroll事件，导致执行onscroll()。</li>
+					<li>GlobalEventHandlers.oncontextmenu,GlobalEventHandlers.onshow</li>
+					<li>用户在页面上按下鼠标的右键，会触发contextmenu事件，导致执行oncontextmenu()。如果该属性执行后返回false，就等于禁止了右键菜单。document.oncontextmenu与window.oncontextmenu效果一样。</li>
+					<li>元素的右键菜单显示时，会触发该元素的onshow监听函数。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>其他的事件属性 </h3>
+				<ul>
+					<li>鼠标的事件属性。onclick,ondblclick,onmousedown,onmouseenter,onmouseleave,onmousemove,onmouseout,onmouseover,onmouseup,onmouseup,onwheel</li>
+					<li>键盘的事件属性。onkeydown,onkeypress,onkeyup</li>
+					<li>焦点的事件属性。onblur,onfocus</li>
+					<li>表单的事件属性。oninput,onchange,onsubmit,onreset,oninvalid,onselect</li>
+					<li>触摸的事件属性。ontouchcancel,ontouchend,ontouchmove,ontouchstart</li>
+					<li>拖动的事件属性分成两类：一类与被拖动元素相关，另一类与接收被拖动元素的容器元素相关。</li>
+					<li>被拖动元素的事件属性。ondragstart：拖动开始,ondrag：拖动过程中，每隔几百毫秒触发一次,ondragend：拖动结束</li>
+					<li>ondragenter：被拖动元素进入容器元素。ondragleave：被拖动元素离开容器元素。ondragover：被拖动元素在容器元素上方，每隔几百毫秒触发一次。ondrop：松开鼠标后，被拖动元素放入容器元素。</li>
+				</ul>
+			</section>
+			<section>
+				<h3><!dialog>对话框元素的事件属性。</h3>
+				<ul>
+					<li>oncancel</li>
+					<li>onclose</li>
+				</ul>
+			</section>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+*{
+	margin:0;
+	padding:0;
+}
+html,body{
+	height:100%;
+	width:100%;
+}
+html{
+	font-size:20px;
+}
+main{
+	font-size:0.8rem;
+	width:30rem;
+	height:auto;
+	margin:2rem auto;
+	padding:1.5rem;
+	border:0.1rem solid #666;
+	box-shadow:0 0 0.6rem 0.6rem #666;
+	background-image: linear-gradient(to bottom left,thistle 50%,lightblue 50%);
+}
+h3{
+	height:2rem;
+	line-height:2rem;
+	text-align:center;
+	background-image: linear-gradient(85deg,white,#666);
+	color:white;
+	margin:0.5rem 0;
+	border-radius:1rem;
+}
+h3:hover{
+	cursor:pointer;
+	background-image:linear-gradient(-85deg,white,pink);
+	color:#666;
+}
+ul{
+	list-style-position:inside;
+	padding:1rem;
+}
+ul li{
+	margin:0.5rem 0;
+}

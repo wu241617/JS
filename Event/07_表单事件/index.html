@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+				.top h3{
+					margin-top:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section class="top">
+				<h3>表单事件的种类</h3>
+				<ul>
+					<li>input 事件</li>
+					<li>change事件当<!input>、<!select>、<!textarea>的值发生变化时触发。它与input事件的最大不同，就是不会连续触发，只有当全部修改完成时才会触发，另一方面input事件必然伴随change事件。具体来说，分成以下几种情况。</li>
+					<li>激活单选框（radio）或复选框（checkbox）时触发。用户提交时触发。比如，从下列列表（select）完成选择，在日期或文件输入框完成选择。当文本框或<!textarea>元素的值发生改变，并且丧失焦点时触发。</li>
+					<li>不同之处在于input事件在元素的值发生变化后立即发生，而change在元素失去焦点时发生，而内容此时可能已经变化多次。也就是说，如果有连续变化，input事件会触发多次，而change事件只在失去焦点时触发一次。</li>
+					<li>select 事件 select事件当在<!input>、<!textarea>里面选中文本时触发。选中的文本可以通过event.target元素的selectionDirection、selectionEnd、selectionStart和value属性拿到。</li>
+					<li>invalid 事件,用户提交表单时，如果表单元素的值不满足校验条件，就会触发invalid事件。required，输入框是必填的。</li>
+					<li>reset 事件，submit 事件,这两个事件发生在表单对象<!form>上，而不是发生在表单的成员上。</li>
+					<li>reset事件当表单重置（所有表单成员变回默认值）时触发。</li>
+					<li>submit事件当表单数据向服务器提交时触发。注意，submit事件的发生对象是<!form>元素，而不是<!button>元素，因为提交的是表单，而不是按钮。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>InputEvent 接口</h3>
+				<ul>
+					<li>InputEvent接口主要用来描述input事件的实例。该接口继承了Event接口，还定义了一些自己的实例属性和实例方法。</li>
+					<li>浏览器原生提供InputEvent()构造函数，用来生成实例对象。InputEvent构造函数可以接受两个参数。第一个参数是字符串，表示事件名称，该参数是必需的。第二个参数是一个配置对象，用来设置事件实例的属性，该参数是可选的。配置对象的字段除了Event构造函数的配置属性，还可以设置下面的字段，这些字段都是可选的。</li>
+					<li>inputType：字符串，表示发生变更的类型。data：字符串，表示插入的字符串。如果没有插入的字符串（比如删除操作），则返回null或空字符串。dataTransfer：返回一个 DataTransfer 对象实例，该属性通常只在输入框接受富文本输入时有效。</li>
+					<li>InputEvent.data属性返回一个字符串，表示变动的内容</li>
+					<li>InputEvent.inputType属性返回一个字符串，表示字符串发生变更的类型。</li>
+					<li>InputEvent.dataTransfer属性返回一个 DataTransfer 实例。该属性只在文本框接受粘贴内容（insertFromPaste）或拖拽内容（insertFromDrop）时才有效。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

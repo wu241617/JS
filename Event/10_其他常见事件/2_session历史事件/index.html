@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>session历史事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>pageshow 事件</h3>
+				<ul>
+					<li>默认情况下，浏览器会在当前会话（session）缓存页面，当用户点击“前进/后退”按钮时，浏览器就会从缓存中加载页面。</li>
+					<li>pageshow事件在页面加载时触发，包括第一次加载和从缓存加载两种情况。如果要指定页面每次加载（不管是不是从浏览器缓存）时都运行的代码，可以放在这个事件的监听函数。</li>
+					<li>第一次加载时，它的触发顺序排在load事件后面。从缓存加载时，load事件不会触发，因为网页在缓存中的样子通常是load事件的监听函数运行后的样子，所以不必重复执行。同理，如果是从缓存中加载页面，网页内初始化的 JavaScript 脚本（比如 DOMContentLoaded 事件的监听函数）也不会执行。</li>
+					<li>pageshow事件有一个persisted属性，返回一个布尔值。页面第一次加载时，这个属性是false；当页面从缓存加载时，这个属性是true。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>pagehide事件</h3>
+				<ul>
+					<li>pagehide事件与pageshow事件类似，当用户通过“前进/后退”按钮，离开当前页面时触发。它与 unload 事件的区别在于，如果在 window 对象上定义unload事件的监听函数之后，页面不会保存在缓存中，而使用pagehide事件，页面会保存在缓存中。</li>
+					<li>pagehide事件实例也有一个persisted属性，将这个属性设为true，就表示页面要保存在缓存中；设为false，表示网页不保存在缓存中，这时如果设置了unload 事件的监听函数，该函数将在 pagehide 事件后立即运行。</li>
+					<li>如果页面包含<!frame>或<!iframe>元素，则<!frame>页面的pageshow事件和pagehide事件，都会在主页面之前触发。注意，这两个事件只在浏览器的history对象发生变化时触发，跟网页是否可见没有关系。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>popstate 事件 </h3>
+				<ul>
+					<li>popstate事件在浏览器的history对象的当前记录发生显式切换时触发。注意，调用history.pushState()或history.replaceState()，并不会触发popstate事件。该事件只在用户在history记录之间显式切换时触发，比如鼠标点击“后退/前进”按钮，或者在脚本中调用history.back()、history.forward()、history.go()时触发。</li>
+					<li>该事件对象有一个state属性，保存history.pushState方法和history.replaceState方法为当前记录添加的state对象。</li>
+					<li>浏览器对于页面首次加载，是否触发popstate事件，处理不一样，Firefox 不触发该事件。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>hashchange 事件 </h3>
+				<ul>
+					<li>hashchange事件在 URL 的 hash 部分（即#号后面的部分，包括#号）发生变化时触发。该事件一般在window对象上监听。</li>
+					<li>hashchange的事件实例具有两个特有属性：oldURL属性和newURL属性，分别表示变化前后的完整 URL。</li>
+				</ul>
+			</section>
+		</main>
+		<script>
+			window.addEventListener('hashchange',function(e){
+				console.log(e.oldURL);
+				console.log(e.newURL);
+			},false)
+		</script>
+	</body>
+</html>
