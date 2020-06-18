@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<button>moveTo</button>
+		<h3>这是一个测试页面</h3>
+		<script>
+			(function(){
+				let moveTo,selectedText;
+				moveTo = document.querySelector('button');
+				moveTo.addEventListener('click',function(){
+					window.moveTo(100, 200);
+					window.resizeBy(-200,-200);
+					window.scroll({top:200,left:100,behavior:'smooth'});
+					window.scrollBy(0, window.innerHeight)
+					this.scrollTop = 400;
+					//window.print();
+					console.log(1)
+				},false);
+				selectedText = window.getSelection().toString();
+				console.log(selectedText);
+			})()
+		</script>
+	</body>
+</html>

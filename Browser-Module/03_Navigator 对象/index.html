@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>Navigator 对象,Screen 对象。</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					height:auto;
+					width:auto;
+					margin:0;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>Navigator 对象的属性</h3>
+				<ul>
+					<li>window.navigator属性指向一个包含浏览器和系统信息的 Navigator 对象。脚本通过这个属性了解用户的环境信息。</li>
+					<li>navigator.userAgent属性返回浏览器的 User Agent 字符串，表示浏览器的厂商和版本信息。</li>
+					<li>Navigator.plugins属性返回一个类似数组的对象，成员是 Plugin 实例对象，表示浏览器安装的插件，比如 Flash、ActiveX 等。</li>
+					<li>Navigator.platform属性返回用户的操作系统信息，比如MacIntel、Win32、Linux x86_64等 </li>
+					<li>navigator.onLine属性返回一个布尔值，表示用户当前在线还是离线（浏览器断线）。</li>
+					<li>Navigator.language属性返回一个字符串，表示浏览器的首选语言。该属性只读。</li>
+					<li>Navigator.languages属性返回一个数组，表示用户可以接受的语言。Navigator.language总是这个数组的第一个成员。HTTP 请求头信息的Accept-Language字段，就来自这个数组。如果这个属性发生变化，就会在window对象上触发languagechange事件。</li>
+					<li>Navigator.geolocation属性返回一个 Geolocation 对象，包含用户地理位置的信息。注意，该 API 只有在 HTTPS 协议下可用，否则调用下面方法时会报错。</li>
+					<li>Geolocation 对象提供下面三个方法。Geolocation.getCurrentPosition()：得到用户的当前位置,Geolocation.getCurrentPosition()：得到用户的当前位置,Geolocation.getCurrentPosition()：得到用户的当前位置</li>
+					<li>Navigator.cookieEnabled属性返回一个布尔值，表示浏览器的 Cookie 功能是否打开。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Navigator 对象的方法</h3>
+				<ul>
+					<li>Navigator.javaEnabled()方法返回一个布尔值，表示浏览器是否能运行 Java Applet 小程序。</li>
+					<li>Navigator.sendBeacon()方法用于向服务器异步发送数据</li>
+				</ul>
+			</section>
+			<section>
+				<h3>Screen 对象</h3>
+				<ul>
+					<li>Screen 对象表示当前窗口所在的屏幕，提供显示设备的信息。window.screen属性指向这个对象。该对象有下面的属性。</li>
+					<li>Screen.height：浏览器窗口所在的屏幕的高度（单位像素）。除非调整显示器的分辨率，否则这个值可以看作常量，不会发生变化。显示器的分辨率与浏览器设置无关，缩放网页并不会改变分辨率。</li>
+					<li>Screen.width：浏览器窗口所在的屏幕的宽度（单位像素）。</li>
+					<li>Screen.availHeight：浏览器窗口可用的屏幕高度（单位像素）。因为部分空间可能不可用，比如系统的任务栏或者 Mac 系统屏幕底部的 Dock 区，这个属性等于height减去那些被系统组件的高度。</li>
+					<li>Screen.availWidth：浏览器窗口可用的屏幕宽度（单位像素）。</li>
+					<li>Screen.pixelDepth：整数，表示屏幕的色彩位数，比如24表示屏幕提供24位色彩。</li>
+					<li>Screen.colorDepth：Screen.pixelDepth的别名。严格地说，colorDepth 表示应用程序的颜色深度，pixelDepth 表示屏幕的颜色深度，绝大多数情况下，它们都是同一件事。</li>
+					<li>Screen.orientation：返回一个对象，表示屏幕的方向。该对象的type属性是一个字符串，表示屏幕的具体方向，landscape-primary表示横放，landscape-secondary表示颠倒的横放，portrait-primary表示竖放，portrait-secondary。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

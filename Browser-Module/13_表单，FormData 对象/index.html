@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>表单，FormData 对象</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			main{
+				width:auto;
+				height:auto;
+				margin:0;
+				padding:0;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>表单，FormData 对象</h3>
+				<ul>
+					<li>表单（<!form>）用来收集用户提交的数据，发送到服务器。比如，用户提交用户名和密码，让服务器验证，就要通过表单。表单提供多种控件，让开发者使用，具体的控件种类和用法请参考 HTML 语言的教程。本章主要介绍 JavaScript 与表单的交互。</li>
+					<li>实际提交的时候，只要键值不是 URL 的合法字符（比如汉字“张三”和“提交”），浏览器会自动对其进行编码。点击submit控件，就可以提交表单。表单里面的<button>元素如果没有用type属性指定类型，那么默认就是submit控件。</li>
+					<li>除了点击submit控件提交表单，还可以用表单元素的submit()方法，通过脚本提交表单。</li>
+					<li>表单元素的reset()方法可以重置所有控件的值（重置为默认值）。</li>
+				</ul>
+			</section>
+		</main>
+			<section>
+				<h3>FormData 对象</h3>
+				<ul>
+					<li>表单数据以键值对的形式向服务器发送，这个过程是浏览器自动完成的。但是有时候，我们希望通过脚本完成过程，构造和编辑表单键值对，然后通过XMLHttpRequest.send()方法发送。浏览器原生提供了 FormData 对象来完成这项工作。</li>
+					<li>FormData 首先是一个构造函数，用来生成实例。var formdata = new FormData(form);</li>
+					<li>FormData()构造函数的参数是一个表单元素，这个参数是可选的。如果省略参数，就表示一个空的表单，否则就会处理表单元素里面的键值对。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>FormData 提供以下实例方法。</h3>
+				<ul>
+					<li>FormData.get(key)：获取指定键名对应的键值，参数为键名。如果有多个同名的键值对，则返回第一个键值对的键值。</li>
+					<li>FormData.getAll(key)：返回一个数组，表示指定键名对应的所有键值。如果有多个同名的键值对，数组会包含所有的键值。</li>
+					<li>FormData.set(key, value)：设置指定键名的键值，参数为键名。如果键名不存在，会添加这个键值对，否则会更新指定键名的键值。如果第二个参数是文件，还可以使用第三个参数，表示文件名。</li>
+					<li>FormData.delete(key)：删除一个键值对，参数为键名。</li>
+					<li>FormData.append(key, value)：添加一个键值对。如果键名重复，则会生成两个相同键名的键值对。如果第二个参数是文件，还可以使用第三个参数，表示文件名。</li>
+					<li>FormData.has(key)：返回一个布尔值，表示是否具有该键名的键值对。</li>
+					<li>FormData.values()：返回一个遍历器对象，用于for...of循环遍历所有的键值。</li>
+					<li>FormData.entries()：返回一个遍历器对象，用于for...of循环遍历所有的键值对。如果直接用for...of循环遍历 FormData 实例，默认就会调用这个方法。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>表单的内置验证</h3>
+				<ul>
+					<li>自动校验</li>
+					<li>表单提交的时候，浏览器允许开发者指定一些条件，它会自动验证各个表单控件的值是否符合条件。</li>
+					<li>在input标签上添加:必填required;必须符合正则表达式 pattern="banana|cherry";字符串长度必须为6个字符 minlength="6" maxlength="6";数值必须在1到10之间min="1" max="10";必须填入 Email 地址type="email";必须填入 URLtype="URL"</li>
+					<li>如果一个控件通过验证，它就会匹配:valid的 CSS 伪类，浏览器会继续进行表单提交的流程。如果没有通过验证，该控件就会匹配:invalid的 CSS 伪类，浏览器会终止表单提交，并显示一个错误信息。</li>
+					<li>
+<pre>
+	input:invalid {
+	  border-color: red;
+	}
+	input,
+	input:valid {
+	  border-color: #ccc;
+	}
+</pre>						
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>checkValidity() </h3>
+				<ul>
+					<li>除了提交表单的时候，浏览器自动校验表单，还可以手动触发表单的校验。表单元素和表单控件都有checkValidity()方法，用于手动触发校验。</li>
+					<li>触发整个表单的校验form.checkValidity();触发单个表单控件的校验formControl.checkValidity()</li>
+					<li>checkValidity()方法返回一个布尔值，true表示通过校验，false表示没有通过校验。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>属性</h3>
+				<ul>
+					<li>willValidate 属性</li>
+					<li>控件元素的willValidate属性是一个布尔值，表示该控件是否会在提交时进行校验。</li>
+					<li>validationMessage 属性</li>
+					<li>控件元素的validationMessage属性返回一个字符串，表示控件不满足校验条件时，浏览器显示的提示文本。以下两种情况，该属性返回空字符串。该控件不会在提交时自动校验;该控件满足校验条件。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>setCustomValidity()</h3>
+				<ul>
+					<li>控件元素的setCustomValidity()方法用来定制校验失败时的报错信息。它接受一个字符串作为参数，该字符串就是定制的报错信息。如果参数为空字符串，则上次设置的报错信息被清除。这个方法可以替换浏览器内置的表单验证报错信息，参数就是要显示的报错信息。</li>
+					<li>setCustomValidity()方法是在invalid事件的监听函数里面调用。该方法也可以直接调用，这时如果参数不为空字符串，浏览器就会认为该控件没有通过校验，就会立刻显示该方法设置的报错信息。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>validity 属性</h3>
+				<ul>
+					<li>控件元素的属性validity属性返回一个ValidityState对象，包含当前校验状态的信息。该对象有以下属性，全部为只读属性。</li>
+					<li>ValidityState.badInput：布尔值，表示浏览器是否不能将用户的输入转换成正确的类型，比如用户在数值框里面输入字符串。</li>
+					<li>ValidityState.customError：布尔值，表示是否已经调用setCustomValidity()方法，将校验信息设置为一个非空字符串。</li>
+					<li>ValidityState.patternMismatch：布尔值，表示用户输入的值是否不满足模式的要求。</li>
+					<li>ValidityState.rangeOverflow：布尔值，表示用户输入的值是否大于最大范围。</li>
+					<li>ValidityState.rangeUnderflow：布尔值，表示用户输入的值是否小于最小范围。</li>
+					<li>ValidityState.stepMismatch：布尔值，表示用户输入的值不符合步长的设置（即不能被步长值整除）。</li>
+					<li>ValidityState.tooLong：布尔值，表示用户输入的字数超出了最长字数。</li>
+					<li>ValidityState.tooShort：布尔值，表示用户输入的字符少于最短字数。</li>
+					<li>ValidityState.typeMismatch：布尔值，表示用户填入的值不符合类型要求（主要是类型为 Email 或 URL 的情况）。</li>
+					<li>ValidityState.valid：布尔值，表示用户是否满足所有校验条件。</li>
+					<li>ValidityState.valueMissing：布尔值，表示用户没有填入必填的值。</li>
+					<li>表单元素的 HTML 属性novalidate，可以关闭浏览器的自动校验。如果表单元素没有设置novalidate属性，那么提交按钮（<!button>或<!input>元素）的formnovalidate属性也有同样的作用。</li>
+					<li>表单能够用四种编码，向服务器发送数据。编码格式由表单的enctype属性决定。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>文件上传</h3>
+				<ul>
+					<li>用户上传文件，也是通过表单。具体来说，就是通过文件输入框选择本地文件，提交表单的时候，浏览器就会把这个文件发送到服务器。</li>
+					<li>此外，还需要将表单<!form>元素的method属性设为POST，enctype属性设为multipart/form-data。其中，enctype属性决定了 HTTP 头信息的Content-Type字段的值，默认情况下这个字段的值是application/x-www-form-urlencoded，但是文件上传的时候要改成multipart/form-data。</li>
+					<li>file 控件的multiple属性，指定可以一次选择多个文件；如果没有这个属性，则一次只能选择一个文件。</li>
+				</ul>
+			</section>
+	</body>
+</html>

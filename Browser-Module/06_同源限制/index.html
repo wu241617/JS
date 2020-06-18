@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>同源限制</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					height:auto;
+					width:auto;
+					margin:0;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>同源含义</h3>
+				<ul>
+					<li>同源协议:协议相同,域名相同,端口相同</li>
+					<li>举例来说，http://www.example.com/dir/page.html这个网址，协议是http://，域名是www.example.com，端口是80（默认端口可以省略）</li>
+				</ul>
+			</section>
+			<section>
+				<h3>同源目的</h3>
+				<ul>
+					<li>同源政策的目的，是为了保证用户信息的安全，防止恶意的网站窃取数据。同源政策是必需的，否则 Cookie 可以共享，互联网就毫无安全可言了。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>限制范围</h3>
+				<ul>
+					<li>随着互联网的发展，同源政策越来越严格。目前，如果非同源，共有三种行为受到限制。</li>
+					<li> 无法读取非同源网页的 Cookie、LocalStorage 和 IndexedDB。</li>
+					<li>无法接触非同源网页的 DOM。</li>
+					<li>无法向非同源地址发送 AJAX 请求（可以发送，但浏览器会拒绝接受响应）。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>window.postMessage()</h3>
+				<ul>
+					<li>上面的这种方法属于破解，HTML5 为了解决这个问题，引入了一个全新的API：跨文档通信 API（Cross-document messaging）。</li>
+					<li>这个 API 为window对象新增了一个window.postMessage方法，允许跨窗口通信，不论这两个窗口是否同源。举例来说，父窗口aaa.com向子窗口bbb.com发消息，调用postMessage方法就可以了。</li>
+					<li>postMessage方法的第一个参数是具体的信息内容，第二个参数是接收消息的窗口的源（origin），即“协议 + 域名 + 端口”。也可以设为*，表示不限制域名，向所有窗口发送。</li>
+					<li>父窗口和子窗口都可以通过message事件，监听对方的消息。event.source：发送消息的窗口event.origin: 消息发向的网址event.data: 消息内容</li>
+					<li>event.origin属性可以过滤不是发给本窗口的消息。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>AJAX跨域方式</h3>
+				<ul>
+					<li>同源政策规定，AJAX 请求只能发给同源的网址，否则就报错。</li>
+					<li>除了架设服务器代理（浏览器请求同源服务器，再由后者请求外部服务），有三种方法规避这个限制。</li>
+					<li>JSONP/WebSocket/CORS</li>
+				</ul>
+			</section>
+			<section>
+				<h3>JSONP</h3>
+				<ul>
+					<li>JSONP 是服务器与客户端跨源通信的常用方法。最大特点就是简单易用，没有兼容性问题，老式浏览器全部支持，服务端改造非常小。</li>
+					<li>第一步，网页添加一个<!script>元素，向服务器请求一个脚本，这不受同源政策限制，可以跨域请求。script src="http://api.foo.com?callback=bar"请求的脚本网址有一个callback参数（?callback=bar），用来告诉服务器，客户端的回调函数名称（bar)</li>
+					<li>第二步，服务器收到请求后，拼接一个字符串，将 JSON 数据放在函数名里面，作为字符串返回（bar({...})）。</li>
+					<li>第三步，客户端会将服务器返回的字符串，作为代码解析，因为浏览器认为，这是<!script>标签请求的脚本内容。这时，客户端只要定义了bar()函数，就能在该函数体内，拿到服务器返回的 JSON 数据。</li>
+					<li>
+<pre>
+	function addScriptTag(src) {
+	  var script = document.createElement('script');
+	  script.setAttribute('type', 'text/javascript');
+	  script.src = src;
+	  document.body.appendChild(script);
+	}
+	
+	window.onload = function () {
+	  addScriptTag('http://example.com/ip?callback=foo');
+	}
+	
+	function foo(data) {
+	  console.log('Your public IP address is: ' + data.ip);
+	};
+</pre>
+					</li>
+				</ul>
+			</section>
+			<section>
+				<h3>WebSocket </h3>
+				<ul>
+					<li>WebSocket 是一种通信协议，使用ws://（非加密）和wss://（加密）作为协议前缀。该协议不实行同源政策，只要服务器支持，就可以通过它进行跨源通信。</li>
+					<li>览器发出的 WebSocket 请求的头信息中,有一个字段是Origin，表示该请求的请求源（origin），即发自哪个域名。正是因为有了Origin这个字段，所以 WebSocket 才没有实行同源政策。因为服务器可以根据这个字段，判断是否许可本次通信。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>CORS</h3>
+				<ul>
+					<li>CORS 是跨源资源分享（Cross-Origin Resource Sharing）的缩写。它是 W3C 标准，属于跨源 AJAX 请求的根本解决方法。相比 JSONP 只能发GET请求，CORS 允许任何类型的请求。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

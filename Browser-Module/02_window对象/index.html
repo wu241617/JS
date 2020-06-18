@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit-cover">
+		<title>window对象</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>概述</h3>
+				<ul>
+					<li>浏览器里面，window对象（注意，w为小写）指当前的浏览器窗口。它也是当前页面的顶层对象，即最高一层的对象，所有其他对象都是它的下属。一个变量如果未声明，那么默认就是顶层对象的属性。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>window对象的属性</h3>
+				<ul>
+					<li>window.name属性是一个字符串，表示当前浏览器窗口的名字。窗口不一定需要名字，这个属性主要配合超链接和表单的target属性使用。该属性只能保存字符串，如果写入的值不是字符串，会自动转成字符串。各个浏览器对这个值的储存容量有所不同，但是一般来说，可以高达几MB。</li>
+					<li>window.closed属性返回一个布尔值，表示窗口是否关闭。这个属性一般用来检查，使用脚本打开的新窗口是否关闭。</li>
+					<li>
+<pre>
+	var popup = window.open();
+	if ((popup !== null) && !popup.closed) {
+	  // 窗口仍然打开着
+	}
+</pre>
+					<li>window.open(),JS中打开页面</li>
+					<li>window.opener属性表示打开当前窗口的父窗口。如果当前窗口没有父窗口（即直接在地址栏输入打开），则返回null。子窗口的opener属性设为null，两个窗口之间就没办法再联系了,这样可以减少一些安全隐患。</li>
+					<li>通过opener属性，可以获得父窗口的全局属性和方法，但只限于两个窗口同源的情况（参见《同源限制》一章），且其中一个窗口由另一个打开。<!a>元素添加rel="noopener"属性，可以防止新打开的窗口获取父窗口，减轻被恶意网站修改父窗口 URL 的风险。</li>
+					</li>
+					<li>window.self和window.window属性都指向窗口本身。这两个属性只读。</li>
+					<li>window.frames属性返回一个类似数组的对象，成员为页面内所有框架窗口，包括frame元素和iframe元素。window.frames[0]表示页面中第一个框架窗口</li>
+					<li>如果iframe元素设置了id或name属性，那么就可以用属性值，引用这个iframe窗口。比如<!iframe name="myIFrame">可以用frames['myIFrame']或者frames.myIFrame来引用。frames属性实际上是window对象的别名。</li>
+					<li>window.length属性返回当前网页包含的框架总数。</li>
+					<li>window.frameElement属性主要用于当前窗口嵌在另一个网页的情况（嵌入<!object>、<!iframe>或<!embed>元素），返回当前窗口所在的那个元素节点。如果当前窗口是顶层窗口，或者所嵌入的那个网页不是同源的，该属性返回null。</li>
+					<li>window.top属性指向最顶层窗口，主要用于在框架窗口（frame）里面获取顶层窗口。window.parent属性指向父窗口。如果当前窗口没有父窗口，window.parent指向自身。对于不包含框架的网页，这两个属性等同于window对象。</li>
+					<li>window.status属性用于读写浏览器状态栏的文本。但是，现在很多浏览器都不允许改写状态栏文本，所以使用这个方法不一定有效。</li>
+					<li>window.devicePixelRatio属性返回一个数值，表示一个 CSS 像素的大小与一个物理像素的大小之间的比率。也就是说，它表示一个 CSS 像素由多少个物理像素组成。它可以用于判断用户的显示环境，如果这个比率较大，就表示用户正在使用高清屏幕，因此可以显示较大像素的图片。</li>
+					
+				</ul>
+			</section>
+			<section>
+				<h3>位置大小属性</h3>
+				<ul>
+					<li>window.screenX和window.screenY属性，返回浏览器窗口左上角相对于当前屏幕左上角的水平距离和垂直距离（单位像素）。这两个属性只读。</li>
+					<li>window.innerHeight和window.innerWidth属性，返回网页在当前窗口中可见部分的高度和宽度，即“视口”（viewport）的大小（单位像素）。这两个属性只读。注意，这两个属性值包括滚动条的高度和宽度。</li>
+					<li>window.outerHeight和window.outerWidth属性返回浏览器窗口的高度和宽度，包括浏览器菜单和边框（单位像素）。这两个属性只读。</li>
+					<li>window.scrollX属性返回页面的水平滚动距离，window.scrollY属性返回页面的垂直滚动距离，单位都为像素。这两个属性只读。注意，这两个属性的返回值不是整数，而是双精度浮点数。如果页面没有滚动，它们的值就是0。</li>
+					<li>window.pageXOffset属性和window.pageYOffset属性，是window.scrollX和window.scrollY别名。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>组件属性</h3>
+				<ul>
+					<li>组件属性,组件属性返回浏览器的组件对象。这样的属性有下面几个。</li>
+					<li>window.locationbar：地址栏对象</li>
+					<li>window.menubar：菜单栏对象</li>
+					<li>window.scrollbars：窗口的滚动条对象</li>
+					<li>window.toolbar：工具栏对象</li>
+					<li>window.statusbar：状态栏对象</li>
+					<li>window.personalbar：用户安装的个人工具栏对象</li>
+					<li>这些对象的visible属性是一个布尔值，表示这些组件是否可见。这些属性只读。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>全局对象属性</h3>
+				<ul>
+					<li>全局对象属性指向一些浏览器原生的全局对象。</li>
+					<li>window.document：指向document对象，详见《document 对象》一章。注意，这个属性有同源限制。只有来自同源的脚本才能读取这个属性。</li>
+					<li>window.location：指向Location对象，用于获取当前窗口的 URL 信息。它等同于document.location属性，详见《Location 对象》一章。</li>
+					<li>window.navigator：指向Navigator对象，用于获取环境信息，详见《Navigator 对象》一章。</li>
+					<li>window.history：指向History对象，表示浏览器的浏览历史，详见《History 对象》一章。</li>
+					<li>window.localStorage：指向本地储存的 localStorage 数据，详见《Storage 接口》一章。</li>
+					<li>window.sessionStorage：指向本地储存的 sessionStorage 数据，详见《Storage 接口》一章。</li>
+					<li>window.console：指向console对象，用于操作控制台，详见《console 对象》一章。</li>
+					<li>window.screen：指向Screen对象，表示屏幕信息，详见《Screen 对象》一章。</li>
+					<li>window.isSecureContext属性返回一个布尔值，表示当前窗口是否处在加密环境。如果是 HTTPS 协议，就是true，否则就是false。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>window 对象的方法 </h3>
+				<ul>
+					<li>window.alert()方法弹出的对话框，只有一个“确定”按钮，往往用来通知用户某些信息。window.alert('Hello World');</li>
+					<li>window.prompt()方法弹出的对话框，提示文字的下方，还有一个输入框，要求用户输入信息，并有“确定”和“取消”两个按钮。它往往用来获取用户输入的数据。</li>
+					<li>window.confirm()方法弹出的对话框，除了提示信息之外，只有“确定”和“取消”两个按钮，往往用来征询用户是否同意。</li>
+					<li>window.open方法用于新建另一个浏览器窗口，类似于浏览器菜单的新建窗口选项。它会返回新窗口的引用，如果无法新建窗口，则返回null。window.open(url, windowName, [windowFeatures])</li>
+					<li>window.close方法用于关闭当前窗口，一般只用来关闭window.open方法新建的窗口。</li>
+					<li>window.stop()方法完全等同于单击浏览器的停止按钮，会停止加载图像、视频等正在或等待加载的对象。</li>
+					<li>window.moveTo()方法用于移动浏览器窗口到指定位置。它接受两个参数，分别是窗口左上角距离屏幕左上角的水平距离和垂直距离，单位为像素。</li>
+					<li>window.moveBy()方法将窗口移动到一个相对位置。它接受两个参数，分别是窗口左上角向右移动的水平距离和向下移动的垂直距离，单位为像素。</li>
+					<li>为了防止有人滥用这两个方法，随意移动用户的窗口，目前只有一种情况，浏览器允许用脚本移动窗口：该窗口是用window.open()方法新建的，并且窗口里只有它一个 Tab 页。除此以外的情况，使用上面两个方法都是无效的。</li>
+					<li>window.resizeTo()方法用于缩放窗口到指定大小。它接受两个参数，第一个是缩放后的窗口宽度（outerWidth属性，包含滚动条、标题栏等等），第二个是缩放后的窗口高度（outerHeight属性）。</li>
+					<li>window.resizeBy()方法用于缩放窗口。它与window.resizeTo()的区别是，它按照相对的量缩放，window.resizeTo()需要给出缩放后的绝对大小。window.resizeBy()方法用于缩放窗口。它与window.resizeTo()的区别是，它按照相对的量缩放，window.resizeTo()需要给出缩放后的绝对大小。</li>
+					<li>window.scrollTo方法用于将文档滚动到指定位置。它接受两个参数，表示滚动后位于窗口左上角的页面坐标。window.scrollTo(x-coord, y-coord)它也可以接受一个配置对象作为参数。window.scrollTo(options),配置对象options有三个属性。top：滚动后页面左上角的垂直坐标，即 y 坐标。left：滚动后页面左上角的水平坐标，即 x 坐标。behavior：字符串，表示滚动的方式，有三个可能值（smooth、instant、auto），默认值为auto。</li>
+					<li>window.scroll()方法是window.scrollTo()方法的别名。</li>
+					<li>window.scrollBy()方法用于将网页滚动指定距离（单位像素）。它接受两个参数：水平向右滚动的像素，垂直向下滚动的像素。window.scrollBy(0, window.innerHeight)用于将网页向下滚动一屏。</li>
+					<li>不是要滚动整个文档，而是要滚动某个元素，可以使用下面三个属性和方法。Element.scrollTop,Element.scrollLeft,Element.scrollIntoView()</li>
+					<li>window.print方法会跳出打印对话框，与用户点击菜单里面的“打印”命令效果相同。</li>
+					<li>window.focus()方法会激活窗口，使其获得焦点，出现在其他窗口的前面。</li>
+					<li>window.blur()方法将焦点从窗口移除。当前窗口获得焦点时，会触发focus事件；当前窗口失去焦点时，会触发blur事件。</li>
+					<li>window.getSelection方法返回一个Selection对象，表示用户现在选中的文本。使用Selection对象的toString方法可以得到选中的文本。</li>
+					<li>window.getComputedStyle()方法接受一个元素节点作为参数，返回一个包含该元素的最终样式信息的对象</li>
+					<li>window.matchMedia()方法用来检查 CSS 的mediaQuery语句</li>
+					<li>window.requestAnimationFrame()方法跟setTimeout类似，都是推迟某个函数的执行。不同之处在于，setTimeout必须指定推迟的时间，window.requestAnimationFrame()则是推迟到浏览器下一次重流时执行，执行完才会进行下一次重绘。重绘通常是 16ms 执行一次，不过浏览器会自动调节这个速率，比如网页切换到后台 Tab 页时，requestAnimationFrame()会暂停执行。如果某个函数会改变网页的布局，一般就放在window.requestAnimationFrame()里面执行，这样可以节省系统资源，使得网页效果更加平滑。因为慢速设备会用较慢的速率重流和重绘，而速度更快的设备会有更快的速率。该方法接受一个回调函数作为参数。window.requestAnimationFrame(callback)</li>
+					<li>window.requestIdleCallback()跟setTimeout类似，也是将某个函数推迟执行，但是它保证将回调函数推迟到系统资源空闲时执行。也就是说，如果某个任务不是很关键，就可以使用window.requestIdleCallback()将其推迟执行，以保证网页性能。它跟window.requestAnimationFrame()的区别在于，后者指定回调函数在下一次浏览器重排时执行，问题在于下一次重排时，系统资源未必空闲，不一定能保证在16毫秒之内完成；window.requestIdleCallback()可以保证回调函数在系统资源空闲时执行。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>事件</h3>
+				<ul>
+					<li>load事件发生在文档在浏览器窗口加载完毕时。window.onload属性可以指定这个事件的回调函数。</li>
+					<li>浏览器脚本发生错误时，会触发window对象的error事件。我们可以通过window.onerror属性对该事件指定回调函数。</li>
+					<li>由于网页可以使用iframe元素，嵌入其他网页，因此一个网页之中会形成多个窗口。如果子窗口之中又嵌入别的网页，就会形成多级窗口。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>窗口的引用</h3>
+				<li>各个窗口之中的脚本，可以引用其他窗口。浏览器提供了一些特殊变量，用来返回其他窗口。</li>
+				<li>top：顶层窗口，即最上层的那个窗口</li>
+				<li>parent：父窗口</li>
+				<li>self：当前窗口，即自身</li>
+				<li>与这些变量对应，浏览器还提供一些特殊的窗口名，供window.open()方法、<!a>标签、<!form>标签等引用。</li>
+				<li>_top：顶层窗口,_parent：父窗口,_blank：新窗口</li>
+				<li>对于iframe嵌入的窗口，document.getElementById方法可以拿到该窗口的 DOM 节点，然后使用contentWindow属性获得iframe节点包含的window对象。</li>
+				<li><!iframe>元素的contentDocument属性，可以拿到子窗口的document对象。<!iframe>元素遵守同源政策，只有当父窗口与子窗口在同一个域时，两者之间才可以用脚本通信，否则只有使用window.postMessage方法。</li>
+				<li>window.frames 属性...</li>
+			</section>
+		</main>
+	</body>
+</html>

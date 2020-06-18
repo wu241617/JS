@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>File对象，FileList对象，FileReader对象</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+			    width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					width:auto;
+					height:auto;
+					margin:0;
+					padding:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>File 对象</h3>
+				<ul>
+					<li>File 对象代表一个文件，用来读写文件信息。它继承了 Blob 对象，或者说是一种特殊的 Blob 对象，所有可以使用 Blob 对象的场合都可以使用它。</li>
+					<li>最常见的使用场合是表单的文件上传控件（<!input type="file">），用户选中文件以后，浏览器就会生成一个数组，里面是每一个用户选中的文件，它们都是 File 实例对象。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>构造函数</h3>
+				<ul>
+					<li>浏览器原生提供一个File()构造函数，用来生成 File 实例对象。</li>
+					<li>File()构造函数接受三个参数。</li>
+					<li>array：一个数组，成员可以是二进制对象或字符串，表示文件的内容。</li>
+					<li>name：字符串，表示文件名或文件路径。</li>
+					<li>options：配置对象，设置实例的属性。该参数可选。</li>
+					<li>第三个参数配置对象，可以设置两个属性。type：字符串，表示实例对象的 MIME 类型，默认值为空字符串。lastModified：时间戳，表示上次修改的时间，默认为Date.now()。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>实例属性和实例方法 </h3>
+				<ul>
+					<li>File.lastModified：最后修改时间</li>
+					<li>File.name：文件名或文件路径</li>
+					<li>File.size：文件大小（单位字节）</li>
+					<li>File.type：文件的 MIME 类型</li>
+					<li>File 对象没有自己的实例方法，由于继承了 Blob 对象，因此可以使用 Blob 的实例方法slice()。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>FileList 对象</h3>
+				<ul>
+					<li>FileList对象是一个类似数组的对象，代表一组选中的文件，每个成员都是一个 File 实例。它主要出现在两个场合。</li>
+					<li>文件控件节点（<!input type="file">）的files属性，返回一个 FileList 实例。</li>
+					<li>拖拉一组文件时，目标区的DataTransfer.files属性，返回一个 FileList 实例。</li>
+					<li>FileList 的实例属性主要是length，表示包含多少个文件。</li>
+					<li>FileList 的实例方法主要是item()，用来返回指定位置的实例。它接受一个整数作为参数，表示位置的序号（从零开始）。但是，由于 FileList 的实例是一个类似数组的对象，可以直接用方括号运算符，即myFileList[0]等同于myFileList.item(0)，所以一般用不到item()方法。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>FileReader对象</h3>
+				<ul>
+					<li>FileReader 对象用于读取 File 对象或 Blob 对象所包含的文件内容。</li>
+					<li>浏览器原生提供一个FileReader构造函数，用来生成 FileReader 实例。</li>
+					<li>FileReader 有以下的实例属性。</li>
+					<li>FileReader.error：读取文件时产生的错误对象</li>
+					<li>FileReader.readyState：整数，表示读取文件时的当前状态。一共有三种可能的状态，0表示尚未加载任何数据，1表示数据正在加载，2表示加载完成。</li>
+					<li>FileReader.result：读取完成后的文件内容，有可能是字符串，也可能是一个 ArrayBuffer 实例。</li>
+					<li>FileReader.onabort：abort事件（用户终止读取操作）的监听函数。</li>
+					<li>FileReader.onerror：error事件（读取错误）的监听函数。</li>
+					<li>FileReader.onload：load事件（读取操作完成）的监听函数，通常在这个函数里面使用result属性，拿到文件内容。</li>
+					<li>FileReader.onloadstart：loadstart事件（读取操作开始）的监听函数。</li>
+					<li>FileReader.onloadend：loadend事件（读取操作结束）的监听函数。</li>
+					<li>FileReader.onprogress：progress事件（读取操作进行中）的监听函数。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>FileReader 有以下实例方法。</h3>
+				<ul>
+					<li>FileReader.abort()：终止读取操作，readyState属性将变成2。</li>
+					<li>FileReader.readAsArrayBuffer()：以 ArrayBuffer 的格式读取文件，读取完成后result属性将返回一个 ArrayBuffer 实例。</li>
+					<li>FileReader.readAsBinaryString()：读取完成后，result属性将返回原始的二进制字符串。</li>
+					<li>FileReader.readAsDataURL()：读取完成后，result属性将返回一个 Data URL 格式（Base64 编码）的字符串，代表文件内容。对于图片文件，这个字符串可以用于<!img>元素的src属性。注意，这个字符串不能直接进行 Base64 解码，必须把前缀data:*/*;base64,从字符串里删除以后，再进行解码。</li>
+					<li>FileReader.readAsText()：读取完成后，result属性将返回文件内容的文本字符串。该方法的第一个参数是代表文件的 Blob 实例，第二个参数是可选的，表示文本编码，默认为 UTF-8。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
