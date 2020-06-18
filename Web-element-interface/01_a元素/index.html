@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>a元素</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.6rem 0.6rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			@media (max-width:450px) {
+				main{
+					height:auto;
+					width:auto;
+					padding:0;
+					margin:0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>a元素</h3>
+				<ul>
+					<li>a元素用来设置链接。除了网页元素的通用接口（Node接口、Element接口、HTMLElement接口），它还继承了HTMLAnchorElement接口和HTMLHyperlinkElementUtils接口。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>相关属性</h3>
+				<ul>
+					<li>a元素有一系列 URL 相关属性，可以用来操作链接地址。这些属性的含义，可以参见Location对象的实例属性。</li>
+					<li>hash：片段识别符（以#开头）;host：主机和端口（默认端口80和443会省略）;hostname：主机名;href：完整的 URL;origin：协议、域名和端口;password：主机名前的密码;pathname：路径（以/开头）;port：端口;protocol：协议（包含尾部的冒号:）;search：查询字符串（以?开头）;username：主机名前的用户名。除了origin属性是只读的，上面这些属性都是可读写的。</li>
+					<li>accessKey属性用来读写<!a>元素的快捷键。</li>
+					<li>download属性表示当前链接不是用来浏览，而是用来下载的。它的值是一个字符串，表示用户下载得到的文件名。</li>
+					<li>hreflang属性用来读写<!a>元素的 HTML 属性hreflang，表示链接指向的资源的语言，比如hreflang="en"。</li>
+					<li>referrerPolicy属性用来读写<!a>元素的 HTML 属性referrerPolicy，指定当用户点击链接时，如何发送 HTTP 头信息的referer字段。</li>
+					<li>HTTP 头信息的referer字段，表示当前请求是从哪里来的。它的格式可以由<!a>元素的referrerPolicy属性指定，共有三个值可以选择。no-referrer：不发送referer字段。origin：referer字段的值是<!a>元素的origin属性，即协议 + 主机名 + 端口。unsafe-url：referer字段的值是origin属性再加上路径，但不包含#片段。这种格式提供的信息最详细，可能存在信息泄漏的风险。</li>
+					<li>rel属性用来读写<!a>元素的 HTML 属性rel，表示链接与当前文档的关系。</li>
+					<li>tabIndex属性的值是一个整数，用来读写当前<!a>元素在文档里面的 Tab 键遍历顺序。</li>
+					<li>text属性用来读写<!a>元素的链接文本，等同于当前节点的textContent属性。</li>
+					<li>type属性用来读写<!a>元素的 HTML 属性type，表示链接目标的 MIME 类型。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>相关方法</h3>
+				<ul>
+					<li>blur()：从当前元素移除键盘焦点</li>
+					<li>focus()：当前元素得到键盘焦点</li>
+					<li>toString()：返回当前<a>元素的 HTML 属性href</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

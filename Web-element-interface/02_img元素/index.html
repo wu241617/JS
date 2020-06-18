@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,">
+		<title>img元素</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				margin:2rem auto;
+				padding:1.5rem;
+				border:0.1rem solid black;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			main{
+				height:auto;
+				width:auto;
+				padding:0;
+				margin:0;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>img概述</h3>
+				<ul>
+					<li>img元素用于插入图片，主要继承了 HTMLImageElement 接口,浏览器提供一个原生构造函数Image，用于生成HTMLImageElement实例。</li>
+					<li>构造函数可以接受两个整数作为参数，分别表示<!img>元素的宽度和高度。实例的src属性可以定义图像的网址</li>
+					<li>HTMLImageElement实例除了具有 Node、Element、HTMLElement 接口以外，还拥有一些独有的属性。这个接口没有定义自己的方法。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>特性相关的属性</h3>
+				<ul>
+					<li>HTMLImageElement.src属性返回图像的完整网址。</li>
+					<li>HTMLImageElement.currentSrc属性返回当前正在展示的图像的网址。JavaScript 和 CSS 的 mediaQuery 都可能改变正在展示的图像。</li>
+					<li>HTMLImageElement.alt属性可以读写<!img>的 HTML 属性alt，表示对图片的文字说明。</li>
+					<li>HTMLImageElement.isMap属性对应<!img>元素的 HTML 属性ismap，返回一个布尔值，表示图像是否为服务器端的图像映射的一部分。</li>
+					<li>HTMLImageElement.useMap属性对应<!img>元素的 HTML 属性usemap，表示当前图像对应的<!map>元素。</li>
+					<li>width属性表示<!img>的 HTML 宽度，height属性表示高度。这两个属性返回的都是整数。如果 HTML 代码没有设置width和height属性，则它们返回的是图像的实际宽度和高度，即HTMLImageElement.naturalWidth属性和HTMLImageElement.naturalHeight属性。</li>
+					<li>HTMLImageElement.naturalWidth属性表示图像的实际宽度（单位像素），HTMLImageElement.naturalHeight属性表示实际高度。这两个属性返回的都是整数。</li>
+					<li>HTMLImageElement.complete属性返回一个布尔值，表示图表是否已经加载完成。如果<!img>元素没有src属性，也会返回true。</li>
+					<li>HTMLImageElement.crossOrigin属性用于读写<!img>元素的crossorigin属性，表示跨域设置。anonymous：跨域请求不要求用户身份（credentials），这是默认值。use-credentials：跨域请求要求用户身份。</li>
+					<li></li>
+				</ul>
+			</section>
+			<section>
+				<h3></h3>
+				<ul>
+					<li>HTMLImageElement.referrerPolicy用来读写<!img>元素的 HTML 属性referrerpolicy，表示请求图像资源时，如何处理 HTTP 请求的referrer字段。</li>
+					<li>no-referrer：不带有referrer字段。</li>
+					<li>no-referrer-when-downgrade：如果请求的地址不是 HTTPS 协议，就不带有referrer字段，这是默认值。</li>
+					<li>origin：referrer字段是当前网页的地址，包含协议、域名和端口。</li>
+					<li>origin-when-cross-origin：如果请求的地址与当前网页是同源关系，那么referrer字段将带有完整路径，否则将只包含协议、域名和端口。</li>
+					<li>unsafe-url：referrer字段包含当前网页的地址，除了协议、域名和端口以外，还包括路径。这个设置是不安全的，因为会泄漏路径信息。</li>
+					<li>HTMLImageElement.x属性返回图像左上角相对于页面左上角的横坐标，HTMLImageElement.y属性返回纵坐标。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>事件属性</h3>
+				<ul>
+					<li>图像加载完成，会触发onload属性指定的回调函数。</li>
+					<li>图像加载过程中发生错误，会触发onerror属性指定的回调函数。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>

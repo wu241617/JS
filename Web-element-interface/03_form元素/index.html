@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,viewport-fit=cover">
+		<title>form元素</title>
+		<style type="text/css">
+			*{
+				margin:0;
+				padding:0;
+			}
+			html,body{
+				height:100%;
+				width:100%;
+			}
+			html{
+				font-size:20px;
+			}
+			main{
+				font-size:0.8rem;
+				width:30rem;
+				height:auto;
+				border:0.1rem solid black;
+				margin:2rem auto;
+				padding:1.5rem;
+				box-shadow:0 0 0.5rem 0.5rem #666;
+			}
+			h3{
+				height:2rem;
+				line-height:2rem;
+				text-align:center;
+				background-color:black;
+				color:white;
+				margin:0.5rem 0;
+			}
+			ul{
+				list-style-position:inside;
+				padding:1rem;
+			}
+			ul li{
+				margin:0.5rem 0;
+			}
+		</style>
+		<style>
+			main{
+				height:auto;
+				width:auto;
+				margin:0;
+				padding:0;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<section>
+				<h3>form元素</h3>
+				<ul>
+					<li>form元素代表了表单，继承了 HTMLFormElement 接口。</li>
+					<li>HTMLFormElement 的实例属性</li>
+					<li>elements：返回一个类似数组的对象，成员是属于该表单的所有控件元素。该属性只读。</li>
+					<li>length：返回一个整数，表示属于该表单的控件数量。该属性只读。</li>
+					<li>name：字符串，表示该表单的名称。</li>
+					<li>method：字符串，表示提交给服务器时所使用的 HTTP 方法。</li>
+					<li>target：字符串，表示表单提交后，服务器返回的数据的展示位置。</li>
+					<li>enctype（或encoding）：字符串，表示表单提交数据的编码方法，可能的值有application/x-www-form-urlencoded、multipart/form-data和text/plain。</li>
+					<li>acceptCharset：字符串，表示服务器所能接受的字符编码，多个编码格式之间使用逗号或空格分隔。</li>
+					<li>autocomplete：字符串on或off，表示浏览器是否要对<input>控件提供自动补全。</li>
+					<li>noValidate：布尔值，表示是否关闭表单的自动校验。</li>
+				</ul>
+			</section>
+			<section>
+				<h3>HTMLFormElement 的实例方法</h3>
+				<ul>
+					<li>submit()：提交表单，但是不会触发submit事件和表单的自动校验。</li>
+					<li>reset()：重置表单控件的值为默认值。</li>
+					<li>checkValidity()：如果控件能够通过自动校验，返回true，否则返回false，同时触发invalid事件。</li>
+				</ul>
+			</section>
+		</main>
+	</body>
+</html>
